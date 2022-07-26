@@ -4,7 +4,7 @@
 use Medoo\Medoo;
 
 // INCLUDE CORE FILE
-require 'core.php';
+require_once '_core.php';
 
 // REDIRECT IF USER IS LOGGED IN
 if(isset($_SESSION['user_login'])){ header("Location: dashboard"); exit; }
@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         'password' =>  md5($_POST['password'])
     ]);
 
-    // REDIRECT IF USER EXISTS
+    // REDIRECT IF USER EXISTS AND CREATE SESSION
     if (isset($data[0]['id'])) {
         $_SESSION['user_login'] = true;
         $_SESSION['user_id'] = $data[0]['id'];

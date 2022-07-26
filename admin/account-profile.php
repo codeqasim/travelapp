@@ -4,7 +4,7 @@
 use Medoo\Medoo;
 
 // INCLUDE CORE FILE
-require_once 'core.php';
+require_once '_core.php';
 
 // REQUIRED IF USER IS NOT LOGGED IN
 if($_SESSION['user_type'] !== "admin" ){

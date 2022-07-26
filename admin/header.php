@@ -4,14 +4,10 @@
 use Medoo\Medoo;
 
 // INCLUDE CORE FILE
-require 'core.php';
+require_once '_core.php';
 
 // GET SETTINGS DATA
 $settings = $db->select('phptravels_settings', '*', );
-
-$url_path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
-$url = explode('/', $url_path);
-// echo end($url);
 
 ?>
 
@@ -43,7 +39,7 @@ $url = explode('/', $url_path);
         <div class="d-flex align-items-center mx-3 me-lg-0">
             <!-- Navbar-->
             <ul class="navbar-nav d-none d-lg-flex">
-                <li class="nav-item"><a class="nav-link" href="./dashboard" target="">Dashboard</a></li>
+                <li class="nav-item"><a class="nav-link" href="./dashboard" target=""><?=T::dashboard?></a></li>
                 <li class="nav-item"><a class="nav-link" href="https://docs.phptravels.com" target="_blank">Docs</a></li>
             </ul>
             <!-- Navbar buttons-->
@@ -106,12 +102,14 @@ $url = explode('/', $url_path);
                                 <div class="me-3">Profile</div>
                             </a>
                         </li>
+                        <?php if($_SESSION['user_type'] == 'admin'){ ?>
                           <li>
-                            <a class="dropdown-item loadeffect mdc-ripple-upgraded" href="./settings.php">
+                            <a class="dropdown-item loadeffect mdc-ripple-upgraded" href="./settings">
                                 <svg class="me-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
                                 <div class="me-3">Settings</div>
                             </a>
                         </li>
+                        <?php } ?>
                          <li>
                             <a class="dropdown-item mdc-ripple-upgraded" href="./help" target="_blank">
                                 <svg class="me-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
@@ -152,6 +150,7 @@ $url = explode('/', $url_path);
                         <div class="nav-link-icon"><i class="material-icons">mail</i></div>
                         Messages
                     </a>
+
                     <!-- Divider-->
                     <div class="drawer-menu-divider d-sm-none"></div>
                     <!-- Drawer section heading (Interface)-->
@@ -163,27 +162,27 @@ $url = explode('/', $url_path);
                         <div class="nav-link-icon">
                             <svg opacity="0.8" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
                         </div>
-
-                        Dashboard
+                        <?=T::dashboard?>
                     </a>
-                    <!-- Drawer link (Products)-->
+
+                    <?php if($_SESSION['user_type'] == 'admin'){ ?>
                     <a class="nav-link collapsed mdc-ripple-upgraded <?php if (end($url) == "settings" || end($url) == "modules" || end($url) == "currencies" || end($url) == "payment-gateways" || end($url) == "email-settings" ) {echo "active mdc-ripple-upgraded--background-focused";} ?>" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#collapseDashboards" aria-expanded="false" aria-controls="collapseDashboards">
 
                         <div class="nav-link-icon">
                         <svg opacity="0.8" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
                         </div>
 
-                        Settings
+                        <?=T::settings?>
                         <div class="drawer-collapse-arrow"><i class="material-icons">expand_more</i></div>
                     </a>
                     <!-- Nested drawer nav (Products Menu)-->
                     <div class="collapse <?php if (end($url) == "settings" || end($url) == "modules" || end($url) == "settings-module" || end($url) == "currencies" || end($url) == "payment-gateways" || end($url) == "email-settings" ) {echo "show";} ?>" id="collapseDashboards" aria-labelledby="headingOne" data-bs-parent="#drawerAccordion">
                         <nav class="drawer-menu-nested nav">
-                            <a class="nav-link mdc-ripple-upgraded <?php if (end($url) == "settings") {echo "active";} ?>" href="./settings">General Settings</a>
-                            <a class="nav-link mdc-ripple-upgraded <?php if (end($url) == "modules" || end($url) == "settings-module") {echo "active";} ?>" href="./modules">Modules</a>
-                            <a class="nav-link mdc-ripple-upgraded <?php if (end($url) == "currencies") {echo "active";} ?>" href="./currencies">Currencies</a>
-                            <a class="nav-link mdc-ripple-upgraded <?php if (end($url) == "payment-gateways") {echo "active";} ?>" href="./payment-gateways">Payment Gateways</a>
-                            <a class="nav-link mdc-ripple-upgraded <?php if (end($url) == "email-settings") {echo "active";} ?>" href="./email-settings">Email SMTP Settings</a>
+                            <a class="nav-link mdc-ripple-upgraded <?php if (end($url) == "settings") {echo "active";} ?>" href="./settings"><?=T::generalsettings?></a>
+                            <a class="nav-link mdc-ripple-upgraded <?php if (end($url) == "modules" || end($url) == "settings-module") {echo "active";} ?>" href="./modules"><?=T::modules?></a>
+                            <a class="nav-link mdc-ripple-upgraded <?php if (end($url) == "currencies") {echo "active";} ?>" href="./currencies"><?=T::currencies?></a>
+                            <a class="nav-link mdc-ripple-upgraded <?php if (end($url) == "payment-gateways") {echo "active";} ?>" href="./payment-gateways"><?=T::paymentgateways?></a>
+                            <a class="nav-link mdc-ripple-upgraded <?php if (end($url) == "email-settings") {echo "active";} ?>" href="./email-settings"><?=T::emailsettings?></a>
                         </nav>
                     </div>
                     <!-- Drawer link (Contacts)-->
@@ -294,6 +293,9 @@ $url = explode('/', $url_path);
                         <div class="nav-link-icon"><i class="material-icons">date_range</i></div>
                         Date Picker
                     </a>
+
+                    <?php } ?>
+                    
                 </div>
             </div>
 
@@ -303,7 +305,7 @@ $url = explode('/', $url_path);
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5.52 19c.64-2.2 1.84-3 3.22-3h6.52c1.38 0 2.58.8 3.22 3"/><circle cx="12" cy="10" r="3"/><circle cx="12" cy="12" r="10"/></svg>
                     <div class="ms-3">
                         <div class="caption">Logged in as:</div>
-                        <div class="small fw-500">Administrator</div>
+                        <div class="small fw-500" style="text-transform:capitalize"><?=$_SESSION['user_type']?></div>
                     </div>
                 </div>
             </div>

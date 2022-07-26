@@ -1,0 +1,15 @@
+{
+    "language_name": "English",
+    "language_type": "LTR",
+    "country_code": "us",
+    "lang_code": "en",
+
+    "dashboard": "Dashboard",
+    "settings": "Settings",
+    "generalsettings": "General Settings",
+    "modules": "modules",
+    "currencies": "currencies",
+    "paymentgateways": "paymentgateways",
+    "emailsettings": "emailsettings"
+
+}

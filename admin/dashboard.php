@@ -4,7 +4,7 @@
 use Medoo\Medoo;
 
 // INCLUDE CORE FILE
-require_once 'core.php';
+require_once '_core.php';
 
 // REDIRECT IF USER IS NOT LOGGED IN
 if(!isset($_SESSION['user_login']) == true ){ header("Location: login"); exit; }
@@ -14,7 +14,7 @@ $title = 'Dashboard';
 include 'header.php'; ?>
 
 <header class="bg-dark row">
-    <div class="container-xl px-5">
+    <div class="px-4">
         <div class="d-flex justify-content-between align-items-center">
             <h1 class="text-white py-3 mb-0 display-6">Dashboad</h1>
             <div class="ms-4">
@@ -31,7 +31,7 @@ include 'header.php'; ?>
     </div>
 </header>
 
-<div class="container-xl p-5">
+<div class="container-xl px-2 mt-4">
 <div class="row justify-content-between align-items-center mb-5">
     <div class="col flex-shrink-0 mb-5 mb-md-0">
         <h1 class="display-4 mb-0">Dashboard</h1>

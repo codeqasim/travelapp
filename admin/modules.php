@@ -4,7 +4,7 @@
 use Medoo\Medoo;
 
 // INCLUDE CORE FILE
-require_once 'core.php';
+require_once '_core.php';
 require_once 'auth.php';
 
 // INCLUDE HEADER FILE

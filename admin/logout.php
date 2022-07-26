@@ -4,7 +4,7 @@
 use Medoo\Medoo;
 
 // INCLUDE CORE FILE
-require 'core.php';
+require_once '_core.php';
 
 session_destroy();
 header("Location: login");
