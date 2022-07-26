@@ -178,6 +178,7 @@ $settings = $db->select('app_settings', '*', );
                     <div class="collapse" id="collapseDashboards" aria-labelledby="headingOne" data-bs-parent="#drawerAccordion">
                         <nav class="drawer-menu-nested nav">
                             <a class="nav-link mdc-ripple-upgraded" href="./settings.php">General Settings</a>
+                            <a class="nav-link mdc-ripple-upgraded" href="./modules.php">Modules</a>
                             <a class="nav-link mdc-ripple-upgraded" href="./currencies.php">Currencies</a>
                             <a class="nav-link mdc-ripple-upgraded" href="./payment-gateways.php">Payment Gateways</a>
                             <a class="nav-link mdc-ripple-upgraded" href="./email-smtp.php">Email SMTP Settings</a>

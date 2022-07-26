@@ -36,6 +36,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         'multi_language' => $_POST['multi_language'],
         'multi_currency' => $_POST['multi_currency'],
         'javascript' => $_POST['javascript'],
+        'social_facebook' => $_POST['social_facebook'],
+        'social_twitter' => $_POST['social_twitter'],
+        'social_linkedin' => $_POST['social_linkedin'],
+        'social_instagram' => $_POST['social_instagram'],
+        'social_google' => $_POST['social_google'],
+        'social_whatsapp' => $_POST['social_whatsapp'],
     ], [
         'id' => 1
     ]);
@@ -59,7 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     // Check file size
-    if ($_FILES["hlogo"]["size"] > 200000) { echo "Sorry, your file is too large.";$uploadOk = 0; }
+    if ($_FILES["hlogo"]["size"] > 200000) { echo "<script>alert('Sorry, file is too large')</script>";$uploadOk = 0; }
 
     // Allow certain file formats
     if($imageFileType != "png") { echo "Sorry, only PNG allowed for logo."; $uploadOk = 0; }
@@ -71,10 +77,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else { if (move_uploaded_file($_FILES["hlogo"]["tmp_name"], $target_file)) {
         echo "The file ". htmlspecialchars( basename( $_FILES["hlogo"]["name"])). " has been uploaded.";
     } else {
-        echo "Sorry, there was an error uploading your file.";
+        // echo "Sorry, there was an error uploading your file.";
     }
     }
 
+    // ========================================================================================================
 
     $target_dir = "../uploads/global/";
     $target_file = $target_dir ."favicon.png";
@@ -95,7 +102,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     // Check file size
-    if ($_FILES["favicon"]["size"] > 200000) { echo "Sorry, your file is too large.";$uploadOk = 0; }
+    if ($_FILES["favicon"]["size"] > 200000) { echo "<script>alert('Sorry, file is too large')</script>";$uploadOk = 0; }
 
     // Allow certain file formats
     if($imageFileType != "png") { echo "Sorry, only PNG allowed for logo."; $uploadOk = 0; }
@@ -107,7 +114,44 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else { if (move_uploaded_file($_FILES["favicon"]["tmp_name"], $target_file)) {
         echo "The file ". htmlspecialchars( basename( $_FILES["favicon"]["name"])). " has been uploaded.";
     } else {
-        echo "Sorry, there was an error uploading your file.";
+        // echo "Sorry, there was an error uploading your file.";
+    }
+    }
+
+    // ========================================================================================================
+
+    $target_dir = "../uploads/global/";
+    $target_file = $target_dir ."cover.jpg";
+    $uploadOk = 1;
+    $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+
+    // Check if image file is a actual image or fake image
+    if(isset($_POST["submit"])) {
+    $check = getimagesize($_FILES["coverimage"]["tmp_name"]);
+
+    if($check !== false) {
+        echo "File is an image - " . $check["mime"] . ".";
+        $uploadOk = 1;
+    } else {
+        echo "File is not an image.";
+        $uploadOk = 0;
+    }
+    }
+
+    // Check file size
+    if ($_FILES["coverimage"]["size"] > 200000) { echo "<script>alert('Sorry, file is too large')</script>";$uploadOk = 0; }
+
+    // Allow certain file formats
+    if($imageFileType != "jpg") { echo "<script>alert('Sorry, only JPG & max size 1 MB allowed allowed for logo')</script>"; $uploadOk = 0; }
+
+    // Check if $uploadOk is set to 0 by an error
+    if ($uploadOk == 0) { echo "Sorry, your file was not uploaded.";
+
+    // if everything is ok, try to upload file
+    } else { if (move_uploaded_file($_FILES["coverimage"]["tmp_name"], $target_file)) {
+        echo "The file ". htmlspecialchars( basename( $_FILES["coverimage"]["name"])). " has been uploaded.";
+    } else {
+        // echo "Sorry, there was an error uploading your file.";
     }
     }
 
@@ -339,8 +383,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           -->
       </div>
     </div>
-    <!-- Delete account card-->
-    <div class="card card-raised mb-5">
+
+    <div class="card card-raised mb-3">
+      <div class="card-body p-4">
+        <!-- <div class="card-title">Cover and Social Media</div>
+        <div class="card-subtitle mb-4">Homepage cover and media channels link</div> -->
+
+        <div class="card p-3 mb-3">
+          <label><strong>Homepage Cover</strong></label>
+          <div class="caption fst-italic text-muted mb-4">Only JPG file supported max size 1 MB</div>
+          <img src="../uploads/global/cover.jpg" class="coverimage_preview_img img-fluid" style="max-width:100%">
+          <hr>
+          <input type="file" class="btn btn-light mdc-ripple-upgraded" id="coverimage" name="coverimage">
+        </div>
+        <div class="text-end">
+          <button class="btn-block btn btn-primary mdc-ripple-upgraded" type="submit"> <i class="leading-icon material-icons">save</i> Update Settings</button>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="card card-raised mb-3">
       <div class="card-body p-5">
         <div class="card-title">Language &amp; Currencies</div>
         <div class="card-subtitle mb-4">Configure default settings</div>
@@ -392,6 +455,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
       </div>
     </div>
+
+    <div class="card card-raised mb-5">
+      <div class="card-body p-4">
+        <div class="card-title">Social Links</div>
+        <div class="card-subtitle mb-4">Social media pages links</div>
+
+        <mwc-textfield class="mb-3" name="social_facebook" label="Facebook" outlined icon="link" value="<?=$settings['social_facebook'] ?>"></mwc-textfield>
+        <mwc-textfield class="mb-3" name="social_twitter" label="Twitter" outlined icon="link" value="<?=$settings['social_twitter'] ?>"></mwc-textfield>
+        <mwc-textfield class="mb-3" name="social_linkedin" label="LinkedIn" outlined icon="link" value="<?=$settings['social_linkedin'] ?>"></mwc-textfield>
+        <mwc-textfield class="mb-3" name="social_instagram" label="Instagram" outlined icon="link" value="<?=$settings['social_instagram'] ?>"></mwc-textfield>
+        <mwc-textfield class="mb-3" name="social_google" label="Google GMB" outlined icon="link" value="<?=$settings['social_google'] ?>"></mwc-textfield>
+        <mwc-textfield class="mb-3" name="social_whatsapp" label="Whatsapp" outlined icon="link" value="<?=$settings['social_whatsapp'] ?>"></mwc-textfield>
+
+        <div class="text-end mt-2">
+          <button class="btn-block btn btn-primary mdc-ripple-upgraded" type="submit"> <i class="leading-icon material-icons">save</i> Update Settings</button>
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>
 </div>
@@ -441,7 +523,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $("#favimage").change(function(){
   var abc = $(this).attr('name');
 
-
   var preview = $('.favimage_preview_img');
   preview.fadeOut();
 
@@ -453,6 +534,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   };
 
   });
+
+  // COVERIMAGE
+  $("#coverimage").change(function(){
+  var abc = $(this).attr('name');
+
+  var preview = $('.coverimage_preview_img');
+  preview.fadeOut();
+
+  var oFReader = new FileReader();
+  oFReader.readAsDataURL(document.getElementById("coverimage").files[0]);
+
+  oFReader.onload = function (oFREvent) {
+  preview.attr('src', oFREvent.target.result).fadeIn();
+  };
+
+  });
+
 
   $("#wmlogo").change(function(){
 
