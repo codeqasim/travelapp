@@ -364,14 +364,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="card p-3 mb-3">
           <label><strong>Business Logo</strong></label>
           <div class="caption fst-italic text-muted mb-4">Only PNG file supported max size 1 MB</div>
-          <img src="../uploads/global/logo.png?456454" class="hlogo_preview_img img-fluid">
+          <img src="../uploads/global/logo.png?v<?=rand(0,99999999999)?>" class="hlogo_preview_img img-fluid">
           <hr>
           <input type="file" class="btn btn-light mdc-ripple-upgraded" id="hlogo" name="hlogo">
         </div>
         <div class="card p-3 mb-3">
           <label><strong>Favicon</strong></label>
           <div class="caption fst-italic text-muted mb-4">Only PNG file supported max size 1 MB</div>
-          <img src="../uploads/global/favicon.png" class="favimage_preview_img img-fluid" style="max-width:60px">
+          <img src="../uploads/global/favicon.png?v<?=rand(0,99999999999)?>" class="favimage_preview_img img-fluid" style="max-width:60px">
           <hr>
           <input type="file" class="btn btn-light mdc-ripple-upgraded" id="favimage" name="favicon">
         </div>
@@ -396,7 +396,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="card p-3 mb-3">
           <label><strong>Homepage Cover</strong></label>
           <div class="caption fst-italic text-muted mb-4">Only JPG file supported max size 1 MB</div>
-          <img src="../uploads/global/cover.jpg" class="coverimage_preview_img img-fluid" style="max-width:100%">
+          <img src="../uploads/global/cover.jpg?v<?=rand(0,99999999999)?>" class="coverimage_preview_img img-fluid" style="max-width:100%">
           <hr>
           <input type="file" class="btn btn-light mdc-ripple-upgraded" id="coverimage" name="coverimage">
         </div>
