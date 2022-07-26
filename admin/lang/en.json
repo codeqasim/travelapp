@@ -10,6 +10,21 @@
     "modules": "modules",
     "currencies": "currencies",
     "paymentgateways": "paymentgateways",
-    "emailsettings": "emailsettings"
+    "emailsettings": "emailsettings",
 
+    "profile": "Profile",
+    "account_details": "Accoun Details",
+    "account_details2": "Review and update your account information below",
+    "first_name": "First Name",
+    "last_name": "Last Name",
+    "email": "Email",
+    "password": "Password",
+    "mobile": "Mobile",
+    "country": "Country Name",
+    "currency": "Currency Name",
+    "city": "City Name",
+    "address1": "Address 1",
+    "address2": "Address 2",
+    "wallet_balance": "Wallet Balance"
+    
 }
