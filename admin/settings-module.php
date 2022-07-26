@@ -53,8 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         'id' => $_POST['id']
     ]);
 
-    echo "<meta http-equiv=\"refresh\" content=\"0;URL=modules.php#updatesetttings\">";
-    die;
+    redirect('modules.php#updatesetttings');
 }
 
 ?>
@@ -84,8 +83,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </div>
 
       <div class="pull-left mb-5">
-        <a href="javascript:window.history.back();" data-toggle="tooltip" data-placement="top" title="Previous Page" class="btn btn-warning mdc-ripple-upgraded d-flex align-items-center gap-2"><i class="fa fa-share-square-o mt-1"></i>  Back</a>  </div>
+        <a href="javascript:window.history.back();" data-toggle="tooltip" data-placement="top" title="Previous Page" class="loading_effect btn btn-warning mdc-ripple-upgraded d-flex align-items-center gap-2"><i class="fa fa-share-square-o mt-1"></i>  Back</a>  </div>
       <div class="clearfix"></div>
+
     </div>
       <div class="panel-body">
       <div class="tab-content form-horizontal">

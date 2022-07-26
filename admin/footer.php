@@ -27,8 +27,17 @@
 <script src="./assets/js/scripts.js"></script>
 <script src="./assets/js/sb-customizer.js"></script>
 <sb-customizer project="material-admin-pro"></sb-customizer>
-<script> if ( typeof messages == 'function' )
+
+<script>
+// ALERTS MESSAGES
+if ( typeof messages == 'function' )
 { messages(); }
+
+// LOADING EFFECT
+$('.loading_effect').on('click', function() {
+    $('.bodyload').fadeIn(150);
+});
+
 </script>
 
 </body>

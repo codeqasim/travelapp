@@ -99,7 +99,7 @@ $settings = $db->select('phptravels_settings', '*', );
                     <ul class="dropdown-menu dropdown-menu-end mt-1" aria-labelledby="dropdownMenuProfile">
 
 						<li>
-                            <a class="dropdown-item loadeffect mdc-ripple-upgraded" href="./account-profile?id=<?=$_SESSION['user_id']?>">
+                            <a class="dropdown-item loadeffect mdc-ripple-upgraded loading_effect" href="./account-profile?id=<?=$_SESSION['user_id']?>">
                                 <svg class="me-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
                                 <div class="me-3">Profile</div>
                             </a>
@@ -180,11 +180,11 @@ $settings = $db->select('phptravels_settings', '*', );
                     <!-- Nested drawer nav (Products Menu)-->
                     <div class="collapse <?php if (end($url) == "settings" || end($url) == "modules" || end($url) == "settings-module" || end($url) == "currencies" || end($url) == "payment-gateways" || end($url) == "email-settings" ) {echo "show";} ?>" id="collapseDashboards" aria-labelledby="headingOne" data-bs-parent="#drawerAccordion">
                         <nav class="drawer-menu-nested nav">
-                            <a class="nav-link mdc-ripple-upgraded <?php if (end($url) == "settings") {echo "active";} ?>" href="./settings"><?=T::generalsettings?></a>
-                            <a class="nav-link mdc-ripple-upgraded <?php if (end($url) == "modules" || end($url) == "settings-module") {echo "active";} ?>" href="./modules"><?=T::modules?></a>
-                            <a class="nav-link mdc-ripple-upgraded <?php if (end($url) == "currencies") {echo "active";} ?>" href="./currencies"><?=T::currencies?></a>
-                            <a class="nav-link mdc-ripple-upgraded <?php if (end($url) == "payment-gateways") {echo "active";} ?>" href="./payment-gateways"><?=T::paymentgateways?></a>
-                            <a class="nav-link mdc-ripple-upgraded <?php if (end($url) == "email-settings") {echo "active";} ?>" href="./email-settings"><?=T::emailsettings?></a>
+                            <a class="nav-link mdc-ripple-upgraded loading_effect <?php if (end($url) == "settings") {echo "active";} ?>" href="./settings"><?=T::generalsettings?></a>
+                            <a class="nav-link mdc-ripple-upgraded loading_effect <?php if (end($url) == "modules" || end($url) == "settings-module") {echo "active";} ?>" href="./modules"><?=T::modules?></a>
+                            <a class="nav-link mdc-ripple-upgraded loading_effect <?php if (end($url) == "currencies") {echo "active";} ?>" href="./currencies"><?=T::currencies?></a>
+                            <a class="nav-link mdc-ripple-upgraded loading_effect <?php if (end($url) == "payment-gateways") {echo "active";} ?>" href="./payment-gateways"><?=T::paymentgateways?></a>
+                            <a class="nav-link mdc-ripple-upgraded loading_effect <?php if (end($url) == "email-settings") {echo "active";} ?>" href="./email-settings"><?=T::emailsettings?></a>
                         </nav>
                     </div>
                     <!-- Drawer link (Contacts)-->

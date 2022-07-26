@@ -159,7 +159,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
     }
 
-    echo "<meta http-equiv=\"refresh\" content=\"0;URL=settings#updatesetttings\">";
+    redirect('settings#updatesetttings');
 
 }
 ?>
@@ -175,7 +175,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </div>
 </header>
 
-<form action="./settings.php" method="post" onsubmit="loading_button()" enctype="multipart/form-data">
+<form action="settings.php" method="post" onsubmit="submission()" enctype="multipart/form-data">
 
 <div class="py-4 px-2">
 
@@ -580,19 +580,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
   });
 
-  function themeinfo(){
-  var id = $(".theme").val();
+  // function themeinfo(){
+  // var id = $(".theme").val();
 
-  $.post("https://phptravels.net/api/admin/ajaxcalls/ThemeInfo", {theme: id}, function(resp){
-  var obj = jQuery.parseJSON(resp);
+  // $.post("https://phptravels.net/api/admin/ajaxcalls/ThemeInfo", {theme: id}, function(resp){
+  // var obj = jQuery.parseJSON(resp);
 
-  $("#themename").html(obj.Name);
-  $("#themedesc").html(obj.Description);
-  $("#themeauthor").html(obj.Author);
-  $("#themeversion").html(obj.Version);
-  $("#screenshot").prop("src",obj.screenshot);
+  // $("#themename").html(obj.Name);
+  // $("#themedesc").html(obj.Description);
+  // $("#themeauthor").html(obj.Author);
+  // $("#themeversion").html(obj.Version);
+  // $("#screenshot").prop("src",obj.screenshot);
 
-  });
+  // });
+  // }
+
+  function submission(){
+    $('.bodyload').fadeIn(150);
   }
 
   function offstatus(){

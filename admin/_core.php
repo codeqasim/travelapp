@@ -31,6 +31,25 @@ function msg_error($msg1, $msg2){ echo '<script> function messages() { vt.error(
 function msg_info($msg1, $msg2){ echo '<script> function messages() { vt.info("'.$msg1.'",{ title:"'.$msg2.'", position: "top-center", callback: function (){ // } }) } </script>'; }
 function msg_warn($msg1, $msg2){ echo '<script> function messages() { vt.warn("'.$msg1.'",{ title:"'.$msg2.'", position: "top-center", callback: function (){ // } }) } </script>'; }
 
+// PAGE REDIRECTION FUNCTIONALITY
+function redirect($url)
+{
+    if (!headers_sent())
+    {
+        header('Location: '.$url);
+        exit;
+        }
+    else
+        {
+        echo '<script type="text/javascript">';
+        echo 'window.location.href="'.$url.'";';
+        echo '</script>';
+        echo '<noscript>';
+        echo '<meta http-equiv="refresh" content="0;url='.$url.'" />';
+        echo '</noscript>'; exit;
+    }
+}
+
 // DD FUNCTION FOR DEBUG RESPONSES
 // function ddd($d) { echo "<pre>"; print_r($d); echo "</pre>"; }
 
