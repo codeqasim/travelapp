@@ -6,8 +6,8 @@ use Medoo\Medoo;
 // INCLUDE CORE FILE
 require_once 'core.php';
 
-// REQUIRED IF USER IS NOT LOGGED IN
-if(!isset($_SESSION['admin_user_login']) == true ){ header("Location: login"); exit; }
+// REDIRECT IF USER IS NOT LOGGED IN
+if(!isset($_SESSION['user_login']) == true ){ header("Location: login"); exit; }
 
 // INCLUDE HEADER FILE
 $title = 'Dashboard';

@@ -7,25 +7,22 @@ use Medoo\Medoo;
 require 'core.php';
 
 // REDIRECT IF USER IS LOGGED IN
-if(isset($_SESSION['admin_user_login'])){ header("Location: dashboard.php"); exit; }
+if(isset($_SESSION['user_login'])){ header("Location: dashboard"); exit; }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-    // $database->insert('users', [
-    //     'email' => $_POST['email'],
-    //     'password' =>  md5($_POST['password'])
-    // ]);
-
     // CHECK IF USER EXISTS
-    $data = $db->select('users', '*', [
+    $data = $db->select('phptravels_users', '*', [
         'email' => $_POST['email'],
         'password' =>  md5($_POST['password'])
     ]);
 
     // REDIRECT IF USER EXISTS
     if (isset($data[0]['id'])) {
-        $_SESSION['admin_user_login'] = true;
-        $_SESSION['admin_user_id'] = $data[0]['id'];
+        $_SESSION['user_login'] = true;
+        $_SESSION['user_id'] = $data[0]['id'];
+        $_SESSION['user_type'] = $data[0]['type'];
+        $_SESSION['user_language'] = $_POST['user_language'];
         header("Location: dashboard");
         exit;
     } else {
@@ -35,7 +32,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -46,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <script type="text/javascript" src="./assets/js/jquery-3.6.0.min.js"></script>
 
 <script>
-setTimeout(function() { $('.bodyload').fadeOut(); }, 250);
+setTimeout(function() { $('.bodyload').fadeOut(); }, 10);
 </script>
 
 </head>
@@ -81,15 +77,35 @@ setTimeout(function() { $('.bodyload').fadeOut(); }, 250);
                            <div class="card-body p-3">
                                <!-- Auth header with logo image-->
                                <div class="text-center">
-                                   <img class="mb-3" src="./assets/img/icons/background.svg" alt="..." style="height: 48px">
-                                   <h1 class="display-5 mb-0">Login</h1>
+                                   <img class="mb-3" src="../uploads/global/favicon.png" alt="favicon" style="height: 48px">
+                                   <p class="display-6 mb-0">Administrator Login</p>
                                    <div class="subheading-1 mb-5">Only administators allowed here</div>
                                </div>
-                               <!-- Login submission form-->
-                               <form action="./login.php" method="post" onsubmit="loading_button()">
 
-                                 <div class="mb-4"><mwc-textfield name="email" class="email w-100" label="Email" outlined=""></mwc-textfield></div>
-                                 <div class="mb-2"><mwc-textfield name="password" class="password w-100" label="Password" outlined="" icontrailing="visibility_off" type="password"></mwc-textfield></div>
+                               <!-- Login submission form-->
+                               <form name="form" action="./login" method="post" onsubmit="submission()">
+
+                                 <mwc-textfield id="email"    required="" name="email"    class="mb-3 email w-100"    label="Email"    icon="email"          outlined="" type="text"></mwc-textfield>
+                                 <mwc-textfield id="password" required="" name="password" class="mb-3 password w-100" label="Password" icon="visibility_off" outlined="" type=""></mwc-textfield>
+
+                                 <mwc-select required="" outlined="" icon="flag" label="Language" name="user_language" class="mb-3 w-100">
+                                    <mwc-list-item value="en" selected>English</mwc-list-item>
+                                    <mwc-list-item value="ar"> Arabic</mwc-list-item>
+                                 </mwc-select>
+
+                                 <mwc-linear-progress class="d-none" indeterminate></mwc-linear-progress>
+                                 <script>
+                                    function submission() {
+                                        document.querySelector('.d-none').classList.remove('d-none');
+
+                                        let email = $("#email").val();
+                                        if (email == "") { alert("Email is required to login"); }
+
+                                        let pass = $("#password").val();
+                                        if (pass == "") { alert("Password is required to login"); }
+
+                                    }
+                                 </script>
 
                                    <div class="d-flex align-items-center justify-content-between">
                                        <mwc-formfield label="Remember"><mwc-checkbox name=""></mwc-checkbox></mwc-formfield>
@@ -105,7 +121,7 @@ setTimeout(function() { $('.bodyload').fadeOut(); }, 250);
                                </form>
                            </div>
                        </div>
-                       <!-- Auth card message-->
+
                        <div class="text-center mb-5"><a class="small fw-500 text-decoration-none link-white" href="./signup">Need an account? Sign up!</a></div>
                    </div>
                </div>

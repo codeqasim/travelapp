@@ -5,9 +5,7 @@ use Medoo\Medoo;
 
 // INCLUDE CORE FILE
 require_once 'core.php';
-
-// REDIRECT IF USER IS NOT LOGGED IN
-if(!isset($_SESSION['admin_user_login']) == true ){ header("Location: login"); exit; }
+require_once 'auth.php';
 
 // INCLUDE HEADER FILE
 $title = 'Settings';
@@ -155,7 +153,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
     }
 
-    echo "<meta http-equiv=\"refresh\" content=\"0;URL=settings.php#updatesetttings\">";
+    echo "<meta http-equiv=\"refresh\" content=\"0;URL=settings#updatesetttings\">";
 
 }
 ?>

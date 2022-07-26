@@ -5,9 +5,7 @@ use Medoo\Medoo;
 
 // INCLUDE CORE FILE
 require_once 'core.php';
-
-// REDIRECT IF USER IS NOT LOGGED IN
-if(!isset($_SESSION['admin_user_login']) == true ){ header("Location: login"); exit; }
+require_once 'auth.php';
 
 // INCLUDE HEADER FILE
 $title = 'Module Settings';
@@ -15,6 +13,7 @@ include 'header.php';
 
 // FOR THE GET REQUEST DATA
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+
 // GET ALL DATA
 $data = $db->select('modules', '*',[
     'id' => $_GET['m']
