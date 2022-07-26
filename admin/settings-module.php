@@ -72,7 +72,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </header>
 
 <div class="container-xl py-4">
-  <form action="settings-module.php" method="POST">
+  <form action="settings-module" method="POST">
     <div class="card p-5">
     <div class="panel-heading">
 

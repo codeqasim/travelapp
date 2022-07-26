@@ -6,13 +6,15 @@ use Medoo\Medoo;
 // INCLUDE CORE FILE
 require 'core.php';
 
-// REQUIRED IF USER IS NOT LOGGED IN
-if(!isset($_SESSION['admin_user_login']) == true ){ header("Location: login.php"); exit; }
-
 // GET SETTINGS DATA
-$settings = $db->select('app_settings', '*', );
+$settings = $db->select('phptravels_settings', '*', );
+
+$url_path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+$url = explode('/', $url_path);
+// echo end($url);
 
 ?>
+
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -41,7 +43,7 @@ $settings = $db->select('app_settings', '*', );
         <div class="d-flex align-items-center mx-3 me-lg-0">
             <!-- Navbar-->
             <ul class="navbar-nav d-none d-lg-flex">
-                <li class="nav-item"><a class="nav-link" href="./dashboard.php" target="">Dashboard</a></li>
+                <li class="nav-item"><a class="nav-link" href="./dashboard" target="">Dashboard</a></li>
                 <li class="nav-item"><a class="nav-link" href="https://docs.phptravels.com" target="_blank">Docs</a></li>
             </ul>
             <!-- Navbar buttons-->
@@ -155,7 +157,7 @@ $settings = $db->select('app_settings', '*', );
                     <!-- Drawer section heading (Interface)-->
                     <div class="drawer-menu-heading">Menu</div>
                     <!-- Drawer link (Dashboard)-->
-                    <a class="nav-link mdc-ripple-upgraded" href="./dashboard.php">
+                    <a class="nav-link mdc-ripple-upgraded <?php if (end($url) == "dashboard") {echo "active";} ?>" href="./dashboard">
                         <!-- <div class="nav-link-icon"><i class="material-icons">laptop</i></div> -->
 
                         <div class="nav-link-icon">
@@ -165,7 +167,7 @@ $settings = $db->select('app_settings', '*', );
                         Dashboard
                     </a>
                     <!-- Drawer link (Products)-->
-                    <a class="nav-link collapsed mdc-ripple-upgraded" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#collapseDashboards" aria-expanded="false" aria-controls="collapseDashboards">
+                    <a class="nav-link collapsed mdc-ripple-upgraded <?php if (end($url) == "general-settings" || "modules" || "currencies" || "payment-gateways" || "email=settings") {echo "active mdc-ripple-upgraded--background-focused";} ?>" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#collapseDashboards" aria-expanded="false" aria-controls="collapseDashboards">
 
                         <div class="nav-link-icon">
                         <svg opacity="0.8" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
@@ -175,13 +177,13 @@ $settings = $db->select('app_settings', '*', );
                         <div class="drawer-collapse-arrow"><i class="material-icons">expand_more</i></div>
                     </a>
                     <!-- Nested drawer nav (Products Menu)-->
-                    <div class="collapse" id="collapseDashboards" aria-labelledby="headingOne" data-bs-parent="#drawerAccordion">
+                    <div class="collapse <?php if (end($url) == "general-settings" || "modules" || "currencies" || "payment-gateways" || "email=settings" ) {echo "show";} ?>" id="collapseDashboards" aria-labelledby="headingOne" data-bs-parent="#drawerAccordion">
                         <nav class="drawer-menu-nested nav">
-                            <a class="nav-link mdc-ripple-upgraded" href="./settings.php">General Settings</a>
-                            <a class="nav-link mdc-ripple-upgraded" href="./modules.php">Modules</a>
-                            <a class="nav-link mdc-ripple-upgraded" href="./currencies.php">Currencies</a>
-                            <a class="nav-link mdc-ripple-upgraded" href="./payment-gateways.php">Payment Gateways</a>
-                            <a class="nav-link mdc-ripple-upgraded" href="./email-smtp.php">Email SMTP Settings</a>
+                            <a class="nav-link mdc-ripple-upgraded <?php if (end($url) == "settings") {echo "active";} ?>" href="./settings">General Settings</a>
+                            <a class="nav-link mdc-ripple-upgraded <?php if (end($url) == "modules") {echo "active";} ?>" href="./modules">Modules</a>
+                            <a class="nav-link mdc-ripple-upgraded <?php if (end($url) == "currencies") {echo "active";} ?>" href="./currencies">Currencies</a>
+                            <a class="nav-link mdc-ripple-upgraded <?php if (end($url) == "payment-gateways") {echo "active";} ?>" href="./payment-gateways">Payment Gateways</a>
+                            <a class="nav-link mdc-ripple-upgraded <?php if (end($url) == "email-settings") {echo "active";} ?>" href="./email-settings">Email SMTP Settings</a>
                         </nav>
                     </div>
                     <!-- Drawer link (Contacts)-->

@@ -14,12 +14,12 @@ $title = 'Settings';
 include 'header.php';
 
 // GET ALL SETTINGS DATA
-$data = $db->select('app_settings', '*', );
+$data = $db->select('phptravels_settings', '*', );
 $settings = $data[0];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-    $db->update('app_settings', [
+    $db->update('phptravels_settings', [
         'business_name' => $_POST['business_name'],
         'site_url' => $_POST['site_url'],
         'license_key' => $_POST['license_key'],

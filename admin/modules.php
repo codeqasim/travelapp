@@ -31,11 +31,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 ?>
 
 <header class="bg-dark row">
-    <div class="container-xl px-5">
+    <div class="px-3">
         <div class="d-flex justify-content-between align-items-center">
             <h1 class="text-white py-3 mb-0 display-6">Modules</h1>
-            <div class="ms-4">
-
+            <div class=" gap-2 d-flex">
+                <div class="btn btn-outline-light module_all">All</div>
+                <div class="btn btn-outline-light module_flights">Flights</div>
+                <div class="btn btn-outline-light module_hotels">Hotels</div>
+                <div class="btn btn-outline-light module_tours">Tours</div>
+                <div class="btn btn-outline-light module_cars">Cars</div>
+                <div class="btn btn-outline-light module_visa">Visa</div>
             </div>
         </div>
     </div>
@@ -44,18 +49,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <div class="row mt-1 g-3">
 
 <?php foreach($modules as $m) { ?>
-<div class="col-md-4 col-lg-6 col-xxl-3 mb-4 mb-lg-3 mb-3 modules_<?=$m['name'] ?>">
+<div class="col-md-4 col-lg-6 col-xxl-3 mb-1 modules_<?=$m['name'] ?> type_<?=$m['type'] ?>">
     <div class="card card-quick-link card-raised ripple-gray mdc-ripple-upgraded">
         <div class="card-body pb-1">
             <img class="card-quick-link-img" src="./assets/img/modules/<?=$m['name'] ?>.png" style="border-radius: 6px;">
-            <div class="card-title text-truncate mb-1" style="text-transform:capitalize"> <?=$m['name'] ?> </div>
+            <div class="card-title text-truncate mb-1" style="text-transform:capitalize"> <?=$m['name'] ?>  <?php if ($m['name'] !== $m['type']) { echo $m['type']; } ?> </div>
             <p class="card-text" style="line-height: 15px;"><small>To configure or setup credentials click on settings</small></p>
         </div>
         <div class="card-actions">
 
         <span data-bs-toggle="tooltip" data-bs-placement="top" title="" style="background:<?=$m['module_color'] ?>;width: 15px; height: 15px; position: absolute; z-index: 1; top: 14px; right: 18px; border-radius: 12px;" data-bs-original-title="Module Color" aria-label="Module Color"></span>
 
-        <a href="./settings-module.php?m=<?=$m['id'] ?>">
+        <a href="./settings-module?m=<?=$m['id'] ?>">
         <button class="btn btn-danger btn-sm pull-left mdc-ripple-upgraded" style="text-transform:capitalize;font-weight:100;letter-spacing:0px">
         <svg class="m-1" opacity="0.8" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
         Settings</button>
@@ -93,6 +98,60 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <script>
 
+function showallmodules(){
+    $('.type_flights').fadeIn(0);
+    $('.type_hotels').fadeIn(0);
+    $('.type_tours').fadeIn(0);
+    $('.type_cars').fadeIn(0);
+    $('.type_visa').fadeIn(0);
+}
+
+// FILTER MODULES FUNCTION
+$('.module_all').on('click', function() {
+    showallmodules()
+})
+
+$('.module_flights').on('click', function() {
+    showallmodules()
+    $('.type_hotels').fadeOut(0);
+    $('.type_tours').fadeOut(0);
+    $('.type_cars').fadeOut(0);
+    $('.type_visa').fadeOut(0);
+})
+
+$('.module_hotels').on('click', function() {
+    showallmodules()
+    $('.type_flights').fadeOut(0);
+    $('.type_tours').fadeOut(0);
+    $('.type_cars').fadeOut(0);
+    $('.type_visa').fadeOut(0);
+})
+
+$('.module_tours').on('click', function() {
+    showallmodules()
+    $('.type_flights').fadeOut(0);
+    $('.type_hotels').fadeOut(0);
+    $('.type_cars').fadeOut(0);
+    $('.type_visa').fadeOut(0);
+})
+
+$('.module_cars').on('click', function() {
+    showallmodules()
+    $('.type_flights').fadeOut(0);
+    $('.type_hotels').fadeOut(0);
+    $('.type_tours').fadeOut(0);
+    $('.type_visa').fadeOut(0);
+})
+
+$('.module_visa').on('click', function() {
+    showallmodules()
+    $('.type_flights').fadeOut(0);
+    $('.type_hotels').fadeOut(0);
+    $('.type_tours').fadeOut(0);
+    $('.type_cars').fadeOut(0);
+})
+
+// UPDATE STATUS OF MODULE ONCLICK
 $('[id=checkedbox]').on('click', function() {
 
     var status = $(this).data("status");
@@ -129,7 +188,6 @@ $('[id=checkedbox]').on('click', function() {
         } })
 
     });
-
 
   });
 

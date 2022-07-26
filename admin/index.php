@@ -9,8 +9,8 @@ use Medoo\Medoo;
 require 'core.php';
 
 // REDIRECT IF USER IS LOGGED IN
-if(!isset($_SESSION['admin_user_login'])){ header("Location: login.php"); exit; }
-if(isset($_SESSION['admin_user_login'])){ header("Location: dashboard.php"); exit; }
+if(!isset($_SESSION['admin_user_login'])){ header("Location: login"); exit; }
+if(isset($_SESSION['admin_user_login'])){ header("Location: dashboard"); exit; }
 
 $data = $database->select('users', '*', [
     // 'user_id' => 50
