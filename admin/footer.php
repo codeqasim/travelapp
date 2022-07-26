@@ -27,7 +27,9 @@
 <script src="./assets/js/scripts.js"></script>
 <script src="./assets/js/sb-customizer.js"></script>
 <sb-customizer project="material-admin-pro"></sb-customizer>
-<script>messages();</script>
+<script> if ( typeof messages == 'function' )
+{ messages(); }
+</script>
 
 </body>
 </html>

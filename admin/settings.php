@@ -11,6 +11,12 @@ require_once 'auth.php';
 $title = 'Settings';
 include 'header.php';
 
+// ALETS MESSAGES FUNCTIONALITY
+// msg_success( 'Settings updated successfully', 'Success' );
+// msg_error( 'Settings updated successfully', 'Success' );
+// msg_info( 'Settings updated successfully', 'Success' );
+// msg_warn( 'Settings updated successfully', 'Success' );
+
 // GET ALL SETTINGS DATA
 $data = $db->select('phptravels_settings', '*', );
 $settings = $data[0];
@@ -599,11 +605,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   }
 </script>
 
-<?php include 'footer.php';
-
-msg_success(
-  "1",
-  "2",
-);
-
-?>
+<?php include 'footer.php'; ?>
