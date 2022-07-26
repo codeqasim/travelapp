@@ -364,7 +364,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="card p-3 mb-3">
           <label><strong>Business Logo</strong></label>
           <div class="caption fst-italic text-muted mb-4">Only PNG file supported max size 1 MB</div>
-          <img src="../uploads/global/logo.png?$$REVISION$$" class="hlogo_preview_img img-fluid">
+          <img src="../uploads/global/logo.png?456454" class="hlogo_preview_img img-fluid">
           <hr>
           <input type="file" class="btn btn-light mdc-ripple-upgraded" id="hlogo" name="hlogo">
         </div>
