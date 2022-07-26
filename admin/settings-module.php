@@ -7,7 +7,7 @@ use Medoo\Medoo;
 require_once 'core.php';
 
 // REDIRECT IF USER IS NOT LOGGED IN
-if(!isset($_SESSION['admin_user_login']) == true ){ header("Location: login.php"); exit; }
+if(!isset($_SESSION['admin_user_login']) == true ){ header("Location: login"); exit; }
 
 // INCLUDE HEADER FILE
 $title = 'Module Settings';

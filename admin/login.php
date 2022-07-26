@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($data[0]['id'])) {
         $_SESSION['admin_user_login'] = true;
         $_SESSION['admin_user_id'] = $data[0]['id'];
-        header("Location: dashboard.php");
+        header("Location: dashboard");
         exit;
     } else {
         echo '<script>alert("Invalid email or password");</script>';

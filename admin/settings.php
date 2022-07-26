@@ -7,7 +7,7 @@ use Medoo\Medoo;
 require_once 'core.php';
 
 // REDIRECT IF USER IS NOT LOGGED IN
-if(!isset($_SESSION['admin_user_login']) == true ){ header("Location: login.php"); exit; }
+if(!isset($_SESSION['admin_user_login']) == true ){ header("Location: login"); exit; }
 
 // INCLUDE HEADER FILE
 $title = 'Settings';
@@ -161,7 +161,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 ?>
 
 <header class="bg-dark row">
-    <div class="container-xl px-5">
+    <div class="px-4">
         <div class="d-flex justify-content-between align-items-center">
             <h1 class="text-white py-3 mb-0 display-6">Settings</h1>
             <div class="ms-4">
