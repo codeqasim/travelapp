@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 23, 2022 at 11:03 AM
+-- Generation Time: Jul 26, 2022 at 10:40 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.28
 
@@ -133,50 +133,6 @@ INSERT INTO `app_modules` (`id`, `parent_id`, `name`, `is_active`, `settings`, `
 (62, 'flights', 'Hiholiday', 0, '{\"name\":\"Hiholiday\",\"label\":\"Hiholiday\",\"slug\":\"hiholiday\",\"test\":\"false\",\"frontend\":{\"label\":\"Flights\",\"slug\":\"flights\",\"icon\":\"la la-plane\"},\"description\":\"\",\"active\":0,\"order\":\"2\",\"menus\":{\"icon\":\"fa fa-plane\",\"admin\":[{\"label\":\"Settings\",\"link\":\"admin\\/settings\\/modules\\/module_setting\\/hiholiday\\/\"},{\"label\":\"Bookings\",\"link\":\"admin\\/hiholiday\\/bookings\"}],\"supplier\":[]},\"\":null}', '2', '2495722d-8796-43ad-8f0e-90fd088c20c7', '09120335360', '5126', '', '', '', '', '', '', '', 0, 0, 0, '0', 0, 0, 0, '0', NULL, '#000000', 'IRR', '1'),
 (63, 'flights', 'Iata', 0, '{\"name\":\"iata\",\"label\":\"iata\",\"slug\":\"iata\",\"test\":\"false\",\"frontend\":{\"label\":\"Flights\",\"slug\":\"flights\",\"icon\":\"la la-plane\"},\"description\":\"\",\"active\":0,\"order\":\"2\",\"menus\":{\"icon\":\"fa fa-plane\",\"admin\":[{\"label\":\"Settings\",\"link\":\"admin/settings/modules/module_setting\\/iata\\/\"},{\"label\":\"Bookings\",\"link\":\"admin\\/iata\\/bookings\"}],\"supplier\":[]},\"\":null}', '2', '', '', '', '', '', '', '', '', '', '', 0, 0, 0, '', 0, 0, 0, '0', NULL, NULL, NULL, NULL),
 (64, 'tours', 'Tiqets', 1, '{\"name\":\"Tiqets\",\"label\":\"Tiqets\",\"slug\":\"Tiqets\",\"test\":\"false\",\"frontend\":{\"label\":\"Tiqets\",\"slug\":\"Tiqets\",\"icon\":\"la la-briefcase\"},\"description\":\"\",\"active\":1,\"order\":\"2\",\"menus\":{\"icon\":\"fa fa-briefcase\",\"admin\":[{\"label\":\"Settings\",\"link\":\"admin\\/settings\\/modules\\/module_setting\\/Tiqets\\/\"}],\"supplier\":[]},\"\":null}', '3', 'fZdFl0JKlfgz5j5vNXaMxAHlLJ2ZzJVA', '', '', '', '', '', '', '', '', '', 0, 0, 0, '1', 0, 0, 0, '0', NULL, '#48c2c5', 'USD', '0');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `app_settings`
---
-
-CREATE TABLE `app_settings` (
-  `id` int(11) NOT NULL,
-  `api_key` varchar(255) DEFAULT NULL,
-  `business_name` varchar(70) NOT NULL,
-  `home_title` varchar(250) DEFAULT NULL,
-  `site_url` varchar(100) CHARACTER SET latin1 NOT NULL,
-  `tag_line` varchar(255) DEFAULT NULL,
-  `address` varchar(255) NOT NULL,
-  `phone` varchar(50) DEFAULT NULL,
-  `seo_status` smallint(6) NOT NULL DEFAULT 1,
-  `meta_description` text DEFAULT NULL,
-  `header_logo_img` varchar(30) CHARACTER SET latin1 NOT NULL,
-  `favicon_img` varchar(30) CHARACTER SET latin1 DEFAULT NULL,
-  `javascript` text DEFAULT NULL,
-  `reviews` enum('Yes','No') NOT NULL DEFAULT 'No',
-  `default_language` varchar(100) NOT NULL DEFAULT 'en',
-  `multi_language` enum('1','0') NOT NULL DEFAULT '1',
-  `license_key` varchar(50) DEFAULT NULL,
-  `default_theme` varchar(75) DEFAULT 'default',
-  `offline_message` text DEFAULT NULL,
-  `site_offline` smallint(6) DEFAULT 0,
-  `default_gateway` varchar(200) DEFAULT NULL,
-  `multi_currency` enum('1','0') NOT NULL DEFAULT '0',
-  `booking_expiry` tinyint(4) DEFAULT 1,
-  `booking_cancellation` tinyint(4) NOT NULL DEFAULT 1,
-  `user_registration` enum('1','0') DEFAULT '1',
-  `supplier_registration` enum('1','0') NOT NULL DEFAULT '0',
-  `agent_registration` enum('1','0') NOT NULL DEFAULT '0',
-  `guest_booking` enum('1','0') NOT NULL DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `app_settings`
---
-
-INSERT INTO `app_settings` (`id`, `api_key`, `business_name`, `home_title`, `site_url`, `tag_line`, `address`, `phone`, `seo_status`, `meta_description`, `header_logo_img`, `favicon_img`, `javascript`, `reviews`, `default_language`, `multi_language`, `license_key`, `default_theme`, `offline_message`, `site_offline`, `default_gateway`, `multi_currency`, `booking_expiry`, `booking_cancellation`, `user_registration`, `supplier_registration`, `agent_registration`, `guest_booking`) VALUES
-(1, 'phptravels', 'PHPTRAVELS', 'PHPTRAVEL', 'https://www.phptravels.net/', NULL, '', NULL, 1, 'php travels is complete booking and reservation system provides complete solution for travel agency', 'logo.png', 'favicon.png', '<script>\r\n// your code goes here \r\n\r\n</script>', 'Yes', 'en', '1', 'license', 'default', 'offline message', 0, 'AuthorizeNet_AIM', '0', 1, 1, '0', '0', '0', '0');
 
 -- --------------------------------------------------------
 
@@ -10999,6 +10955,50 @@ INSERT INTO `hotels_search_logs` (`id`, `destination`, `checkin`, `checkout`, `i
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `modules`
+--
+
+CREATE TABLE `modules` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `type` enum('flights','hotels','tours','cars','visa') NOT NULL DEFAULT 'flights',
+  `status` enum('1','0') NOT NULL DEFAULT '0',
+  `color` varchar(255) DEFAULT NULL,
+  `c1` varchar(255) DEFAULT NULL,
+  `c2` varchar(255) DEFAULT NULL,
+  `c3` varchar(255) DEFAULT NULL,
+  `c4` varchar(255) DEFAULT NULL,
+  `b2c_markup` int(11) DEFAULT NULL,
+  `b2b_markup` int(11) DEFAULT NULL,
+  `b2e_markup` int(11) DEFAULT NULL,
+  `dev_mode` enum('1','0') NOT NULL DEFAULT '0',
+  `payment_mode` enum('1','0') NOT NULL DEFAULT '0',
+  `currency` varchar(255) DEFAULT NULL,
+  `module_color` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `modules`
+--
+
+INSERT INTO `modules` (`id`, `name`, `type`, `status`, `color`, `c1`, `c2`, `c3`, `c4`, `b2c_markup`, `b2b_markup`, `b2e_markup`, `dev_mode`, `payment_mode`, `currency`, `module_color`) VALUES
+(1, 'flights', 'flights', '1', NULL, 'c1', 'c2', 'c2', 'c5', 106, 20, 30, '0', '1', 'USD', '#00ff59'),
+(2, 'hotels', 'hotels', '1', NULL, '', '', '', '', 0, 0, 0, '0', '0', 'PKR', '#ff0000'),
+(3, 'tours', 'tours', '0', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', '0', NULL, NULL),
+(4, 'cars', 'cars', '1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', '0', NULL, NULL),
+(5, 'visa', 'visa', '1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', '0', NULL, NULL),
+(6, 'amadeus', 'flights', '0', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', '0', NULL, NULL),
+(7, 'duffel', 'flights', '0', NULL, '', '', '', '', 0, 0, 0, '0', '0', NULL, '#000000'),
+(8, 'kiwi', 'flights', '1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', '0', NULL, NULL),
+(9, 'rezlive', 'hotels', '0', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', '0', NULL, NULL),
+(10, 'hotelston', 'flights', '0', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', '0', NULL, NULL),
+(11, 'agoda', 'hotels', '0', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', '0', NULL, NULL),
+(12, 'viator', 'tours', '0', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', '0', NULL, NULL),
+(13, 'tiqets', 'tours', '0', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', '0', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `payment_gateways`
 --
 
@@ -11029,6 +11029,127 @@ INSERT INTO `payment_gateways` (`id`, `name`, `c1`, `c2`, `c3`, `c4`, `c5`, `dev
 (9, 'Paddle', '28632', '47b2e26d2eb36236d438c2138a33f6fb70531875e9e95944d0', NULL, NULL, NULL, 0, 'https://vendors.paddle.com/api/2.0/product/generate_pay_link', 'https://vendors.paddle.com/api/2.0/product/generate_pay_link', 0, 6),
 (10, 'Wallet Balance', NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, 1, 3),
 (12, 'Setmpos', NULL, NULL, NULL, NULL, NULL, 1, 'https://setmpos.ykb.com/PosnetWebService/XML', 'https://setmpos.ykb.com/PosnetWebService/XML', 0, 6);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `phptravels_currencies`
+--
+
+CREATE TABLE `phptravels_currencies` (
+  `id` int(11) NOT NULL,
+  `name` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `symbol` varchar(6) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `code` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
+  `rate` float NOT NULL DEFAULT 1,
+  `decimals` tinyint(1) NOT NULL DEFAULT 2,
+  `symbol_placement` enum('before','after') CHARACTER SET latin1 NOT NULL DEFAULT 'before',
+  `primary_order` tinyint(1) NOT NULL DEFAULT 0,
+  `is_default` enum('Yes','No') COLLATE utf8_unicode_ci NOT NULL DEFAULT 'No',
+  `is_active` enum('Yes','No') COLLATE utf8_unicode_ci NOT NULL DEFAULT 'Yes'
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `phptravels_currencies`
+--
+
+INSERT INTO `phptravels_currencies` (`id`, `name`, `symbol`, `code`, `rate`, `decimals`, `symbol_placement`, `primary_order`, `is_default`, `is_active`) VALUES
+(1, 'USD', '$', 'USD', 1, 2, 'before', 1, 'Yes', 'Yes'),
+(3, 'GBP', '£', 'GBP', 0.766115, 2, 'before', 3, 'No', 'Yes'),
+(9, 'SAR', NULL, 'SAR', 3.7504, 2, 'before', 0, 'No', 'Yes'),
+(11, 'EUR', '€', 'EUR', 0.91925, 2, 'before', 0, 'No', 'Yes'),
+(12, 'PKR', NULL, 'PKR', 189.384, 2, 'before', 0, 'No', 'Yes'),
+(14, 'AUD', '$', 'AUD', 1.33923, 2, 'before', 0, 'No', 'No'),
+(15, 'PHP', NULL, 'PHP', 51.5475, 2, 'before', 0, 'No', 'No'),
+(16, 'SGD', NULL, 'SGD', 1.36269, 2, 'before', 0, 'No', 'No'),
+(17, 'JPY', NULL, 'JPY', 124.066, 2, 'before', 0, 'No', 'Yes'),
+(18, 'INR', NULL, 'INR', 75.8068, 2, 'before', 0, 'No', 'Yes'),
+(19, 'CNY', NULL, 'CNY', 6.3622, 2, 'before', 0, 'No', 'Yes'),
+(20, 'TRY', NULL, 'TRY', 14.749, 2, 'before', 0, 'No', 'Yes'),
+(22, 'RUB', NULL, 'RUB', 79.251, 2, 'before', 0, 'No', 'Yes'),
+(26, 'IRR', NULL, 'IRR', 42300, 2, 'before', 0, 'No', 'Yes');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `phptravels_settings`
+--
+
+CREATE TABLE `phptravels_settings` (
+  `id` int(11) NOT NULL,
+  `api_key` varchar(255) DEFAULT NULL,
+  `business_name` varchar(70) NOT NULL,
+  `home_title` varchar(250) DEFAULT NULL,
+  `site_url` varchar(100) CHARACTER SET latin1 NOT NULL,
+  `tag_line` varchar(255) DEFAULT NULL,
+  `address` varchar(255) NOT NULL,
+  `phone` varchar(50) DEFAULT NULL,
+  `seo_status` smallint(6) NOT NULL DEFAULT 1,
+  `meta_description` text DEFAULT NULL,
+  `header_logo_img` varchar(30) CHARACTER SET latin1 NOT NULL,
+  `favicon_img` varchar(30) CHARACTER SET latin1 DEFAULT NULL,
+  `javascript` text DEFAULT NULL,
+  `reviews` enum('Yes','No') NOT NULL DEFAULT 'No',
+  `default_language` varchar(100) NOT NULL DEFAULT 'en',
+  `multi_language` enum('1','0') NOT NULL DEFAULT '1',
+  `license_key` varchar(50) DEFAULT NULL,
+  `default_theme` varchar(75) DEFAULT 'default',
+  `offline_message` text DEFAULT NULL,
+  `site_offline` smallint(6) DEFAULT 0,
+  `default_gateway` varchar(200) DEFAULT NULL,
+  `multi_currency` enum('1','0') NOT NULL DEFAULT '0',
+  `booking_expiry` tinyint(4) DEFAULT 1,
+  `booking_cancellation` tinyint(4) NOT NULL DEFAULT 1,
+  `user_registration` enum('1','0') DEFAULT '1',
+  `supplier_registration` enum('1','0') NOT NULL DEFAULT '0',
+  `agent_registration` enum('1','0') NOT NULL DEFAULT '0',
+  `guest_booking` enum('1','0') NOT NULL DEFAULT '0',
+  `social_facebook` varchar(255) DEFAULT NULL,
+  `social_twitter` varchar(255) DEFAULT NULL,
+  `social_linkedin` varchar(255) DEFAULT NULL,
+  `social_instagram` varchar(255) DEFAULT NULL,
+  `social_google` varchar(255) DEFAULT NULL,
+  `social_whatsapp` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `phptravels_settings`
+--
+
+INSERT INTO `phptravels_settings` (`id`, `api_key`, `business_name`, `home_title`, `site_url`, `tag_line`, `address`, `phone`, `seo_status`, `meta_description`, `header_logo_img`, `favicon_img`, `javascript`, `reviews`, `default_language`, `multi_language`, `license_key`, `default_theme`, `offline_message`, `site_offline`, `default_gateway`, `multi_currency`, `booking_expiry`, `booking_cancellation`, `user_registration`, `supplier_registration`, `agent_registration`, `guest_booking`, `social_facebook`, `social_twitter`, `social_linkedin`, `social_instagram`, `social_google`, `social_whatsapp`) VALUES
+(1, 'phptravels', 'PHPTRAVELS', 'PHPTRAVEL', 'https://www.phptravels.net/', NULL, '', NULL, 1, 'php travels is complete booking and reservation system provides complete solution for travel agency', 'logo.png', 'favicon.png', '<script>\r\n// your code goes here \r\n\r\n</script>', 'Yes', 'fr', '1', 'license', 'default', 'offline message', 0, 'AuthorizeNet_AIM', '0', 1, 1, '0', '0', '0', '0', 'https://facebook.com/phptravels', 'https://twitter.com/phptravels', 'https://linkedin.com/phptravels', 'https://instagram.com/phptravels', 'https://google.com/phptravels', 'https://whatsapp.com/phptravels');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `phptravels_users`
+--
+
+CREATE TABLE `phptravels_users` (
+  `id` int(12) NOT NULL,
+  `first_name` varchar(250) NOT NULL,
+  `last_name` varchar(250) NOT NULL,
+  `email` varchar(250) NOT NULL,
+  `password` varchar(250) NOT NULL,
+  `status` enum('1','0') DEFAULT '0',
+  `country_code` varchar(255) DEFAULT NULL,
+  `type` enum('admin','admin_staff','agent','corporate','supplier') DEFAULT NULL,
+  `currency` varchar(255) DEFAULT NULL,
+  `address1` varchar(255) DEFAULT NULL,
+  `address2` varchar(255) DEFAULT NULL,
+  `company_name` varchar(255) DEFAULT NULL,
+  `company_phone` varchar(255) DEFAULT NULL,
+  `company_commission` varchar(255) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `phptravels_users`
+--
+
+INSERT INTO `phptravels_users` (`id`, `first_name`, `last_name`, `email`, `password`, `status`, `country_code`, `type`, `currency`, `address1`, `address2`, `company_name`, `company_phone`, `company_commission`, `created_at`) VALUES
+(1, 'Super', 'Admin', 'admin@phptravels.com', '21232f297a57a5a743894a0e4a801fc3', '0', NULL, 'admin', NULL, 'address 1', 'address 2', NULL, NULL, NULL, NULL),
+(3, 'Demo', 'Supplier', 'supplier@phptravels.com', '21232f297a57a5a743894a0e4a801fc3', '0', NULL, 'supplier', NULL, 'address 1', 'address 2', NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -11487,45 +11608,6 @@ INSERT INTO `pt_coupons_assign` (`id`, `couponid`, `module`, `item`) VALUES
 (120, 11, 'cars', 'all'),
 (121, 12, 'hotels', '38'),
 (122, 12, 'hotels', 'all');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `pt_currencies`
---
-
-CREATE TABLE `pt_currencies` (
-  `id` int(11) NOT NULL,
-  `name` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `symbol` varchar(6) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `code` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
-  `rate` float NOT NULL DEFAULT 1,
-  `decimals` tinyint(1) NOT NULL DEFAULT 2,
-  `symbol_placement` enum('before','after') CHARACTER SET latin1 NOT NULL DEFAULT 'before',
-  `primary_order` tinyint(1) NOT NULL DEFAULT 0,
-  `is_default` enum('Yes','No') COLLATE utf8_unicode_ci NOT NULL DEFAULT 'No',
-  `is_active` enum('Yes','No') COLLATE utf8_unicode_ci NOT NULL DEFAULT 'Yes'
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Dumping data for table `pt_currencies`
---
-
-INSERT INTO `pt_currencies` (`id`, `name`, `symbol`, `code`, `rate`, `decimals`, `symbol_placement`, `primary_order`, `is_default`, `is_active`) VALUES
-(1, 'USD', '$', 'USD', 1, 2, 'before', 1, 'Yes', 'Yes'),
-(3, 'GBP', '£', 'GBP', 0.766115, 2, 'before', 3, 'No', 'Yes'),
-(9, 'SAR', NULL, 'SAR', 3.7504, 2, 'before', 0, 'No', 'Yes'),
-(11, 'EUR', '€', 'EUR', 0.91925, 2, 'before', 0, 'No', 'Yes'),
-(12, 'PKR', NULL, 'PKR', 189.384, 2, 'before', 0, 'No', 'Yes'),
-(14, 'AUD', '$', 'AUD', 1.33923, 2, 'before', 0, 'No', 'No'),
-(15, 'PHP', NULL, 'PHP', 51.5475, 2, 'before', 0, 'No', 'No'),
-(16, 'SGD', NULL, 'SGD', 1.36269, 2, 'before', 0, 'No', 'No'),
-(17, 'JPY', NULL, 'JPY', 124.066, 2, 'before', 0, 'No', 'Yes'),
-(18, 'INR', NULL, 'INR', 75.8068, 2, 'before', 0, 'No', 'Yes'),
-(19, 'CNY', NULL, 'CNY', 6.3622, 2, 'before', 0, 'No', 'Yes'),
-(20, 'TRY', NULL, 'TRY', 14.749, 2, 'before', 0, 'No', 'Yes'),
-(22, 'RUB', NULL, 'RUB', 79.251, 2, 'before', 0, 'No', 'Yes'),
-(26, 'IRR', NULL, 'IRR', 42300, 2, 'before', 0, 'No', 'Yes');
 
 -- --------------------------------------------------------
 
@@ -34518,28 +34600,6 @@ INSERT INTO `tours_search_logs` (`id`, `destination`, `checkin`, `ip`, `browser_
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
---
-
-CREATE TABLE `users` (
-  `id` int(12) NOT NULL,
-  `first_name` varchar(250) NOT NULL,
-  `last_name` varchar(250) NOT NULL,
-  `email` varchar(250) NOT NULL,
-  `password` varchar(250) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `users`
---
-
-INSERT INTO `users` (`id`, `first_name`, `last_name`, `email`, `password`) VALUES
-(1, 'super', 'admin', 'super@admin.com', 'superadmin'),
-(2, '', '', 'admin@admin.com', '21232f297a57a5a743894a0e4a801fc3');
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `visa_search_logs`
 --
 
@@ -34591,12 +34651,6 @@ ALTER TABLE `app_modules`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `app_settings`
---
-ALTER TABLE `app_settings`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `flights_airlines`
 --
 ALTER TABLE `flights_airlines`
@@ -34645,9 +34699,34 @@ ALTER TABLE `hotels_search_logs`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `modules`
+--
+ALTER TABLE `modules`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `payment_gateways`
 --
 ALTER TABLE `payment_gateways`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `phptravels_currencies`
+--
+ALTER TABLE `phptravels_currencies`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `code` (`code`);
+
+--
+-- Indexes for table `phptravels_settings`
+--
+ALTER TABLE `phptravels_settings`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `phptravels_users`
+--
+ALTER TABLE `phptravels_users`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -34711,13 +34790,6 @@ ALTER TABLE `pt_coupons`
 --
 ALTER TABLE `pt_coupons_assign`
   ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `pt_currencies`
---
-ALTER TABLE `pt_currencies`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `code` (`code`);
 
 --
 -- Indexes for table `pt_flights_airlines`
@@ -34907,12 +34979,6 @@ ALTER TABLE `tours_search_logs`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `users`
---
-ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `visa_search_logs`
 --
 ALTER TABLE `visa_search_logs`
@@ -34983,10 +35049,28 @@ ALTER TABLE `hotels_search_logs`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
 
 --
+-- AUTO_INCREMENT for table `modules`
+--
+ALTER TABLE `modules`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
 -- AUTO_INCREMENT for table `payment_gateways`
 --
 ALTER TABLE `payment_gateways`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- AUTO_INCREMENT for table `phptravels_currencies`
+--
+ALTER TABLE `phptravels_currencies`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+
+--
+-- AUTO_INCREMENT for table `phptravels_users`
+--
+ALTER TABLE `phptravels_users`
+  MODIFY `id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `pt_blog`
@@ -35047,12 +35131,6 @@ ALTER TABLE `pt_coupons`
 --
 ALTER TABLE `pt_coupons_assign`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=123;
-
---
--- AUTO_INCREMENT for table `pt_currencies`
---
-ALTER TABLE `pt_currencies`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `pt_flights_airlines`
@@ -35227,12 +35305,6 @@ ALTER TABLE `tours_bookings`
 --
 ALTER TABLE `tours_search_logs`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
-
---
--- AUTO_INCREMENT for table `users`
---
-ALTER TABLE `users`
-  MODIFY `id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `visa_search_logs`
