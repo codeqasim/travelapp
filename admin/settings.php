@@ -599,4 +599,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   }
 </script>
 
-<?php include 'footer.php'; ?>
+<?php include 'footer.php';
+
+msg_success(
+  "1",
+  "2",
+);
+
+?>

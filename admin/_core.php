@@ -25,6 +25,27 @@ $url_path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 $url = explode('/', $url_path);
 // echo end($url);
 
+// ALERTS FUNCTIONALITY
+function msg_success($msg1, $msg2) {
+    echo '<script>
+    vt.success("'.$msg1.'",{
+        title:"'.$msg2.'",
+        position: "top-center",
+        callback: function (){ //
+        } })
+    </script>';
+}
+
+function msg_failed(){
+    echo '<script>
+    vt.failed("'.$msg1.'",{
+        title:"'.$msg2.'",
+        position: "top-center",
+        callback: function (){ //
+        } })
+    </script>';
+}
+
 // DD FUNCTION FOR DEBUG RESPONSES
 // function ddd($d) { echo "<pre>"; print_r($d); echo "</pre>"; }
 

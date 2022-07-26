@@ -19,7 +19,7 @@ $settings = $db->select('phptravels_settings', '*', );
 <meta name="description" content="" />
 <meta name="keywords" content="" />
 <link rel="stylesheet" href="./assets/css/app.css" />
-<script type="text/javascript" src="./assets/js/jquery-3.6.0.min.js"></script>
+<script src="./assets/js/jquery-3.6.0.min.js"></script>
 <script>setTimeout(function() { $('.bodyload').fadeOut(); }, 10);</script>
 </head>
 
@@ -295,7 +295,7 @@ $settings = $db->select('phptravels_settings', '*', );
                     </a>
 
                     <?php } ?>
-                    
+
                 </div>
             </div>
 
