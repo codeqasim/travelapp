@@ -22,12 +22,21 @@ $data = $db->select('modules', '*',[
 
 $module = (object)($data[0]);
 
+// CONDITION TO CHECK FOR STATUS
+if ($module->status == 1) {
+  $check = "checked=''";
+} else {
+  $check = "";
 }
 
+}
+
+// print_r($_POST);
+// die;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-    $db->update('app_settings', [
+    $db->update('modules', [
         'b2c_markup' => $_POST['b2c_markup'],
         'b2b_markup' => $_POST['b2b_markup'],
         'b2e_markup' => $_POST['b2e_markup'],
@@ -36,20 +45,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         'c3' => $_POST['c3'],
         'c4' => $_POST['c4'],
         'c4' => $_POST['c4'],
+        'dev_mode' => $_POST['dev_mode'],
+        'payment_mode' => $_POST['payment_mode'],
+        'currency' => $_POST['currency'],
+        'module_color' => $_POST['module_color'],
 
     ], [
         'id' => $_POST['id']
     ]);
 
-    echo "<meta http-equiv=\"refresh\" content=\"0;URL=settings.php#updatesetttings\">";
-
-}
-
-// CONDITION TO CHECK FOR STATUS
-if ($module->status == 1) {
-    $check = "checked=''";
-} else {
-    $check = "";
+    echo "<meta http-equiv=\"refresh\" content=\"0;URL=modules.php#updatesetttings\">";
+    die;
 }
 
 ?>
@@ -57,7 +63,7 @@ if ($module->status == 1) {
 <header class="bg-dark row">
     <div class="container-xl px-5">
         <div class="d-flex justify-content-between align-items-center">
-            <h1 class="text-white py-3 mb-0 display-6"><?=$module->name?> Settings</h1>
+            <h1 class="text-white py-3 mb-0 display-6" style="text-transform:capitalize"><?=$module->name?> Settings</h1>
             <div class="ms-4">
 
             </div>
@@ -66,19 +72,20 @@ if ($module->status == 1) {
 </header>
 
 <div class="container-xl py-4">
-  <form action="./settings_module.php" method="POST">
+  <form action="settings-module.php" method="POST">
     <div class="card p-5">
     <div class="panel-heading">
 
-    <div class="pull-right mb-5">
+    <div class="pull-right mb-5 d-flex gap-2 align-items-center">
+    <label class="form-check-label" for="module">Status</label>
     <div class="form-check form-switch">
       <label class="form-check-label" for="module"></label>
       <input <?=$check?> style="width: 40px; height: 20px;cursor:pointer" class="form-check-input" data-status="<?=$module->status?>" data-value="<?=$_GET['m'] ?>" data-item="<?=$module->name?>" id="checkedbox" type="checkbox">
-      </div>
+    </div>
     </div>
 
       <div class="pull-left mb-5">
-        <a href="javascript:window.history.back();" data-toggle="tooltip" data-placement="top" title="Previous Page" class="btn btn-warning mdc-ripple-upgraded"><i class="fa fa-share-square-o"></i>  Back</a>  </div>
+        <a href="javascript:window.history.back();" data-toggle="tooltip" data-placement="top" title="Previous Page" class="btn btn-warning mdc-ripple-upgraded d-flex align-items-center gap-2"><i class="fa fa-share-square-o mt-1"></i>  Back</a>  </div>
       <div class="clearfix"></div>
     </div>
       <div class="panel-body">
@@ -103,24 +110,24 @@ if ($module->status == 1) {
 
     </div>
 
-        <h4>API Credentials</h4>
+        <p><strong>API CREDENTIALS</strong></p>
 
         <div class="row form-group mb-4 mt-4">
 
         <div class="col-md-3">
-        <mwc-textfield class="w-100 demo" type="text" name="c1" label="Credential 1" outlined="" value=""></mwc-textfield>
+        <mwc-textfield class="w-100 demo" type="text" name="c1" label="Credential 1" outlined="" value="<?=$module->c1?>"></mwc-textfield>
         </div>
 
         <div class="col-md-3">
-        <mwc-textfield class="w-100 demo" type="text" name="c2" label="Credential 2" outlined="" value=""></mwc-textfield>
+        <mwc-textfield class="w-100 demo" type="text" name="c2" label="Credential 2" outlined="" value="<?=$module->c2?>"></mwc-textfield>
         </div>
 
         <div class="col-md-3">
-        <mwc-textfield class="w-100 demo" type="text" name="c3" label="Credential 3" outlined="" value=""></mwc-textfield>
+        <mwc-textfield class="w-100 demo" type="text" name="c3" label="Credential 3" outlined="" value="<?=$module->c2?>"></mwc-textfield>
         </div>
 
         <div class="col-md-3">
-        <mwc-textfield class="w-100" type="text" name="c4" label="Credential 4" outlined="" value=""></mwc-textfield>
+        <mwc-textfield class="w-100" type="text" name="c4" label="Credential 4" outlined="" value="<?=$module->c4?>"></mwc-textfield>
         </div>
 
         </div>
@@ -129,43 +136,46 @@ if ($module->status == 1) {
 
         <div class="col-md-3">
 
-        <mwc-select outlined="" label="Dev Mode" name="mode" class="w-100">
+        <mwc-select outlined="" label="Dev Mode" name="dev_mode" class="w-100">
           <mwc-list-item value="1"> Production</mwc-list-item>
           <mwc-list-item value="0"> Development</mwc-list-item>
         </mwc-select>
 
+        <script>
+            $("[name='dev_mode']").val("<?=$module->dev_mode?>")
+        </script>
+
         </div>
 
-        <div class="col-md-3">
+        <div class="col-md-4">
 
             <mwc-select outlined="" label="Payment Mode" name="payment_mode" class="w-100">
                 <mwc-list-item value="1">Merchant API - Booking on Site</mwc-list-item>
                 <mwc-list-item value="0"> Affiliate API - Booking on other site</mwc-list-item>
             </mwc-select>
 
-        </div>
-
-        <div class="col-md-3">
-
-        <select class="w-100" type="text" name="default_currency" id="" style="height: 55px; padding: 10px; border-radius: 4px; border: 1px solid #9f9f9f; font-size: 16px;">
-                      <option value="USD" selected="">USD</option>
-                      <option value="GBP">GBP</option>
-                      <option value="SAR">SAR</option>
-                      <option value="EUR">EUR</option>
-                      <option value="PKR">PKR</option>
-                      <option value="JPY">JPY</option>
-                      <option value="INR">INR</option>
-                      <option value="CNY">CNY</option>
-                      <option value="TRY">TRY</option>
-                      <option value="RUB">RUB</option>
-                      <option value="IRR">IRR</option>
-                   </select>
+        <script>
+        $("[name='payment_mode']").val("<?=$module->payment_mode?>")
+        </script>
 
         </div>
 
-        <div class="col-md-3">
-            <label for="" class="d-flex gap-3 align-items-center">Color
-          <input style="height: 40px; padding: 6px;" type="color" id="module_color" name="module_color" class="form-control" value="#f9af4c">
+        <div class="col-md-2">
+
+        <mwc-select outlined="" label="Currency" name="currency" class="w-100">
+            <mwc-list-item value="USD">USD</mwc-list-item>
+            <mwc-list-item value="PKR">PKR</mwc-list-item>
+        </mwc-select>
+
+        <script>
+        $("[name='currency']").val("<?=$module->currency?>")
+        </script>
+
+        </div>
+
+        <div class="col-md-3 d-flex">
+            <label for="" class="d-flex gap-3 align-items-center w-100">Color
+          <input style="height: 40px; padding: 6px;" type="color" id="module_color" name="module_color" class="form-control" value="<?=$module->module_color?>">
           </label>
         </div>
         </div>
@@ -183,13 +193,56 @@ if ($module->status == 1) {
 </style>
 
 <script>
-document.getElementById("module_color").value = "#f9af4c";
+document.getElementById("module_color").value = "<?=$module->module_color?>";
 
-$('body').bind('copy',function(e) {
-e.preventDefault(); return false;
-});
-</script></div>
+// $('body').bind('copy',function(e) {
+// e.preventDefault(); return false;
+// });
+</script>
 
+<script>
 
+$('[id=checkedbox]').on('click', function() {
+
+    var status = $(this).data("status");
+    var id = $(this).data("value");
+    var item = $(this).data("item");
+
+    var isChecked = this.checked;
+
+    // CONDITION TO CHECK THE STATUS
+    if (isChecked == true) { var checks = 1 } else { var checks = 0 }
+
+    var form = new FormData();
+    form.append("id", id);
+    form.append("status", checks);
+
+    var settings = {
+    "url": "./modules.php",
+    "method": "POST",
+    "timeout": 0,
+    "processData": false,
+    "mimeType": "multipart/form-data",
+    "contentType": false,
+    "data": form
+    };
+
+    $.ajax(settings).done(function (response) {
+    console.log(response);
+
+        // ALERT POPUP MESSAGE
+        vt.success("Module status updated successfully",{
+            title:"Module Updated",
+            position: "top-center",
+            callback: function (){
+        } })
+
+    });
+
+  });
+
+</script>
+
+</div>
 
 <?php include 'footer.php'; ?>
