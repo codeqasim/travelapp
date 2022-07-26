@@ -158,7 +158,7 @@ $settings = $db->select('phptravels_settings', '*', );
                     <!-- Drawer section heading (Interface)-->
                     <div class="drawer-menu-heading">Menu</div>
                     <!-- Drawer link (Dashboard)-->
-                    <a class="nav-link mdc-ripple-upgraded <?php if (end($url) == "dashboard") {echo "active";} ?>" href="./dashboard">
+                    <a class="nav-link mdc-ripple-upgraded loading_effect <?php if (end($url) == "dashboard") {echo "active";} ?>" href="./dashboard">
                         <!-- <div class="nav-link-icon"><i class="material-icons">laptop</i></div> -->
 
                         <div class="nav-link-icon">
