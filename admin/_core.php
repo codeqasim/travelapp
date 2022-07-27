@@ -15,12 +15,6 @@ require_once '../config.php';
 // SENTRY DEBUG
 \Sentry\init(['dsn' => 'https://0a0039bdd37b4db5a83068108f64652b@o1024531.ingest.sentry.io/6603898' ]);
 
-try {
-    $this->functionFailsForSure();
-} catch (\Throwable $exception) {
-    \Sentry\captureException($exception);
-}
-
 // INCLUDE TRANSALTION LIBRARY IF SESSION EXISTS
 if (isset($_SESSION['user_language'])) {
     require_once '_i18n.class.php';
@@ -47,9 +41,7 @@ function redirect($url)
     {
         header('Location: '.$url);
         exit;
-        }
-    else
-        {
+        } else {
         echo '<script type="text/javascript">';
         echo 'window.location.href="'.$url.'";';
         echo '</script>';

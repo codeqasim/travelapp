@@ -12,6 +12,7 @@
     "paymentgateways": "paymentgateways",
     "emailsettings": "emailsettings",
 
+    "savechanges": "Save Changes",
     "profile": "Profile",
     "account_details": "Accoun Details",
     "account_details2": "Review and update your account information below",
@@ -20,11 +21,16 @@
     "email": "Email",
     "password": "Password",
     "mobile": "Mobile",
+    "phone": "Phone",
     "country": "Country Name",
     "currency": "Currency Name",
     "city": "City Name",
     "address1": "Address 1",
     "address2": "Address 2",
+    "select_country": "Select Country",
+    "financial_details": "Financial Details",
+    "select_currency": "Select Currency",
+    "agency_name": "Agency Name",
     "wallet_balance": "Wallet Balance"
-    
+
 }

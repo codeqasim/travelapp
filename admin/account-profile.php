@@ -30,6 +30,17 @@ if (empty($user)) {
     redirect('dashboard');
 }
 
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+    $db->update('phptravels_users', [
+        'first_name' => $_POST['first_name'],
+
+    ], [
+        'id' => $_POST['id']
+    ]);
+
+}
+
 // INCLUDE HEADER FILE
 $title = 'Profile';
 include 'header.php'; ?>
@@ -48,19 +59,23 @@ include 'header.php'; ?>
     <div class="card-body p-5">
         <div class="card-title"><?=T::account_details?></div>
         <div class="card-subtitle mb-4"><?=T::account_details2?></div>
-        <form>
+
+        <form action="account-profile.php" method="post" onsubmit="submission()" enctype="multipart/form-data">
 
         <div class="row">
         <div class="col-md-8">
 
-             <!-- Form Row-->
-            <div class="row mb-4">
+             <div class="row mb-4">
                 <div class="col-md-6"><mwc-textfield icon="person" class="w-100" name="first_name" label="<?=T::first_name?>" outlined="" value="<?=$user['first_name']?>"></mwc-textfield></div>
                 <div class="col-md-6"><mwc-textfield icon="person" class="w-100" name="last_name" label="<?=T::last_name?>" outlined="" value="<?=$user['last_name']?>"></mwc-textfield></div>
             </div>
+
             <div class="row mb-4">
-                <div class="col-md-6"><mwc-textfield icon="email" class="w-100" name="email" label="<?=T::email?>" outlined="" value="<?=$user['email']?>"></mwc-textfield></div>
-                <div class="col-md-6"><mwc-textfield icon="password" class="w-100" name="password" label="<?=T::password?>" outlined="" value=""></mwc-textfield></div>
+                <div class="col-md-12"><mwc-textfield icon="email" class="w-100" name="email" label="<?=T::email?>" outlined="" value="<?=$user['email']?>"></mwc-textfield></div>
+             </div>
+
+            <div class="row mb-4">
+                 <div class="col-md-12"><mwc-textfield icon="password" class="w-100" name="password" label="<?=T::password?>" outlined="" value=""></mwc-textfield></div>
             </div>
 
             <div class="row mb-4">
@@ -68,8 +83,11 @@ include 'header.php'; ?>
             </div>
 
             <div class="row mb-4">
-                <div class="col-md-6"><mwc-textfield icon="map" class="w-100" name="address1" label="<?=T::address1?>" outlined="" value="<?=$user['address1']?>"></mwc-textfield></div>
-                <div class="col-md-6"><mwc-textfield icon="map" class="w-100" name="address2" label="<?=T::address2?>" outlined="" value="<?=$user['address2']?>"></mwc-textfield></div>
+                <div class="col-md-12"><mwc-textfield icon="map" class="w-100" name="address1" label="<?=T::address1?>" outlined="" value="<?=$user['address1']?>"></mwc-textfield></div>
+            </div>
+
+            <div class="row mb-4">
+                <div class="col-md-12"><mwc-textfield icon="map" class="w-100" name="address2" label="<?=T::address2?>" outlined="" value="<?=$user['address2']?>"></mwc-textfield></div>
             </div>
 
             <div class="row mb-4">
@@ -78,7 +96,7 @@ include 'header.php'; ?>
                 <mwc-select icon="flag" name="country_code" class="w-100" outlined="" label="<?=T::country?>">
 
                     <?php if(empty($user['country_code'])) {?>
-                    <mwc-list-item value="country" selected="">Select Country</mwc-list-item>
+                    <mwc-list-item value="country" selected=""><?=T::select_country?></mwc-list-item>
                     <?php } ?>
 
                     <?php foreach($countries as $country) { ?>
@@ -92,27 +110,24 @@ include 'header.php'; ?>
 
             </div>
 
-
             </div>
-
-
         </div>
 
         <div class="col-md-4">
             <div class="card p-3">
-                <p><strong>Financial Details</strong></p>
+                <p><strong><?=T::financial_details?></strong></p>
                 <hr class="mb-4 mt-1">
 
                 <div class="row mb-4">
                  <div class="col-md-12"><mwc-textfield type="number" icon="account_balance_wallet" class="w-100" name="balance" label="<?=T::wallet_balance?>" outlined="" value="<?=$user['balance']?>"></mwc-textfield></div>
                 </div>
 
-                <div class="row mb-4">
+                <div class="row mb-0">
 
                 <mwc-select icon="payments" name="currency" class="w-100" outlined="" label="<?=T::currency?>">
 
                     <?php if(empty($user['currency'])) {?>
-                    <mwc-list-item value="currency" selected="">Select Currency</mwc-list-item>
+                    <mwc-list-item value="currency" selected=""><?=T::select_currency?></mwc-list-item>
                     <?php } ?>
 
                     <?php foreach($currencies as $currency) { ?>
@@ -123,15 +138,33 @@ include 'header.php'; ?>
                 <script>
                     $("[name='currency']").val("<?=$user['currency']?>")
                 </script>
-
+            </div>
             </div>
 
+            <div class="card p-3 mt-3">
+                <p><strong>Agency Details</strong></p>
+                <hr class="mb-4 mt-1">
+
+                <div class="row mb-4">
+                 <div class="col-md-12"><mwc-textfield type="text" icon="store" class="w-100" name="company_name" label="<?=T::agency_name?>" outlined="" value="<?=$user['company_name']?>"></mwc-textfield></div>
+                </div>
+
+                <div class="row mb-4">
+                 <div class="col-md-12"><mwc-textfield type="number" icon="phone" class="w-100" name="company_phone" label="<?=T::phone?>" outlined="" value="<?=$user['company_phone']?>"></mwc-textfield></div>
+                </div>
+
+                <div class="row mb-0">
+                 <div class="col-md-12"><mwc-textfield type="email" icon="email" class="w-100" name="company_email" label="<?=T::email?>" outlined="" value="<?=$user['company_email']?>"></mwc-textfield></div>
+                </div>
+
+         </div>
+
+        </div>
+
+            <input type="hidden" name="id" value="<?=$_GET['id']?>">
+            <div>
+            <button class="btn btn-primary mdc-ripple-upgraded" type="submit"><?=T::savechanges?></button>
             </div>
-        </div>
-
-        </div>
-
-             <div class=""><button class="btn btn-primary mdc-ripple-upgraded" type="button">Save changes</button></div>
         </form>
     </div>
 </div>
