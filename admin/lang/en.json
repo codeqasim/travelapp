@@ -14,7 +14,10 @@
 
     "savechanges": "Save Changes",
     "profile": "Profile",
-    "account_details": "Accoun Details",
+    "help": "Help",
+    "login": "Login",
+    "logout": "Logout",
+    "account_details": "Account Details",
     "account_details2": "Review and update your account information below",
     "first_name": "First Name",
     "last_name": "Last Name",
