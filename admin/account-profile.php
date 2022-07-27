@@ -6,44 +6,62 @@ use Medoo\Medoo;
 // INCLUDE CORE FILE
 require_once '_core.php';
 
-// REQUIRED IF USER IS NOT LOGGED IN
-if($_SESSION['user_type'] !== "admin" ){
+if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
-    if($_SESSION['user_id'] == $_GET['id'] ){} else {
-    echo "<script>alert('Access Not Allowed')</script>";
-    echo "<meta http-equiv=\"refresh\" content=\"0;URL=dashboard\">";
-    exit; }
+    // REQUIRED IF USER IS NOT LOGGED IN
+    if($_SESSION['user_type'] !== "admin" ){
 
-}
+        if($_SESSION['user_id'] == $_GET['id'] ){} else {
+        echo "<script>alert('Access Not Allowed')</script>";
+        redirect('dashboard');
+    } }
 
-// COUNTRIES & CURRENCIES DATA
-$countries = $db->select('phptravels_countries', '*', [ 'status' => 1 ]);
-$currencies = $db->select('phptravels_currencies', '*', [ 'status' => 1 ]);
+    // COUNTRIES & CURRENCIES DATA
+    $countries = $db->select('phptravels_countries', '*', [ 'status' => 1 ]);
+    $currencies = $db->select('phptravels_currencies', '*', [ 'status' => 1 ]);
 
-// GET USER DATA
-$data = $db->select('phptravels_users', '*',[ 'id' => $_GET['id'] ]);
-$user = $data[0];
+    // GET USER DATA
+    $data = $db->select('phptravels_users', '*',[ 'id' => $_GET['id'] ]);
+    $user = $data[0];
 
-// REDIECT IF NO USER FOUND WITH ID
-if (empty($user)) {
-    echo "<script>alert('User Not Found')</script>";
-    redirect('dashboard');
+    // REDIECT IF NO USER FOUND WITH ID
+    if (empty($user)) {
+        echo "<script>alert('User Not Found')</script>";
+        redirect('dashboard');
+    }
+
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
+    if (empty($_POST['password'])) { $password = $_POST['pass']; } else { $password = md5($_POST['password']); }
+
     $db->update('phptravels_users', [
         'first_name' => $_POST['first_name'],
-
+        'last_name' => $_POST['last_name'],
+        'email' => $_POST['email'],
+        'password' => $password,
+        'mobile' => $_POST['mobile'],
+        'address1' => $_POST['address1'],
+        'address2' => $_POST['address2'],
+        'country_code' => $_POST['country_code'],
+        'balance' => $_POST['balance'],
+        'currency' => $_POST['currency'],
+        'company_name' => $_POST['company_name'],
+        'company_phone' => $_POST['company_phone'],
+        'company_email' => $_POST['company_email'],
     ], [
         'id' => $_POST['id']
     ]);
 
+    redirect('account-profile?id=1');
 }
 
 // INCLUDE HEADER FILE
 $title = 'Profile';
-include 'header.php'; ?>
+include 'header.php';
+
+?>
 
 <header class="bg-dark row">
     <div class="px-4">
@@ -71,7 +89,7 @@ include 'header.php'; ?>
             </div>
 
             <div class="row mb-4">
-                <div class="col-md-12"><mwc-textfield icon="email" class="w-100" name="email" label="<?=T::email?>" outlined="" value="<?=$user['email']?>"></mwc-textfield></div>
+                <div class="col-md-12"><mwc-textfield required type="email" icon="email" class="w-100" name="email" label="<?=T::email?>" outlined="" value="<?=$user['email']?>"></mwc-textfield></div>
              </div>
 
             <div class="row mb-4">
@@ -79,7 +97,7 @@ include 'header.php'; ?>
             </div>
 
             <div class="row mb-4">
-                <div class="col-md-12"><mwc-textfield icon="phone" class="w-100" name="email" label="<?=T::mobile?>" outlined="" value="<?=$user['mobile']?>"></mwc-textfield></div>
+                <div class="col-md-12"><mwc-textfield icon="phone" class="w-100" name="mobile" label="<?=T::mobile?>" outlined="" value="<?=$user['mobile']?>"></mwc-textfield></div>
             </div>
 
             <div class="row mb-4">
@@ -162,11 +180,18 @@ include 'header.php'; ?>
         </div>
 
             <input type="hidden" name="id" value="<?=$_GET['id']?>">
-            <div>
+            <input type="hidden" name="pass" value="<?=$user['password']?>">
+             <div>
             <button class="btn btn-primary mdc-ripple-upgraded" type="submit"><?=T::savechanges?></button>
             </div>
         </form>
     </div>
 </div>
+
+<script>
+    function submission(){
+        $(".bodyload").fadeIn(50);
+    }
+</script>
 
 <?php include 'footer.php'; ?>
