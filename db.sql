@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 26, 2022 at 10:40 PM
+-- Generation Time: Jul 27, 2022 at 09:27 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.28
 
@@ -10982,8 +10982,8 @@ CREATE TABLE `modules` (
 --
 
 INSERT INTO `modules` (`id`, `name`, `type`, `status`, `color`, `c1`, `c2`, `c3`, `c4`, `b2c_markup`, `b2b_markup`, `b2e_markup`, `dev_mode`, `payment_mode`, `currency`, `module_color`) VALUES
-(1, 'flights', 'flights', '1', NULL, 'c1', 'c2', 'c2', 'c5', 106, 20, 30, '0', '1', 'USD', '#00ff59'),
-(2, 'hotels', 'hotels', '1', NULL, '', '', '', '', 0, 0, 0, '0', '0', 'PKR', '#ff0000'),
+(1, 'flights', 'flights', '1', NULL, 'c1', 'c2', 'c2', 'c5', 10, 20, 30, '0', '1', 'USD', '#00ff59'),
+(2, 'hotels', 'hotels', '0', NULL, '', '', '', '', 0, 0, 0, '0', '0', 'PKR', '#ff0000'),
 (3, 'tours', 'tours', '0', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', '0', NULL, NULL),
 (4, 'cars', 'cars', '1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', '0', NULL, NULL),
 (5, 'visa', 'visa', '1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', '0', NULL, NULL),
@@ -11033,6 +11033,282 @@ INSERT INTO `payment_gateways` (`id`, `name`, `c1`, `c2`, `c3`, `c4`, `c5`, `dev
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `phptravels_countries`
+--
+
+CREATE TABLE `phptravels_countries` (
+  `id` int(11) NOT NULL,
+  `iso` varchar(20) NOT NULL,
+  `name` varchar(20) NOT NULL,
+  `nicename` varchar(200) NOT NULL,
+  `iso3` varchar(20) NOT NULL,
+  `numcode` varchar(20) NOT NULL,
+  `phonecode` varchar(20) NOT NULL,
+  `status` enum('1','0') NOT NULL DEFAULT '1'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `phptravels_countries`
+--
+
+INSERT INTO `phptravels_countries` (`id`, `iso`, `name`, `nicename`, `iso3`, `numcode`, `phonecode`, `status`) VALUES
+(1, 'AF', 'AFGHANISTAN', 'Afghanistan', 'AFG', '4', '93', '1'),
+(2, 'AL', 'ALBANIA', 'Albania', 'ALB', '8', '355', '1'),
+(3, 'DZ', 'ALGERIA', 'Algeria', 'DZA', '12', '213', '1'),
+(4, 'AS', 'AMERICAN SAMOA', 'American Samoa', 'ASM', '16', '1684', '1'),
+(5, 'AD', 'ANDORRA', 'Andorra', 'AND', '20', '376', '1'),
+(6, 'AO', 'ANGOLA', 'Angola', 'AGO', '24', '244', '1'),
+(7, 'AI', 'ANGUILLA', 'Anguilla', 'AIA', '660', '1264', '1'),
+(8, 'AQ', 'ANTARCTICA', 'Antarctica', '', '', '0', '1'),
+(9, 'AG', 'ANTIGUA AND BARBUDA', 'Antigua and Barbuda', 'ATG', '28', '1268', '1'),
+(10, 'AR', 'ARGENTINA', 'Argentina', 'ARG', '32', '54', '1'),
+(11, 'AM', 'ARMENIA', 'Armenia', 'ARM', '51', '374', '1'),
+(12, 'AW', 'ARUBA', 'Aruba', 'ABW', '533', '297', '1'),
+(13, 'AU', 'AUSTRALIA', 'Australia', 'AUS', '36', '61', '1'),
+(14, 'AT', 'AUSTRIA', 'Austria', 'AUT', '40', '43', '1'),
+(15, 'AZ', 'AZERBAIJAN', 'Azerbaijan', 'AZE', '31', '994', '1'),
+(16, 'BS', 'BAHAMAS', 'Bahamas', 'BHS', '44', '1242', '1'),
+(17, 'BH', 'BAHRAIN', 'Bahrain', 'BHR', '48', '973', '1'),
+(18, 'BD', 'BANGLADESH', 'Bangladesh', 'BGD', '50', '880', '1'),
+(19, 'BB', 'BARBADOS', 'Barbados', 'BRB', '52', '1246', '1'),
+(20, 'BY', 'BELARUS', 'Belarus', 'BLR', '112', '375', '1'),
+(21, 'BE', 'BELGIUM', 'Belgium', 'BEL', '56', '32', '1'),
+(22, 'BZ', 'BELIZE', 'Belize', 'BLZ', '84', '501', '1'),
+(23, 'BJ', 'BENIN', 'Benin', 'BEN', '204', '229', '1'),
+(24, 'BM', 'BERMUDA', 'Bermuda', 'BMU', '60', '1441', '1'),
+(25, 'BT', 'BHUTAN', 'Bhutan', 'BTN', '64', '975', '1'),
+(26, 'BO', 'BOLIVIA', 'Bolivia', 'BOL', '68', '591', '1'),
+(27, 'BA', 'BOSNIA AND HERZEGOVI', 'Bosnia and Herzegovina', 'BIH', '70', '387', '1'),
+(28, 'BW', 'BOTSWANA', 'Botswana', 'BWA', '72', '267', '1'),
+(29, 'BV', 'BOUVET ISLAND', 'Bouvet Island', '', '', '0', '1'),
+(30, 'BR', 'BRAZIL', 'Brazil', 'BRA', '76', '55', '1'),
+(31, 'IO', 'BRITISH INDIAN OCEAN', 'British Indian Ocean Territory', '', '', '246', '1'),
+(32, 'BN', 'BRUNEI DARUSSALAM', 'Brunei Darussalam', 'BRN', '96', '673', '1'),
+(33, 'BG', 'BULGARIA', 'Bulgaria', 'BGR', '100', '359', '1'),
+(34, 'BF', 'BURKINA FASO', 'Burkina Faso', 'BFA', '854', '226', '1'),
+(35, 'BI', 'BURUNDI', 'Burundi', 'BDI', '108', '257', '1'),
+(36, 'KH', 'CAMBODIA', 'Cambodia', 'KHM', '116', '855', '1'),
+(37, 'CM', 'CAMEROON', 'Cameroon', 'CMR', '120', '237', '1'),
+(38, 'CA', 'CANADA', 'Canada', 'CAN', '124', '1', '1'),
+(39, 'CV', 'CAPE VERDE', 'Cape Verde', 'CPV', '132', '238', '1'),
+(40, 'KY', 'CAYMAN ISLANDS', 'Cayman Islands', 'CYM', '136', '1345', '1'),
+(41, 'CF', 'CENTRAL AFRICAN REPU', 'Central African Republic', 'CAF', '140', '236', '1'),
+(42, 'TD', 'CHAD', 'Chad', 'TCD', '148', '235', '1'),
+(43, 'CL', 'CHILE', 'Chile', 'CHL', '152', '56', '1'),
+(44, 'CN', 'CHINA', 'China', 'CHN', '156', '86', '1'),
+(45, 'CX', 'CHRISTMAS ISLAND', 'Christmas Island', '', '', '61', '1'),
+(46, 'CC', 'COCOS (KEELING) ISLA', 'Cocos (Keeling) Islands', '', '', '672', '1'),
+(47, 'CO', 'COLOMBIA', 'Colombia', 'COL', '170', '57', '1'),
+(48, 'KM', 'COMOROS', 'Comoros', 'COM', '174', '269', '1'),
+(49, 'CG', 'CONGO', 'Congo', 'COG', '178', '242', '1'),
+(50, 'CD', 'CONGO, THE DEMOCRATI', 'Congo, the Democratic Republic of the', 'COD', '180', '242', '1'),
+(51, 'CK', 'COOK ISLANDS', 'Cook Islands', 'COK', '184', '682', '1'),
+(52, 'CR', 'COSTA RICA', 'Costa Rica', 'CRI', '188', '506', '1'),
+(53, 'CI', 'COTE D\'IVOIRE', 'Cote D\'Ivoire', 'CIV', '384', '225', '1'),
+(54, 'HR', 'CROATIA', 'Croatia', 'HRV', '191', '385', '1'),
+(55, 'CU', 'CUBA', 'Cuba', 'CUB', '192', '53', '1'),
+(56, 'CY', 'CYPRUS', 'Cyprus', 'CYP', '196', '357', '1'),
+(57, 'CZ', 'CZECH REPUBLIC', 'Czech Republic', 'CZE', '203', '420', '1'),
+(58, 'DK', 'DENMARK', 'Denmark', 'DNK', '208', '45', '1'),
+(59, 'DJ', 'DJIBOUTI', 'Djibouti', 'DJI', '262', '253', '1'),
+(60, 'DM', 'DOMINICA', 'Dominica', 'DMA', '212', '1767', '1'),
+(61, 'DO', 'DOMINICAN REPUBLIC', 'Dominican Republic', 'DOM', '214', '1809', '1'),
+(62, 'EC', 'ECUADOR', 'Ecuador', 'ECU', '218', '593', '1'),
+(63, 'EG', 'EGYPT', 'Egypt', 'EGY', '818', '20', '1'),
+(64, 'SV', 'EL SALVADOR', 'El Salvador', 'SLV', '222', '503', '1'),
+(65, 'GQ', 'EQUATORIAL GUINEA', 'Equatorial Guinea', 'GNQ', '226', '240', '1'),
+(66, 'ER', 'ERITREA', 'Eritrea', 'ERI', '232', '291', '1'),
+(67, 'EE', 'ESTONIA', 'Estonia', 'EST', '233', '372', '1'),
+(68, 'ET', 'ETHIOPIA', 'Ethiopia', 'ETH', '231', '251', '1'),
+(69, 'FK', 'FALKLAND ISLANDS (MA', 'Falkland Islands (Malvinas)', 'FLK', '238', '500', '1'),
+(70, 'FO', 'FAROE ISLANDS', 'Faroe Islands', 'FRO', '234', '298', '1'),
+(71, 'FJ', 'FIJI', 'Fiji', 'FJI', '242', '679', '1'),
+(72, 'FI', 'FINLAND', 'Finland', 'FIN', '246', '358', '1'),
+(73, 'FR', 'FRANCE', 'France', 'FRA', '250', '33', '1'),
+(74, 'GF', 'FRENCH GUIANA', 'French Guiana', 'GUF', '254', '594', '1'),
+(75, 'PF', 'FRENCH POLYNESIA', 'French Polynesia', 'PYF', '258', '689', '1'),
+(76, 'TF', 'FRENCH SOUTHERN TERR', 'French Southern Territories', '', '', '0', '1'),
+(77, 'GA', 'GABON', 'Gabon', 'GAB', '266', '241', '1'),
+(78, 'GM', 'GAMBIA', 'Gambia', 'GMB', '270', '220', '1'),
+(79, 'GE', 'GEORGIA', 'Georgia', 'GEO', '268', '995', '1'),
+(80, 'DE', 'GERMANY', 'Germany', 'DEU', '276', '49', '1'),
+(81, 'GH', 'GHANA', 'Ghana', 'GHA', '288', '233', '1'),
+(82, 'GI', 'GIBRALTAR', 'Gibraltar', 'GIB', '292', '350', '1'),
+(83, 'GR', 'GREECE', 'Greece', 'GRC', '300', '30', '1'),
+(84, 'GL', 'GREENLAND', 'Greenland', 'GRL', '304', '299', '1'),
+(85, 'GD', 'GRENADA', 'Grenada', 'GRD', '308', '1473', '1'),
+(86, 'GP', 'GUADELOUPE', 'Guadeloupe', 'GLP', '312', '590', '1'),
+(87, 'GU', 'GUAM', 'Guam', 'GUM', '316', '1671', '1'),
+(88, 'GT', 'GUATEMALA', 'Guatemala', 'GTM', '320', '502', '1'),
+(89, 'GN', 'GUINEA', 'Guinea', 'GIN', '324', '224', '1'),
+(90, 'GW', 'GUINEA-BISSAU', 'Guinea-Bissau', 'GNB', '624', '245', '1'),
+(91, 'GY', 'GUYANA', 'Guyana', 'GUY', '328', '592', '1'),
+(92, 'HT', 'HAITI', 'Haiti', 'HTI', '332', '509', '1'),
+(93, 'HM', 'HEARD ISLAND AND MCD', 'Heard Island and Mcdonald Islands', '', '', '0', '1'),
+(94, 'VA', 'HOLY SEE (VATICAN CI', 'Holy See (Vatican City State)', 'VAT', '336', '39', '1'),
+(95, 'HN', 'HONDURAS', 'Honduras', 'HND', '340', '504', '1'),
+(96, 'HK', 'HONG KONG', 'Hong Kong', 'HKG', '344', '852', '1'),
+(97, 'HU', 'HUNGARY', 'Hungary', 'HUN', '348', '36', '1'),
+(98, 'IS', 'ICELAND', 'Iceland', 'ISL', '352', '354', '1'),
+(99, 'IN', 'INDIA', 'India', 'IND', '356', '91', '1'),
+(100, 'ID', 'INDONESIA', 'Indonesia', 'IDN', '360', '62', '1'),
+(101, 'IR', 'IRAN, ISLAMIC REPUBL', 'Iran, Islamic Republic of', 'IRN', '364', '98', '1'),
+(102, 'IQ', 'IRAQ', 'Iraq', 'IRQ', '368', '964', '1'),
+(103, 'IE', 'IRELAND', 'Ireland', 'IRL', '372', '353', '1'),
+(104, 'IL', 'ISRAEL', 'Israel', 'ISR', '376', '972', '1'),
+(105, 'IT', 'ITALY', 'Italy', 'ITA', '380', '39', '1'),
+(106, 'JM', 'JAMAICA', 'Jamaica', 'JAM', '388', '1876', '1'),
+(107, 'JP', 'JAPAN', 'Japan', 'JPN', '392', '81', '1'),
+(108, 'JO', 'JORDAN', 'Jordan', 'JOR', '400', '962', '1'),
+(109, 'KZ', 'KAZAKHSTAN', 'Kazakhstan', 'KAZ', '398', '7', '1'),
+(110, 'KE', 'KENYA', 'Kenya', 'KEN', '404', '254', '1'),
+(111, 'KI', 'KIRIBATI', 'Kiribati', 'KIR', '296', '686', '1'),
+(112, 'KP', 'KOREA, DEMOCRATIC PE', 'Korea, Democratic People\'s Republic of', 'PRK', '408', '850', '1'),
+(113, 'KR', 'KOREA, REPUBLIC OF', 'Korea, Republic of', 'KOR', '410', '82', '1'),
+(114, 'KW', 'KUWAIT', 'Kuwait', 'KWT', '414', '965', '1'),
+(115, 'KG', 'KYRGYZSTAN', 'Kyrgyzstan', 'KGZ', '417', '996', '1'),
+(116, 'LA', 'LAO PEOPLE\'S DEMOCRA', 'Lao People\'s Democratic Republic', 'LAO', '418', '856', '1'),
+(117, 'LV', 'LATVIA', 'Latvia', 'LVA', '428', '371', '1'),
+(118, 'LB', 'LEBANON', 'Lebanon', 'LBN', '422', '961', '1'),
+(119, 'LS', 'LESOTHO', 'Lesotho', 'LSO', '426', '266', '1'),
+(120, 'LR', 'LIBERIA', 'Liberia', 'LBR', '430', '231', '1'),
+(121, 'LY', 'LIBYAN ARAB JAMAHIRI', 'Libyan Arab Jamahiriya', 'LBY', '434', '218', '1'),
+(122, 'LI', 'LIECHTENSTEIN', 'Liechtenstein', 'LIE', '438', '423', '1'),
+(123, 'LT', 'LITHUANIA', 'Lithuania', 'LTU', '440', '370', '1'),
+(124, 'LU', 'LUXEMBOURG', 'Luxembourg', 'LUX', '442', '352', '1'),
+(125, 'MO', 'MACAO', 'Macao', 'MAC', '446', '853', '1'),
+(126, 'MK', 'MACEDONIA, THE FORME', 'Macedonia, the Former Yugoslav Republic of', 'MKD', '807', '389', '1'),
+(127, 'MG', 'MADAGASCAR', 'Madagascar', 'MDG', '450', '261', '1'),
+(128, 'MW', 'MALAWI', 'Malawi', 'MWI', '454', '265', '1'),
+(129, 'MY', 'MALAYSIA', 'Malaysia', 'MYS', '458', '60', '1'),
+(130, 'MV', 'MALDIVES', 'Maldives', 'MDV', '462', '960', '1'),
+(131, 'ML', 'MALI', 'Mali', 'MLI', '466', '223', '1'),
+(132, 'MT', 'MALTA', 'Malta', 'MLT', '470', '356', '1'),
+(133, 'MH', 'MARSHALL ISLANDS', 'Marshall Islands', 'MHL', '584', '692', '1'),
+(134, 'MQ', 'MARTINIQUE', 'Martinique', 'MTQ', '474', '596', '1'),
+(135, 'MR', 'MAURITANIA', 'Mauritania', 'MRT', '478', '222', '1'),
+(136, 'MU', 'MAURITIUS', 'Mauritius', 'MUS', '480', '230', '1'),
+(137, 'YT', 'MAYOTTE', 'Mayotte', '', '', '269', '1'),
+(138, 'MX', 'MEXICO', 'Mexico', 'MEX', '484', '52', '1'),
+(139, 'FM', 'MICRONESIA, FEDERATE', 'Micronesia, Federated States of', 'FSM', '583', '691', '1'),
+(140, 'MD', 'MOLDOVA, REPUBLIC OF', 'Moldova, Republic of', 'MDA', '498', '373', '1'),
+(141, 'MC', 'MONACO', 'Monaco', 'MCO', '492', '377', '1'),
+(142, 'MN', 'MONGOLIA', 'Mongolia', 'MNG', '496', '976', '1'),
+(143, 'MS', 'MONTSERRAT', 'Montserrat', 'MSR', '500', '1664', '1'),
+(144, 'MA', 'MOROCCO', 'Morocco', 'MAR', '504', '212', '1'),
+(145, 'MZ', 'MOZAMBIQUE', 'Mozambique', 'MOZ', '508', '258', '1'),
+(146, 'MM', 'MYANMAR', 'Myanmar', 'MMR', '104', '95', '1'),
+(147, 'NA', 'NAMIBIA', 'Namibia', 'NAM', '516', '264', '1'),
+(148, 'NR', 'NAURU', 'Nauru', 'NRU', '520', '674', '1'),
+(149, 'NP', 'NEPAL', 'Nepal', 'NPL', '524', '977', '1'),
+(150, 'NL', 'NETHERLANDS', 'Netherlands', 'NLD', '528', '31', '1'),
+(151, 'AN', 'NETHERLANDS ANTILLES', 'Netherlands Antilles', 'ANT', '530', '599', '1'),
+(152, 'NC', 'NEW CALEDONIA', 'New Caledonia', 'NCL', '540', '687', '1'),
+(153, 'NZ', 'NEW ZEALAND', 'New Zealand', 'NZL', '554', '64', '1'),
+(154, 'NI', 'NICARAGUA', 'Nicaragua', 'NIC', '558', '505', '1'),
+(155, 'NE', 'NIGER', 'Niger', 'NER', '562', '227', '1'),
+(156, 'NG', 'NIGERIA', 'Nigeria', 'NGA', '566', '234', '1'),
+(157, 'NU', 'NIUE', 'Niue', 'NIU', '570', '683', '1'),
+(158, 'NF', 'NORFOLK ISLAND', 'Norfolk Island', 'NFK', '574', '672', '1'),
+(159, 'MP', 'NORTHERN MARIANA ISL', 'Northern Mariana Islands', 'MNP', '580', '1670', '1'),
+(160, 'NO', 'NORWAY', 'Norway', 'NOR', '578', '47', '1'),
+(161, 'OM', 'OMAN', 'Oman', 'OMN', '512', '968', '1'),
+(162, 'PK', 'PAKISTAN', 'Pakistan', 'PAK', '586', '92', '1'),
+(163, 'PW', 'PALAU', 'Palau', 'PLW', '585', '680', '1'),
+(164, 'PS', 'PALESTINIAN TERRITOR', 'Palestinian Territory, Occupied', '', '', '970', '1'),
+(165, 'PA', 'PANAMA', 'Panama', 'PAN', '591', '507', '1'),
+(166, 'PG', 'PAPUA NEW GUINEA', 'Papua New Guinea', 'PNG', '598', '675', '1'),
+(167, 'PY', 'PARAGUAY', 'Paraguay', 'PRY', '600', '595', '1'),
+(168, 'PE', 'PERU', 'Peru', 'PER', '604', '51', '1'),
+(169, 'PH', 'PHILIPPINES', 'Philippines', 'PHL', '608', '63', '1'),
+(170, 'PN', 'PITCAIRN', 'Pitcairn', 'PCN', '612', '0', '1'),
+(171, 'PL', 'POLAND', 'Poland', 'POL', '616', '48', '1'),
+(172, 'PT', 'PORTUGAL', 'Portugal', 'PRT', '620', '351', '1'),
+(173, 'PR', 'PUERTO RICO', 'Puerto Rico', 'PRI', '630', '1787', '1'),
+(174, 'QA', 'QATAR', 'Qatar', 'QAT', '634', '974', '1'),
+(175, 'RE', 'REUNION', 'Reunion', 'REU', '638', '262', '1'),
+(176, 'RO', 'ROMANIA', 'Romania', 'ROM', '642', '40', '1'),
+(177, 'RU', 'RUSSIAN FEDERATION', 'Russian Federation', 'RUS', '643', '70', '1'),
+(178, 'RW', 'RWANDA', 'Rwanda', 'RWA', '646', '250', '1'),
+(179, 'SH', 'SAINT HELENA', 'Saint Helena', 'SHN', '654', '290', '1'),
+(180, 'KN', 'SAINT KITTS AND NEVI', 'Saint Kitts and Nevis', 'KNA', '659', '1869', '1'),
+(181, 'LC', 'SAINT LUCIA', 'Saint Lucia', 'LCA', '662', '1758', '1'),
+(182, 'PM', 'SAINT PIERRE AND MIQ', 'Saint Pierre and Miquelon', 'SPM', '666', '508', '1'),
+(183, 'VC', 'SAINT VINCENT AND TH', 'Saint Vincent and the Grenadines', 'VCT', '670', '1784', '1'),
+(184, 'WS', 'SAMOA', 'Samoa', 'WSM', '882', '684', '1'),
+(185, 'SM', 'SAN MARINO', 'San Marino', 'SMR', '674', '378', '1'),
+(186, 'ST', 'SAO TOME AND PRINCIP', 'Sao Tome and Principe', 'STP', '678', '239', '1'),
+(187, 'SA', 'SAUDI ARABIA', 'Saudi Arabia', 'SAU', '682', '966', '1'),
+(188, 'SN', 'SENEGAL', 'Senegal', 'SEN', '686', '221', '1'),
+(189, 'CS', 'SERBIA AND MONTENEGR', 'Serbia and Montenegro', '', '', '381', '1'),
+(190, 'SC', 'SEYCHELLES', 'Seychelles', 'SYC', '690', '248', '1'),
+(191, 'SL', 'SIERRA LEONE', 'Sierra Leone', 'SLE', '694', '232', '1'),
+(192, 'SG', 'SINGAPORE', 'Singapore', 'SGP', '702', '65', '1'),
+(193, 'SK', 'SLOVAKIA', 'Slovakia', 'SVK', '703', '421', '1'),
+(194, 'SI', 'SLOVENIA', 'Slovenia', 'SVN', '705', '386', '1'),
+(195, 'SB', 'SOLOMON ISLANDS', 'Solomon Islands', 'SLB', '90', '677', '1'),
+(196, 'SO', 'SOMALIA', 'Somalia', 'SOM', '706', '252', '1'),
+(197, 'ZA', 'SOUTH AFRICA', 'South Africa', 'ZAF', '710', '27', '1'),
+(198, 'GS', 'SOUTH GEORGIA AND TH', 'South Georgia and the South Sandwich Islands', '', '', '0', '1'),
+(199, 'ES', 'SPAIN', 'Spain', 'ESP', '724', '34', '1'),
+(200, 'LK', 'SRI LANKA', 'Sri Lanka', 'LKA', '144', '94', '1'),
+(201, 'SD', 'SUDAN', 'Sudan', 'SDN', '736', '249', '1'),
+(202, 'SR', 'SURINAME', 'Suriname', 'SUR', '740', '597', '1'),
+(203, 'SJ', 'SVALBARD AND JAN MAY', 'Svalbard and Jan Mayen', 'SJM', '744', '47', '1'),
+(204, 'SZ', 'SWAZILAND', 'Swaziland', 'SWZ', '748', '268', '1'),
+(205, 'SE', 'SWEDEN', 'Sweden', 'SWE', '752', '46', '1'),
+(206, 'CH', 'SWITZERLAND', 'Switzerland', 'CHE', '756', '41', '1'),
+(207, 'SY', 'SYRIAN ARAB REPUBLIC', 'Syrian Arab Republic', 'SYR', '760', '963', '1'),
+(208, 'TW', 'TAIWAN, PROVINCE OF ', 'Taiwan, Province of China', 'TWN', '158', '886', '1'),
+(209, 'TJ', 'TAJIKISTAN', 'Tajikistan', 'TJK', '762', '992', '1'),
+(210, 'TZ', 'TANZANIA, UNITED REP', 'Tanzania, United Republic of', 'TZA', '834', '255', '1'),
+(211, 'TH', 'THAILAND', 'Thailand', 'THA', '764', '66', '1'),
+(212, 'TL', 'TIMOR-LESTE', 'Timor-Leste', '', '', '670', '1'),
+(213, 'TG', 'TOGO', 'Togo', 'TGO', '768', '228', '1'),
+(214, 'TK', 'TOKELAU', 'Tokelau', 'TKL', '772', '690', '1'),
+(215, 'TO', 'TONGA', 'Tonga', 'TON', '776', '676', '1'),
+(216, 'TT', 'TRINIDAD AND TOBAGO', 'Trinidad and Tobago', 'TTO', '780', '1868', '1'),
+(217, 'TN', 'TUNISIA', 'Tunisia', 'TUN', '788', '216', '1'),
+(218, 'TR', 'TURKEY', 'Turkey', 'TUR', '792', '90', '1'),
+(219, 'TM', 'TURKMENISTAN', 'Turkmenistan', 'TKM', '795', '7370', '1'),
+(220, 'TC', 'TURKS AND CAICOS ISL', 'Turks and Caicos Islands', 'TCA', '796', '1649', '1'),
+(221, 'TV', 'TUVALU', 'Tuvalu', 'TUV', '798', '688', '1'),
+(222, 'UG', 'UGANDA', 'Uganda', 'UGA', '800', '256', '1'),
+(223, 'UA', 'UKRAINE', 'Ukraine', 'UKR', '804', '380', '1'),
+(224, 'AE', 'UNITED ARAB EMIRATES', 'United Arab Emirates', 'ARE', '784', '971', '1'),
+(225, 'GB', 'UNITED KINGDOM', 'United Kingdom', 'GBR', '826', '44', '1'),
+(226, 'US', 'UNITED STATES', 'United States', 'USA', '840', '1', '1'),
+(227, 'UM', 'UNITED STATES MINOR ', 'United States Minor Outlying Islands', '', '', '1', '1'),
+(228, 'UY', 'URUGUAY', 'Uruguay', 'URY', '858', '598', '1'),
+(229, 'UZ', 'UZBEKISTAN', 'Uzbekistan', 'UZB', '860', '998', '1'),
+(230, 'VU', 'VANUATU', 'Vanuatu', 'VUT', '548', '678', '1'),
+(231, 'VE', 'VENEZUELA', 'Venezuela', 'VEN', '862', '58', '1'),
+(232, 'VN', 'VIET NAM', 'Viet Nam', 'VNM', '704', '84', '1'),
+(233, 'VG', 'VIRGIN ISLANDS, BRIT', 'Virgin Islands, British', 'VGB', '92', '1284', '1'),
+(234, 'VI', 'VIRGIN ISLANDS, U.S.', 'Virgin Islands, U.s.', 'VIR', '850', '1340', '1'),
+(235, 'WF', 'WALLIS AND FUTUNA', 'Wallis and Futuna', 'WLF', '876', '681', '1'),
+(236, 'EH', 'WESTERN SAHARA', 'Western Sahara', 'ESH', '732', '212', '1'),
+(237, 'YE', 'YEMEN', 'Yemen', 'YEM', '887', '967', '1'),
+(238, 'ZM', 'ZAMBIA', 'Zambia', 'ZMB', '894', '260', '1'),
+(239, 'ZW', 'ZIMBABWE', 'Zimbabwe', 'ZWE', '716', '263', '1'),
+(240, 'RS', 'SERBIA', 'Serbia', 'SRB', '688', '381', '1'),
+(241, 'AP', 'ASIA PACIFIC REGION', 'Asia / Pacific Region', '0', '0', '0', '1'),
+(242, 'ME', 'MONTENEGRO', 'Montenegro', 'MNE', '499', '382', '1'),
+(243, 'AX', 'ALAND ISLANDS', 'Aland Islands', 'ALA', '248', '358', '1'),
+(244, 'BQ', 'BONAIRE, SINT EUSTAT', 'Bonaire, Sint Eustatius and Saba', 'BES', '535', '599', '1'),
+(245, 'CW', 'CURACAO', 'Curacao', 'CUW', '531', '599', '1'),
+(246, 'GG', 'GUERNSEY', 'Guernsey', 'GGY', '831', '44', '1'),
+(247, 'IM', 'ISLE OF MAN', 'Isle of Man', 'IMN', '833', '44', '1'),
+(248, 'JE', 'JERSEY', 'Jersey', 'JEY', '832', '44', '1'),
+(249, 'XK', 'KOSOVO', 'Kosovo', '---', '0', '381', '1'),
+(250, 'BL', 'SAINT BARTHELEMY', 'Saint Barthelemy', 'BLM', '652', '590', '1'),
+(251, 'MF', 'SAINT MARTIN', 'Saint Martin', 'MAF', '663', '590', '1'),
+(252, 'SX', 'SINT MAARTEN', 'Sint Maarten', 'SXM', '534', '1', '1'),
+(253, 'SS', 'SOUTH SUDAN', 'South Sudan', 'SSD', '728', '211', '1');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `phptravels_currencies`
 --
 
@@ -11046,28 +11322,28 @@ CREATE TABLE `phptravels_currencies` (
   `symbol_placement` enum('before','after') CHARACTER SET latin1 NOT NULL DEFAULT 'before',
   `primary_order` tinyint(1) NOT NULL DEFAULT 0,
   `is_default` enum('Yes','No') COLLATE utf8_unicode_ci NOT NULL DEFAULT 'No',
-  `is_active` enum('Yes','No') COLLATE utf8_unicode_ci NOT NULL DEFAULT 'Yes'
+  `status` enum('1','0') COLLATE utf8_unicode_ci NOT NULL DEFAULT '1'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `phptravels_currencies`
 --
 
-INSERT INTO `phptravels_currencies` (`id`, `name`, `symbol`, `code`, `rate`, `decimals`, `symbol_placement`, `primary_order`, `is_default`, `is_active`) VALUES
-(1, 'USD', '$', 'USD', 1, 2, 'before', 1, 'Yes', 'Yes'),
-(3, 'GBP', '£', 'GBP', 0.766115, 2, 'before', 3, 'No', 'Yes'),
-(9, 'SAR', NULL, 'SAR', 3.7504, 2, 'before', 0, 'No', 'Yes'),
-(11, 'EUR', '€', 'EUR', 0.91925, 2, 'before', 0, 'No', 'Yes'),
-(12, 'PKR', NULL, 'PKR', 189.384, 2, 'before', 0, 'No', 'Yes'),
-(14, 'AUD', '$', 'AUD', 1.33923, 2, 'before', 0, 'No', 'No'),
-(15, 'PHP', NULL, 'PHP', 51.5475, 2, 'before', 0, 'No', 'No'),
-(16, 'SGD', NULL, 'SGD', 1.36269, 2, 'before', 0, 'No', 'No'),
-(17, 'JPY', NULL, 'JPY', 124.066, 2, 'before', 0, 'No', 'Yes'),
-(18, 'INR', NULL, 'INR', 75.8068, 2, 'before', 0, 'No', 'Yes'),
-(19, 'CNY', NULL, 'CNY', 6.3622, 2, 'before', 0, 'No', 'Yes'),
-(20, 'TRY', NULL, 'TRY', 14.749, 2, 'before', 0, 'No', 'Yes'),
-(22, 'RUB', NULL, 'RUB', 79.251, 2, 'before', 0, 'No', 'Yes'),
-(26, 'IRR', NULL, 'IRR', 42300, 2, 'before', 0, 'No', 'Yes');
+INSERT INTO `phptravels_currencies` (`id`, `name`, `symbol`, `code`, `rate`, `decimals`, `symbol_placement`, `primary_order`, `is_default`, `status`) VALUES
+(1, 'USD', '$', 'USD', 1, 2, 'before', 1, 'Yes', '1'),
+(3, 'GBP', '£', 'GBP', 0.766115, 2, 'before', 3, 'No', '1'),
+(9, 'SAR', NULL, 'SAR', 3.7504, 2, 'before', 0, 'No', '1'),
+(11, 'EUR', '€', 'EUR', 0.91925, 2, 'before', 0, 'No', '1'),
+(12, 'PKR', NULL, 'PKR', 189.384, 2, 'before', 0, 'No', '1'),
+(14, 'AUD', '$', 'AUD', 1.33923, 2, 'before', 0, 'No', '1'),
+(15, 'PHP', NULL, 'PHP', 51.5475, 2, 'before', 0, 'No', '1'),
+(16, 'SGD', NULL, 'SGD', 1.36269, 2, 'before', 0, 'No', '1'),
+(17, 'JPY', NULL, 'JPY', 124.066, 2, 'before', 0, 'No', '1'),
+(18, 'INR', NULL, 'INR', 75.8068, 2, 'before', 0, 'No', '1'),
+(19, 'CNY', NULL, 'CNY', 6.3622, 2, 'before', 0, 'No', '1'),
+(20, 'TRY', NULL, 'TRY', 14.749, 2, 'before', 0, 'No', '1'),
+(22, 'RUB', NULL, 'RUB', 79.251, 2, 'before', 0, 'No', '1'),
+(26, 'IRR', NULL, 'IRR', 42300, 2, 'before', 0, 'No', '1');
 
 -- --------------------------------------------------------
 
@@ -11117,7 +11393,7 @@ CREATE TABLE `phptravels_settings` (
 --
 
 INSERT INTO `phptravels_settings` (`id`, `api_key`, `business_name`, `home_title`, `site_url`, `tag_line`, `address`, `phone`, `seo_status`, `meta_description`, `header_logo_img`, `favicon_img`, `javascript`, `reviews`, `default_language`, `multi_language`, `license_key`, `default_theme`, `offline_message`, `site_offline`, `default_gateway`, `multi_currency`, `booking_expiry`, `booking_cancellation`, `user_registration`, `supplier_registration`, `agent_registration`, `guest_booking`, `social_facebook`, `social_twitter`, `social_linkedin`, `social_instagram`, `social_google`, `social_whatsapp`) VALUES
-(1, 'phptravels', 'PHPTRAVELS', 'PHPTRAVEL', 'https://www.phptravels.net/', NULL, '', NULL, 1, 'php travels is complete booking and reservation system provides complete solution for travel agency', 'logo.png', 'favicon.png', '<script>\r\n// your code goes here \r\n\r\n</script>', 'Yes', 'fr', '1', 'license', 'default', 'offline message', 0, 'AuthorizeNet_AIM', '0', 1, 1, '0', '0', '0', '0', 'https://facebook.com/phptravels', 'https://twitter.com/phptravels', 'https://linkedin.com/phptravels', 'https://instagram.com/phptravels', 'https://google.com/phptravels', 'https://whatsapp.com/phptravels');
+(1, 'phptravels', 'PHPTRAVELS', 'PHPTRAVEL', 'https://phptravels.net', NULL, '', NULL, 1, 'php travels is complete booking and reservation system provides complete solution for travel agency', 'logo.png', 'favicon.png', '<script>\r\n// your code goes here \r\n\r\n</script>', 'Yes', 'fr', '1', 'license', 'default', 'offline message', 0, 'AuthorizeNet_AIM', '0', 1, 1, '0', '0', '0', '0', 'https://facebook.com/phptravels', 'https://twitter.com/phptravels', 'https://linkedin.com/phptravels', 'https://instagram.com/phptravels', 'https://google.com/phptravels', 'https://whatsapp.com/phptravels');
 
 -- --------------------------------------------------------
 
@@ -11139,17 +11415,20 @@ CREATE TABLE `phptravels_users` (
   `address2` varchar(255) DEFAULT NULL,
   `company_name` varchar(255) DEFAULT NULL,
   `company_phone` varchar(255) DEFAULT NULL,
+  `company_email` varchar(255) DEFAULT NULL,
   `company_commission` varchar(255) DEFAULT NULL,
-  `created_at` datetime DEFAULT NULL
+  `created_at` datetime DEFAULT NULL,
+  `mobile` varchar(255) DEFAULT NULL,
+  `balance` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `phptravels_users`
 --
 
-INSERT INTO `phptravels_users` (`id`, `first_name`, `last_name`, `email`, `password`, `status`, `country_code`, `type`, `currency`, `address1`, `address2`, `company_name`, `company_phone`, `company_commission`, `created_at`) VALUES
-(1, 'Super', 'Admin', 'admin@phptravels.com', '21232f297a57a5a743894a0e4a801fc3', '0', NULL, 'admin', NULL, 'address 1', 'address 2', NULL, NULL, NULL, NULL),
-(3, 'Demo', 'Supplier', 'supplier@phptravels.com', '21232f297a57a5a743894a0e4a801fc3', '0', NULL, 'supplier', NULL, 'address 1', 'address 2', NULL, NULL, NULL, NULL);
+INSERT INTO `phptravels_users` (`id`, `first_name`, `last_name`, `email`, `password`, `status`, `country_code`, `type`, `currency`, `address1`, `address2`, `company_name`, `company_phone`, `company_email`, `company_commission`, `created_at`, `mobile`, `balance`) VALUES
+(1, 'Supers', 'Admins', 'admin@phptravels.com', '61152c80d1514e22fba66002597d0104', '0', 'PK', 'admin', '1', 'address 1', 'address 2', 'Agency Name', '0123456', 'agency@email.com', NULL, NULL, '0123456789', '900'),
+(3, 'Demo', 'Supplier', 'supplier@phptravels.com', '21232f297a57a5a743894a0e4a801fc3', '0', NULL, 'supplier', NULL, 'address 1', 'address 2', NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -21629,281 +21908,6 @@ INSERT INTO `pt_flights_airports` (`id`, `code`, `name`, `cityCode`, `cityName`,
 (8904, 'TMM', 'Tamatave Arpt', 'TMM', 'Tamatave', 'MADAGASCAR', 'MG', NULL, '3', '-18.10951', '49.392536', 'true'),
 (8905, 'TMU', 'Tambor Arpt', 'TMU', 'Tambor', 'COSTA RICA', 'CR', NULL, '-6', '9.73852', '-85.0138', 'true'),
 (8906, 'TND', 'Trinidad CU Arpt', 'TND', 'Trinidad', 'CUBA', 'CU', NULL, '-5', '21.788461', '-79.997203', 'true');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `pt_flights_countries`
---
-
-CREATE TABLE `pt_flights_countries` (
-  `id` int(11) NOT NULL,
-  `iso` varchar(20) NOT NULL,
-  `name` varchar(20) NOT NULL,
-  `nicename` varchar(200) NOT NULL,
-  `iso3` varchar(20) NOT NULL,
-  `numcode` varchar(20) NOT NULL,
-  `phonecode` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `pt_flights_countries`
---
-
-INSERT INTO `pt_flights_countries` (`id`, `iso`, `name`, `nicename`, `iso3`, `numcode`, `phonecode`) VALUES
-(1, 'AF', 'AFGHANISTAN', 'Afghanistan', 'AFG', '4', '93'),
-(2, 'AL', 'ALBANIA', 'Albania', 'ALB', '8', '355'),
-(3, 'DZ', 'ALGERIA', 'Algeria', 'DZA', '12', '213'),
-(4, 'AS', 'AMERICAN SAMOA', 'American Samoa', 'ASM', '16', '1684'),
-(5, 'AD', 'ANDORRA', 'Andorra', 'AND', '20', '376'),
-(6, 'AO', 'ANGOLA', 'Angola', 'AGO', '24', '244'),
-(7, 'AI', 'ANGUILLA', 'Anguilla', 'AIA', '660', '1264'),
-(8, 'AQ', 'ANTARCTICA', 'Antarctica', '', '', '0'),
-(9, 'AG', 'ANTIGUA AND BARBUDA', 'Antigua and Barbuda', 'ATG', '28', '1268'),
-(10, 'AR', 'ARGENTINA', 'Argentina', 'ARG', '32', '54'),
-(11, 'AM', 'ARMENIA', 'Armenia', 'ARM', '51', '374'),
-(12, 'AW', 'ARUBA', 'Aruba', 'ABW', '533', '297'),
-(13, 'AU', 'AUSTRALIA', 'Australia', 'AUS', '36', '61'),
-(14, 'AT', 'AUSTRIA', 'Austria', 'AUT', '40', '43'),
-(15, 'AZ', 'AZERBAIJAN', 'Azerbaijan', 'AZE', '31', '994'),
-(16, 'BS', 'BAHAMAS', 'Bahamas', 'BHS', '44', '1242'),
-(17, 'BH', 'BAHRAIN', 'Bahrain', 'BHR', '48', '973'),
-(18, 'BD', 'BANGLADESH', 'Bangladesh', 'BGD', '50', '880'),
-(19, 'BB', 'BARBADOS', 'Barbados', 'BRB', '52', '1246'),
-(20, 'BY', 'BELARUS', 'Belarus', 'BLR', '112', '375'),
-(21, 'BE', 'BELGIUM', 'Belgium', 'BEL', '56', '32'),
-(22, 'BZ', 'BELIZE', 'Belize', 'BLZ', '84', '501'),
-(23, 'BJ', 'BENIN', 'Benin', 'BEN', '204', '229'),
-(24, 'BM', 'BERMUDA', 'Bermuda', 'BMU', '60', '1441'),
-(25, 'BT', 'BHUTAN', 'Bhutan', 'BTN', '64', '975'),
-(26, 'BO', 'BOLIVIA', 'Bolivia', 'BOL', '68', '591'),
-(27, 'BA', 'BOSNIA AND HERZEGOVI', 'Bosnia and Herzegovina', 'BIH', '70', '387'),
-(28, 'BW', 'BOTSWANA', 'Botswana', 'BWA', '72', '267'),
-(29, 'BV', 'BOUVET ISLAND', 'Bouvet Island', '', '', '0'),
-(30, 'BR', 'BRAZIL', 'Brazil', 'BRA', '76', '55'),
-(31, 'IO', 'BRITISH INDIAN OCEAN', 'British Indian Ocean Territory', '', '', '246'),
-(32, 'BN', 'BRUNEI DARUSSALAM', 'Brunei Darussalam', 'BRN', '96', '673'),
-(33, 'BG', 'BULGARIA', 'Bulgaria', 'BGR', '100', '359'),
-(34, 'BF', 'BURKINA FASO', 'Burkina Faso', 'BFA', '854', '226'),
-(35, 'BI', 'BURUNDI', 'Burundi', 'BDI', '108', '257'),
-(36, 'KH', 'CAMBODIA', 'Cambodia', 'KHM', '116', '855'),
-(37, 'CM', 'CAMEROON', 'Cameroon', 'CMR', '120', '237'),
-(38, 'CA', 'CANADA', 'Canada', 'CAN', '124', '1'),
-(39, 'CV', 'CAPE VERDE', 'Cape Verde', 'CPV', '132', '238'),
-(40, 'KY', 'CAYMAN ISLANDS', 'Cayman Islands', 'CYM', '136', '1345'),
-(41, 'CF', 'CENTRAL AFRICAN REPU', 'Central African Republic', 'CAF', '140', '236'),
-(42, 'TD', 'CHAD', 'Chad', 'TCD', '148', '235'),
-(43, 'CL', 'CHILE', 'Chile', 'CHL', '152', '56'),
-(44, 'CN', 'CHINA', 'China', 'CHN', '156', '86'),
-(45, 'CX', 'CHRISTMAS ISLAND', 'Christmas Island', '', '', '61'),
-(46, 'CC', 'COCOS (KEELING) ISLA', 'Cocos (Keeling) Islands', '', '', '672'),
-(47, 'CO', 'COLOMBIA', 'Colombia', 'COL', '170', '57'),
-(48, 'KM', 'COMOROS', 'Comoros', 'COM', '174', '269'),
-(49, 'CG', 'CONGO', 'Congo', 'COG', '178', '242'),
-(50, 'CD', 'CONGO, THE DEMOCRATI', 'Congo, the Democratic Republic of the', 'COD', '180', '242'),
-(51, 'CK', 'COOK ISLANDS', 'Cook Islands', 'COK', '184', '682'),
-(52, 'CR', 'COSTA RICA', 'Costa Rica', 'CRI', '188', '506'),
-(53, 'CI', 'COTE D\'IVOIRE', 'Cote D\'Ivoire', 'CIV', '384', '225'),
-(54, 'HR', 'CROATIA', 'Croatia', 'HRV', '191', '385'),
-(55, 'CU', 'CUBA', 'Cuba', 'CUB', '192', '53'),
-(56, 'CY', 'CYPRUS', 'Cyprus', 'CYP', '196', '357'),
-(57, 'CZ', 'CZECH REPUBLIC', 'Czech Republic', 'CZE', '203', '420'),
-(58, 'DK', 'DENMARK', 'Denmark', 'DNK', '208', '45'),
-(59, 'DJ', 'DJIBOUTI', 'Djibouti', 'DJI', '262', '253'),
-(60, 'DM', 'DOMINICA', 'Dominica', 'DMA', '212', '1767'),
-(61, 'DO', 'DOMINICAN REPUBLIC', 'Dominican Republic', 'DOM', '214', '1809'),
-(62, 'EC', 'ECUADOR', 'Ecuador', 'ECU', '218', '593'),
-(63, 'EG', 'EGYPT', 'Egypt', 'EGY', '818', '20'),
-(64, 'SV', 'EL SALVADOR', 'El Salvador', 'SLV', '222', '503'),
-(65, 'GQ', 'EQUATORIAL GUINEA', 'Equatorial Guinea', 'GNQ', '226', '240'),
-(66, 'ER', 'ERITREA', 'Eritrea', 'ERI', '232', '291'),
-(67, 'EE', 'ESTONIA', 'Estonia', 'EST', '233', '372'),
-(68, 'ET', 'ETHIOPIA', 'Ethiopia', 'ETH', '231', '251'),
-(69, 'FK', 'FALKLAND ISLANDS (MA', 'Falkland Islands (Malvinas)', 'FLK', '238', '500'),
-(70, 'FO', 'FAROE ISLANDS', 'Faroe Islands', 'FRO', '234', '298'),
-(71, 'FJ', 'FIJI', 'Fiji', 'FJI', '242', '679'),
-(72, 'FI', 'FINLAND', 'Finland', 'FIN', '246', '358'),
-(73, 'FR', 'FRANCE', 'France', 'FRA', '250', '33'),
-(74, 'GF', 'FRENCH GUIANA', 'French Guiana', 'GUF', '254', '594'),
-(75, 'PF', 'FRENCH POLYNESIA', 'French Polynesia', 'PYF', '258', '689'),
-(76, 'TF', 'FRENCH SOUTHERN TERR', 'French Southern Territories', '', '', '0'),
-(77, 'GA', 'GABON', 'Gabon', 'GAB', '266', '241'),
-(78, 'GM', 'GAMBIA', 'Gambia', 'GMB', '270', '220'),
-(79, 'GE', 'GEORGIA', 'Georgia', 'GEO', '268', '995'),
-(80, 'DE', 'GERMANY', 'Germany', 'DEU', '276', '49'),
-(81, 'GH', 'GHANA', 'Ghana', 'GHA', '288', '233'),
-(82, 'GI', 'GIBRALTAR', 'Gibraltar', 'GIB', '292', '350'),
-(83, 'GR', 'GREECE', 'Greece', 'GRC', '300', '30'),
-(84, 'GL', 'GREENLAND', 'Greenland', 'GRL', '304', '299'),
-(85, 'GD', 'GRENADA', 'Grenada', 'GRD', '308', '1473'),
-(86, 'GP', 'GUADELOUPE', 'Guadeloupe', 'GLP', '312', '590'),
-(87, 'GU', 'GUAM', 'Guam', 'GUM', '316', '1671'),
-(88, 'GT', 'GUATEMALA', 'Guatemala', 'GTM', '320', '502'),
-(89, 'GN', 'GUINEA', 'Guinea', 'GIN', '324', '224'),
-(90, 'GW', 'GUINEA-BISSAU', 'Guinea-Bissau', 'GNB', '624', '245'),
-(91, 'GY', 'GUYANA', 'Guyana', 'GUY', '328', '592'),
-(92, 'HT', 'HAITI', 'Haiti', 'HTI', '332', '509'),
-(93, 'HM', 'HEARD ISLAND AND MCD', 'Heard Island and Mcdonald Islands', '', '', '0'),
-(94, 'VA', 'HOLY SEE (VATICAN CI', 'Holy See (Vatican City State)', 'VAT', '336', '39'),
-(95, 'HN', 'HONDURAS', 'Honduras', 'HND', '340', '504'),
-(96, 'HK', 'HONG KONG', 'Hong Kong', 'HKG', '344', '852'),
-(97, 'HU', 'HUNGARY', 'Hungary', 'HUN', '348', '36'),
-(98, 'IS', 'ICELAND', 'Iceland', 'ISL', '352', '354'),
-(99, 'IN', 'INDIA', 'India', 'IND', '356', '91'),
-(100, 'ID', 'INDONESIA', 'Indonesia', 'IDN', '360', '62'),
-(101, 'IR', 'IRAN, ISLAMIC REPUBL', 'Iran, Islamic Republic of', 'IRN', '364', '98'),
-(102, 'IQ', 'IRAQ', 'Iraq', 'IRQ', '368', '964'),
-(103, 'IE', 'IRELAND', 'Ireland', 'IRL', '372', '353'),
-(104, 'IL', 'ISRAEL', 'Israel', 'ISR', '376', '972'),
-(105, 'IT', 'ITALY', 'Italy', 'ITA', '380', '39'),
-(106, 'JM', 'JAMAICA', 'Jamaica', 'JAM', '388', '1876'),
-(107, 'JP', 'JAPAN', 'Japan', 'JPN', '392', '81'),
-(108, 'JO', 'JORDAN', 'Jordan', 'JOR', '400', '962'),
-(109, 'KZ', 'KAZAKHSTAN', 'Kazakhstan', 'KAZ', '398', '7'),
-(110, 'KE', 'KENYA', 'Kenya', 'KEN', '404', '254'),
-(111, 'KI', 'KIRIBATI', 'Kiribati', 'KIR', '296', '686'),
-(112, 'KP', 'KOREA, DEMOCRATIC PE', 'Korea, Democratic People\'s Republic of', 'PRK', '408', '850'),
-(113, 'KR', 'KOREA, REPUBLIC OF', 'Korea, Republic of', 'KOR', '410', '82'),
-(114, 'KW', 'KUWAIT', 'Kuwait', 'KWT', '414', '965'),
-(115, 'KG', 'KYRGYZSTAN', 'Kyrgyzstan', 'KGZ', '417', '996'),
-(116, 'LA', 'LAO PEOPLE\'S DEMOCRA', 'Lao People\'s Democratic Republic', 'LAO', '418', '856'),
-(117, 'LV', 'LATVIA', 'Latvia', 'LVA', '428', '371'),
-(118, 'LB', 'LEBANON', 'Lebanon', 'LBN', '422', '961'),
-(119, 'LS', 'LESOTHO', 'Lesotho', 'LSO', '426', '266'),
-(120, 'LR', 'LIBERIA', 'Liberia', 'LBR', '430', '231'),
-(121, 'LY', 'LIBYAN ARAB JAMAHIRI', 'Libyan Arab Jamahiriya', 'LBY', '434', '218'),
-(122, 'LI', 'LIECHTENSTEIN', 'Liechtenstein', 'LIE', '438', '423'),
-(123, 'LT', 'LITHUANIA', 'Lithuania', 'LTU', '440', '370'),
-(124, 'LU', 'LUXEMBOURG', 'Luxembourg', 'LUX', '442', '352'),
-(125, 'MO', 'MACAO', 'Macao', 'MAC', '446', '853'),
-(126, 'MK', 'MACEDONIA, THE FORME', 'Macedonia, the Former Yugoslav Republic of', 'MKD', '807', '389'),
-(127, 'MG', 'MADAGASCAR', 'Madagascar', 'MDG', '450', '261'),
-(128, 'MW', 'MALAWI', 'Malawi', 'MWI', '454', '265'),
-(129, 'MY', 'MALAYSIA', 'Malaysia', 'MYS', '458', '60'),
-(130, 'MV', 'MALDIVES', 'Maldives', 'MDV', '462', '960'),
-(131, 'ML', 'MALI', 'Mali', 'MLI', '466', '223'),
-(132, 'MT', 'MALTA', 'Malta', 'MLT', '470', '356'),
-(133, 'MH', 'MARSHALL ISLANDS', 'Marshall Islands', 'MHL', '584', '692'),
-(134, 'MQ', 'MARTINIQUE', 'Martinique', 'MTQ', '474', '596'),
-(135, 'MR', 'MAURITANIA', 'Mauritania', 'MRT', '478', '222'),
-(136, 'MU', 'MAURITIUS', 'Mauritius', 'MUS', '480', '230'),
-(137, 'YT', 'MAYOTTE', 'Mayotte', '', '', '269'),
-(138, 'MX', 'MEXICO', 'Mexico', 'MEX', '484', '52'),
-(139, 'FM', 'MICRONESIA, FEDERATE', 'Micronesia, Federated States of', 'FSM', '583', '691'),
-(140, 'MD', 'MOLDOVA, REPUBLIC OF', 'Moldova, Republic of', 'MDA', '498', '373'),
-(141, 'MC', 'MONACO', 'Monaco', 'MCO', '492', '377'),
-(142, 'MN', 'MONGOLIA', 'Mongolia', 'MNG', '496', '976'),
-(143, 'MS', 'MONTSERRAT', 'Montserrat', 'MSR', '500', '1664'),
-(144, 'MA', 'MOROCCO', 'Morocco', 'MAR', '504', '212'),
-(145, 'MZ', 'MOZAMBIQUE', 'Mozambique', 'MOZ', '508', '258'),
-(146, 'MM', 'MYANMAR', 'Myanmar', 'MMR', '104', '95'),
-(147, 'NA', 'NAMIBIA', 'Namibia', 'NAM', '516', '264'),
-(148, 'NR', 'NAURU', 'Nauru', 'NRU', '520', '674'),
-(149, 'NP', 'NEPAL', 'Nepal', 'NPL', '524', '977'),
-(150, 'NL', 'NETHERLANDS', 'Netherlands', 'NLD', '528', '31'),
-(151, 'AN', 'NETHERLANDS ANTILLES', 'Netherlands Antilles', 'ANT', '530', '599'),
-(152, 'NC', 'NEW CALEDONIA', 'New Caledonia', 'NCL', '540', '687'),
-(153, 'NZ', 'NEW ZEALAND', 'New Zealand', 'NZL', '554', '64'),
-(154, 'NI', 'NICARAGUA', 'Nicaragua', 'NIC', '558', '505'),
-(155, 'NE', 'NIGER', 'Niger', 'NER', '562', '227'),
-(156, 'NG', 'NIGERIA', 'Nigeria', 'NGA', '566', '234'),
-(157, 'NU', 'NIUE', 'Niue', 'NIU', '570', '683'),
-(158, 'NF', 'NORFOLK ISLAND', 'Norfolk Island', 'NFK', '574', '672'),
-(159, 'MP', 'NORTHERN MARIANA ISL', 'Northern Mariana Islands', 'MNP', '580', '1670'),
-(160, 'NO', 'NORWAY', 'Norway', 'NOR', '578', '47'),
-(161, 'OM', 'OMAN', 'Oman', 'OMN', '512', '968'),
-(162, 'PK', 'PAKISTAN', 'Pakistan', 'PAK', '586', '92'),
-(163, 'PW', 'PALAU', 'Palau', 'PLW', '585', '680'),
-(164, 'PS', 'PALESTINIAN TERRITOR', 'Palestinian Territory, Occupied', '', '', '970'),
-(165, 'PA', 'PANAMA', 'Panama', 'PAN', '591', '507'),
-(166, 'PG', 'PAPUA NEW GUINEA', 'Papua New Guinea', 'PNG', '598', '675'),
-(167, 'PY', 'PARAGUAY', 'Paraguay', 'PRY', '600', '595'),
-(168, 'PE', 'PERU', 'Peru', 'PER', '604', '51'),
-(169, 'PH', 'PHILIPPINES', 'Philippines', 'PHL', '608', '63'),
-(170, 'PN', 'PITCAIRN', 'Pitcairn', 'PCN', '612', '0'),
-(171, 'PL', 'POLAND', 'Poland', 'POL', '616', '48'),
-(172, 'PT', 'PORTUGAL', 'Portugal', 'PRT', '620', '351'),
-(173, 'PR', 'PUERTO RICO', 'Puerto Rico', 'PRI', '630', '1787'),
-(174, 'QA', 'QATAR', 'Qatar', 'QAT', '634', '974'),
-(175, 'RE', 'REUNION', 'Reunion', 'REU', '638', '262'),
-(176, 'RO', 'ROMANIA', 'Romania', 'ROM', '642', '40'),
-(177, 'RU', 'RUSSIAN FEDERATION', 'Russian Federation', 'RUS', '643', '70'),
-(178, 'RW', 'RWANDA', 'Rwanda', 'RWA', '646', '250'),
-(179, 'SH', 'SAINT HELENA', 'Saint Helena', 'SHN', '654', '290'),
-(180, 'KN', 'SAINT KITTS AND NEVI', 'Saint Kitts and Nevis', 'KNA', '659', '1869'),
-(181, 'LC', 'SAINT LUCIA', 'Saint Lucia', 'LCA', '662', '1758'),
-(182, 'PM', 'SAINT PIERRE AND MIQ', 'Saint Pierre and Miquelon', 'SPM', '666', '508'),
-(183, 'VC', 'SAINT VINCENT AND TH', 'Saint Vincent and the Grenadines', 'VCT', '670', '1784'),
-(184, 'WS', 'SAMOA', 'Samoa', 'WSM', '882', '684'),
-(185, 'SM', 'SAN MARINO', 'San Marino', 'SMR', '674', '378'),
-(186, 'ST', 'SAO TOME AND PRINCIP', 'Sao Tome and Principe', 'STP', '678', '239'),
-(187, 'SA', 'SAUDI ARABIA', 'Saudi Arabia', 'SAU', '682', '966'),
-(188, 'SN', 'SENEGAL', 'Senegal', 'SEN', '686', '221'),
-(189, 'CS', 'SERBIA AND MONTENEGR', 'Serbia and Montenegro', '', '', '381'),
-(190, 'SC', 'SEYCHELLES', 'Seychelles', 'SYC', '690', '248'),
-(191, 'SL', 'SIERRA LEONE', 'Sierra Leone', 'SLE', '694', '232'),
-(192, 'SG', 'SINGAPORE', 'Singapore', 'SGP', '702', '65'),
-(193, 'SK', 'SLOVAKIA', 'Slovakia', 'SVK', '703', '421'),
-(194, 'SI', 'SLOVENIA', 'Slovenia', 'SVN', '705', '386'),
-(195, 'SB', 'SOLOMON ISLANDS', 'Solomon Islands', 'SLB', '90', '677'),
-(196, 'SO', 'SOMALIA', 'Somalia', 'SOM', '706', '252'),
-(197, 'ZA', 'SOUTH AFRICA', 'South Africa', 'ZAF', '710', '27'),
-(198, 'GS', 'SOUTH GEORGIA AND TH', 'South Georgia and the South Sandwich Islands', '', '', '0'),
-(199, 'ES', 'SPAIN', 'Spain', 'ESP', '724', '34'),
-(200, 'LK', 'SRI LANKA', 'Sri Lanka', 'LKA', '144', '94'),
-(201, 'SD', 'SUDAN', 'Sudan', 'SDN', '736', '249'),
-(202, 'SR', 'SURINAME', 'Suriname', 'SUR', '740', '597'),
-(203, 'SJ', 'SVALBARD AND JAN MAY', 'Svalbard and Jan Mayen', 'SJM', '744', '47'),
-(204, 'SZ', 'SWAZILAND', 'Swaziland', 'SWZ', '748', '268'),
-(205, 'SE', 'SWEDEN', 'Sweden', 'SWE', '752', '46'),
-(206, 'CH', 'SWITZERLAND', 'Switzerland', 'CHE', '756', '41'),
-(207, 'SY', 'SYRIAN ARAB REPUBLIC', 'Syrian Arab Republic', 'SYR', '760', '963'),
-(208, 'TW', 'TAIWAN, PROVINCE OF ', 'Taiwan, Province of China', 'TWN', '158', '886'),
-(209, 'TJ', 'TAJIKISTAN', 'Tajikistan', 'TJK', '762', '992'),
-(210, 'TZ', 'TANZANIA, UNITED REP', 'Tanzania, United Republic of', 'TZA', '834', '255'),
-(211, 'TH', 'THAILAND', 'Thailand', 'THA', '764', '66'),
-(212, 'TL', 'TIMOR-LESTE', 'Timor-Leste', '', '', '670'),
-(213, 'TG', 'TOGO', 'Togo', 'TGO', '768', '228'),
-(214, 'TK', 'TOKELAU', 'Tokelau', 'TKL', '772', '690'),
-(215, 'TO', 'TONGA', 'Tonga', 'TON', '776', '676'),
-(216, 'TT', 'TRINIDAD AND TOBAGO', 'Trinidad and Tobago', 'TTO', '780', '1868'),
-(217, 'TN', 'TUNISIA', 'Tunisia', 'TUN', '788', '216'),
-(218, 'TR', 'TURKEY', 'Turkey', 'TUR', '792', '90'),
-(219, 'TM', 'TURKMENISTAN', 'Turkmenistan', 'TKM', '795', '7370'),
-(220, 'TC', 'TURKS AND CAICOS ISL', 'Turks and Caicos Islands', 'TCA', '796', '1649'),
-(221, 'TV', 'TUVALU', 'Tuvalu', 'TUV', '798', '688'),
-(222, 'UG', 'UGANDA', 'Uganda', 'UGA', '800', '256'),
-(223, 'UA', 'UKRAINE', 'Ukraine', 'UKR', '804', '380'),
-(224, 'AE', 'UNITED ARAB EMIRATES', 'United Arab Emirates', 'ARE', '784', '971'),
-(225, 'GB', 'UNITED KINGDOM', 'United Kingdom', 'GBR', '826', '44'),
-(226, 'US', 'UNITED STATES', 'United States', 'USA', '840', '1'),
-(227, 'UM', 'UNITED STATES MINOR ', 'United States Minor Outlying Islands', '', '', '1'),
-(228, 'UY', 'URUGUAY', 'Uruguay', 'URY', '858', '598'),
-(229, 'UZ', 'UZBEKISTAN', 'Uzbekistan', 'UZB', '860', '998'),
-(230, 'VU', 'VANUATU', 'Vanuatu', 'VUT', '548', '678'),
-(231, 'VE', 'VENEZUELA', 'Venezuela', 'VEN', '862', '58'),
-(232, 'VN', 'VIET NAM', 'Viet Nam', 'VNM', '704', '84'),
-(233, 'VG', 'VIRGIN ISLANDS, BRIT', 'Virgin Islands, British', 'VGB', '92', '1284'),
-(234, 'VI', 'VIRGIN ISLANDS, U.S.', 'Virgin Islands, U.s.', 'VIR', '850', '1340'),
-(235, 'WF', 'WALLIS AND FUTUNA', 'Wallis and Futuna', 'WLF', '876', '681'),
-(236, 'EH', 'WESTERN SAHARA', 'Western Sahara', 'ESH', '732', '212'),
-(237, 'YE', 'YEMEN', 'Yemen', 'YEM', '887', '967'),
-(238, 'ZM', 'ZAMBIA', 'Zambia', 'ZMB', '894', '260'),
-(239, 'ZW', 'ZIMBABWE', 'Zimbabwe', 'ZWE', '716', '263'),
-(240, 'RS', 'SERBIA', 'Serbia', 'SRB', '688', '381'),
-(241, 'AP', 'ASIA PACIFIC REGION', 'Asia / Pacific Region', '0', '0', '0'),
-(242, 'ME', 'MONTENEGRO', 'Montenegro', 'MNE', '499', '382'),
-(243, 'AX', 'ALAND ISLANDS', 'Aland Islands', 'ALA', '248', '358'),
-(244, 'BQ', 'BONAIRE, SINT EUSTAT', 'Bonaire, Sint Eustatius and Saba', 'BES', '535', '599'),
-(245, 'CW', 'CURACAO', 'Curacao', 'CUW', '531', '599'),
-(246, 'GG', 'GUERNSEY', 'Guernsey', 'GGY', '831', '44'),
-(247, 'IM', 'ISLE OF MAN', 'Isle of Man', 'IMN', '833', '44'),
-(248, 'JE', 'JERSEY', 'Jersey', 'JEY', '832', '44'),
-(249, 'XK', 'KOSOVO', 'Kosovo', '---', '0', '381'),
-(250, 'BL', 'SAINT BARTHELEMY', 'Saint Barthelemy', 'BLM', '652', '590'),
-(251, 'MF', 'SAINT MARTIN', 'Saint Martin', 'MAF', '663', '590'),
-(252, 'SX', 'SINT MAARTEN', 'Sint Maarten', 'SXM', '534', '1'),
-(253, 'SS', 'SOUTH SUDAN', 'South Sudan', 'SSD', '728', '211');
 
 -- --------------------------------------------------------
 
@@ -34711,6 +34715,12 @@ ALTER TABLE `payment_gateways`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `phptravels_countries`
+--
+ALTER TABLE `phptravels_countries`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `phptravels_currencies`
 --
 ALTER TABLE `phptravels_currencies`
@@ -34801,12 +34811,6 @@ ALTER TABLE `pt_flights_airlines`
 -- Indexes for table `pt_flights_airports`
 --
 ALTER TABLE `pt_flights_airports`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `pt_flights_countries`
---
-ALTER TABLE `pt_flights_countries`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -35061,6 +35065,12 @@ ALTER TABLE `payment_gateways`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
+-- AUTO_INCREMENT for table `phptravels_countries`
+--
+ALTER TABLE `phptravels_countries`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=255;
+
+--
 -- AUTO_INCREMENT for table `phptravels_currencies`
 --
 ALTER TABLE `phptravels_currencies`
@@ -35143,12 +35153,6 @@ ALTER TABLE `pt_flights_airlines`
 --
 ALTER TABLE `pt_flights_airports`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8910;
-
---
--- AUTO_INCREMENT for table `pt_flights_countries`
---
-ALTER TABLE `pt_flights_countries`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=255;
 
 --
 -- AUTO_INCREMENT for table `pt_flights_prices`
