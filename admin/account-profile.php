@@ -159,6 +159,8 @@ include 'header.php';
             </div>
             </div>
 
+            <?php if ($_SESSION['user_type'] == "agent" || $_SESSION['user_type'] == "admin" ) { ?>
+
             <div class="card p-3 mt-3">
                 <p><strong>Agency Details</strong></p>
                 <hr class="mb-4 mt-1">
@@ -178,6 +180,8 @@ include 'header.php';
          </div>
 
         </div>
+        <?php } ?>
+
 
             <input type="hidden" name="id" value="<?=$_GET['id']?>">
             <input type="hidden" name="pass" value="<?=$user['password']?>">
