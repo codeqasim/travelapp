@@ -64,7 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         Settings</button>
         </a>
 
-        <label style="margin-right: -80px;" class="form-check-label" for="module_<?=$m['id'] ?>">Status</label>
+        <label style="margin-right: -50px;" class="form-check-label" for="module_<?=$m['id'] ?>">Status</label>
 
         <label class="ellipsis pull-right">
 

@@ -21,7 +21,7 @@ $db['default'] = array(
 $db = new Medoo([
     'type' => 'mysql',
     'host' => 'localhost',
-    'database' => 'travelapp',
+    'database' => 'travel',
     'username' => 'root',
     'password' => ''
 ]);
