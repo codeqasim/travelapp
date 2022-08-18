@@ -19,6 +19,28 @@ include 'header.php';
             <h1 class="text-white py-3 mb-0 display-6">Currencies</h1>
             <div class="ms-4">
 
+            <div class="d-flex gap-1">
+
+            <div class="col-12 col-md-auto flex-shrink-0">
+                 <input class="form-control mb-0" id="" placeholder="Search..." value="" style="min-width: 13rem; height: 3rem">
+            </div>
+
+            <select name="" id="" class="form-select" style="width:100px">
+                <option value="">name</option>
+                <option value="">email</option>
+                <option value="">status</option>
+            </select>
+
+            <button class="btn btn-outline-light" style="width:100px">
+                Search
+            </button>
+
+            <button class="btn btn-danger" style="width:100px">
+                Delete
+            </button>
+
+            </div>
+            
             </div>
         </div>
     </div>
@@ -204,8 +226,26 @@ include 'header.php';
    </tbody>
 </table>
 
+<div class="dataTable-bottom">
+   <div class="dataTable-info">Showing 1 to 10 of 100 entries</div>
+   <nav class="dataTable-pagination">
+      <ul class="dataTable-pagination-list">
+         <li class="active"><a href="#" data-page="1">1</a></li>
+         <li class=""><a href="#" data-page="2">2</a></li>
+         <li class=""><a href="#" data-page="3">3</a></li>
+         <li class=""><a href="#" data-page="4">4</a></li>
+         <li class=""><a href="#" data-page="5">5</a></li>
+         <li class=""><a href="#" data-page="6">6</a></li>
+         <li class=""><a href="#" data-page="7">7</a></li>
+         <li class="ellipsis"><a href="#">…</a></li>
+         <li class=""><a href="#" data-page="10">10</a></li>
+         <li class="pager"><a href="#" data-page="2">›</a></li>
+      </ul>
+   </nav>
+</div>
+
+
 <style>
-.container-xl{padding-left:0px}
-.container-xl{padding-right:5px}
+/* .container-xl{padding-left:0px} */
 </style>
 <?php include 'footer.php'; ?>
