@@ -20,8 +20,8 @@ $db['default'] = array(
 // MEDDO DATABASE CONNECTION
 $db = new Medoo([
     'type' => 'mysql',
-    'host' => 'localhost',
-    'database' => 'travel',
-    'username' => 'root',
-    'password' => ''
+    'host' => 'app-7ad3be44e4',
+    'database' => 'production_app',
+    'username' => 'rootuser',
+    'password' => 'rootuser'
 ]);
