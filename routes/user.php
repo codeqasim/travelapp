@@ -15,12 +15,21 @@ $router->post('login', function() {
 require_once './_core.php';
 
 // REDIRECT IF USER IS LOGGED IN
-if(isset($_SESSION['user_login'])){ header("Location: dashboard"); exit; }
+if(isset($_SESSION['user_login'])){ redirect("dashboard"); exit; }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
+    // MEDDO DATABASE CONNECTION
+    $db = new Medoo([
+        'type' => 'mysql',
+        'host' => 'localhost',
+        'database' => 'production_app',
+        'username' => 'rootuser',
+        'password' => 'rootuser'
+    ]); 
+
     // CHECK IF USER EXISTS
-    $data = $db->select('phptravels_users', '*', [
+    $data = $db->select('users', '*', [
         'email' => $_POST['email'],
         'password' =>  md5($_POST['password'])
     ]);
@@ -31,10 +40,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['user_id'] = $data[0]['id'];
         $_SESSION['user_type'] = $data[0]['type'];
         $_SESSION['user_language'] = $_POST['user_language'];
-        header("Location: dashboard");
+        redirect("dashboard");
         exit;
     } else {
         echo '<script>alert("Invalid email or password");</script>';
+        redirect("login");
     }
 
 }
@@ -48,6 +58,11 @@ $router->get('logout', function() {
 
     session_destroy();
     header("Location: login");
+});
+
+// ======================== DASHBOARD
+$router->get('dashboard', function() {
+     
 });
 
 ?>
