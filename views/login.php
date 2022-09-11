@@ -43,7 +43,7 @@ setTimeout(function() { $('.bodyload').fadeOut(); }, 10);
                            <div class="card-body p-3">
                                <!-- Auth header with logo image-->
                                <div class="text-center">
-                                   <img class="mb-3" src="../uploads/global/favicon.png" alt="favicon" style="height: 48px">
+                                   <img class="mb-3" src="./uploads/global/favicon.png" alt="favicon" style="height: 48px">
                                    <p class="display-6 mb-0">Administrator Login</p>
                                    <div class="subheading-1 mb-5">Only administators allowed here</div>
                                </div>
