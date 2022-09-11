@@ -15,10 +15,6 @@ header("X-Frame-Options: SAMEORIGIN");
 // INCLUDE CORE FILE
 require_once '_core.php';
 
-// REDIRECT IF USER IS LOGGED IN
-// if(!isset($_SESSION['admin_user_login'])){ header("Location: login"); exit; }
-// if(isset($_SESSION['admin_user_login'])){ header("Location: dashboard"); exit; }
-
 // CREATE CACHE AND LOGS IF NOT EXIST
 // if(!file_exists('./logs')) {  mkdir('./logs', 0777, true); }
 if(!file_exists('./cache')) {  mkdir('./cache', 0777, true); }
@@ -37,9 +33,19 @@ $router = new Router(function ($method, $path, $statusCode, $exception) { http_r
 });
 
 // ======================== INDEX
-$router->get('login', function() {
-    $view = "./views/login.php";
+$router->get('/', function() {
+    if(!isset($_SESSION['admin_user_login'])){ header("Location: login"); exit; }
+    if(isset($_SESSION['admin_user_login'])){ header("Location: dashboard"); exit; }
 });
+
+// ======================== INDEX
+$router->get('index.php', function() {
+    if(!isset($_SESSION['admin_user_login'])){ header("Location: login"); exit; }
+    if(isset($_SESSION['admin_user_login'])){ header("Location: dashboard"); exit; }
+});
+
+// ROUTES
+include "routes/user.php";
 
 $router->dispatchGlobal();
 
