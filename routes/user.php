@@ -20,13 +20,13 @@ if(isset($_SESSION['user_login'])){ redirect("dashboard"); exit; }
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // MEDDO DATABASE CONNECTION
-    $db = new Medoo([
-        'type' => 'mysql',
-        'host' => 'localhost',
-        'database' => 'production_app',
-        'username' => 'rootuser',
-        'password' => 'rootuser'
-    ]); 
+    // $db = new Medoo([
+    //     'type' => 'mysql',
+    //     'host' => 'localhost',
+    //     'database' => 'production_app',
+    //     'username' => 'rootuser',
+    //     'password' => 'rootuser'
+    // ]); 
 
     // CHECK IF USER EXISTS
     $data = $db->select('users', '*', [
