@@ -11,10 +11,10 @@ ini_set('display_errors', DEBUG ? 'On' : 'Off');
 
 // DATBASE CONNECTION
 $db['default'] = array(
-    'database' => "v8",
-    'hostname' => "localhost",
-    'username' => "root",
-    'password' => "",
+    'database' => "production_app",
+    'hostname' => "app-7ad3be44e4",
+    'username' => "rootuser",
+    'password' => "rootuser",
 );
 
 // MEDDO DATABASE CONNECTION
