@@ -11,7 +11,8 @@ ini_set('display_errors', DEBUG ? 'On' : 'Off');
 
 // DATBASE CONNECTION
 $db['default'] = array(
-    'database' => "production_app",
+    // 'database' => "production_app",
+    'database' => "localhost",
     'hostname' => "app-7ad3be44e4",
     'username' => "rootuser",
     'password' => "rootuser",
@@ -20,7 +21,7 @@ $db['default'] = array(
 // MEDDO DATABASE CONNECTION
 $db = new Medoo([
     'type' => 'mysql',
-    'host' => 'app-7ad3be44e4',
+    'host' => 'localhost',
     'database' => 'production_app',
     'username' => 'rootuser',
     'password' => 'rootuser'

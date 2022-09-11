@@ -4,10 +4,10 @@
 use Medoo\Medoo;
 
 // INCLUDE CORE FILE
-require_once '_core.php';
+require_once './_core.php';
 
 // GET SETTINGS DATA
-$settings = $db->select('phptravels_settings', '*', );
+// $settings = $db->select('phptravels_settings', '*', );
 
 ?>
 
@@ -36,7 +36,8 @@ $settings = $db->select('phptravels_settings', '*', );
         <!-- Drawer toggle button-->
         <button class="btn btn-lg btn-icon order-1 order-lg-0 mdc-ripple-upgraded" id="drawerToggle" href="javascript:void(0);"><i class="material-icons">menu</i></button>
         <!-- Navbar brand-->
-        <a class="navbar-brand me-auto loadeffect" href="./"><div class="text-uppercase font-monospace"><?=$settings[0]['business_name']?></div></a>
+        <!-- <a class="navbar-brand me-auto loadeffect" href="./"><div class="text-uppercase font-monospace"><?=$settings[0]['business_name']?></div></a> -->
+        <a class="navbar-brand me-auto loadeffect" href="./"><div class="text-uppercase font-monospace">App</div></a>
         <!-- Navbar items-->
         <div class="d-flex align-items-center mx-3 me-lg-0">
             <!-- Navbar-->

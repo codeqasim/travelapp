@@ -4,7 +4,7 @@
 use Medoo\Medoo;
 
 // INCLUDE CORE FILE
-require_once '_core.php';
+require_once '../_core.php';
 
 // REDIRECT IF USER IS LOGGED IN
 if(isset($_SESSION['user_login'])){ header("Location: dashboard"); exit; }

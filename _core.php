@@ -9,8 +9,8 @@ use Medoo\Medoo;
 if(!isset($_SESSION)) { session_start(); }
 
 // REQUIRED LIBRAIRY FOR DATABASE CONNECTION AND VENDORS
-require_once '../vendor/autoload.php';
-require_once '../config.php';
+require_once './vendor/autoload.php';
+require_once './config.php';
 
 // SENTRY DEBUG
 \Sentry\init(['dsn' => 'https://0a0039bdd37b4db5a83068108f64652b@o1024531.ingest.sentry.io/6603898' ]);
@@ -50,8 +50,5 @@ function redirect($url)
         echo '</noscript>'; exit;
     }
 }
-
-// DD FUNCTION FOR DEBUG RESPONSES
-// function ddd($d) { echo "<pre>"; print_r($d); echo "</pre>"; }
 
 ?>
