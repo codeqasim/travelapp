@@ -150,7 +150,7 @@ $("#login").submit(function() {
           type: 'POST',
           dataType: "json",
           data: {
-            user_id: res.data.id,
+            user_id: res.data.user_id,
             user_status : res.data.status,
             user_type : res.data.type,
           },
