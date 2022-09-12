@@ -30,10 +30,9 @@ $router->get('logout', function() {
 
 // ======================== DASHBOARD
 $router->get('dashboard', function() {
-
+    $title = "Dashboard";
     $view = "./views/dashboard.php";
     include "./views/main.php";
-     
 });
 
 ?>

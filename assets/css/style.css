@@ -8,6 +8,8 @@
 .layui-panel { border-radius: 6px;}
 .layui-form-checked[lay-skin="primary"] i { background: #1e49db; background: linear-gradient(#1e49db,#2b57e6); border-color: #1e49db !important }
 .layui-form-checkbox[lay-skin="primary"]:hover i { border-color: #1e49db ;}
+.layui-layout-admin .layui-logo { position: absolute; left: 0; top: 0; width: 200px; height: 100%; line-height: 60px; text-align: center; color: #004bff; font-size: 16px; box-shadow: 0 1px 2px 0 rgb(0 0 0 / 15%); }
+.layui-nav-tree .layui-nav-item>a { padding-top: 5px; padding-bottom: 5px; display: flex; align-items: center; gap: 16px; }
 
 @media screen and (max-width: 992px) {
 body {background-color: #fff !important;}
