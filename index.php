@@ -46,7 +46,8 @@ $router->get('index.php', function() {
 });
 
 // ROUTES
-include "routes/user.php";
+include "routes/users.php";
+include "routes/settings.php";
 
 $router->dispatchGlobal();
 
