@@ -30,6 +30,9 @@ $router->get('logout', function() {
 
 // ======================== DASHBOARD
 $router->get('dashboard', function() {
+    // REDIRECT IF USER IS NOT LOGGED IN
+    if(!isset($_SESSION['user_login']) == true ){ header("Location: login"); exit; }
+
     $title = "Dashboard";
     $view = "./views/dashboard.php";
     include "./views/main.php";
