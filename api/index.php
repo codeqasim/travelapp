@@ -20,7 +20,7 @@ use Medoo\Medoo;
 use AppRouter\Router;
 
 // SENTRY DEBUG
-// \Sentry\init(['dsn' => 'https://37b1206300024c948f1c489d4582b3cc@o1354411.ingest.sentry.io/6697135' ]);
+\Sentry\init(['dsn' => 'https://134bf0fb9eec4621a7b13fa5afe64509@o1354411.ingest.sentry.io/6739401' ]);
 // throw new Exception("My first Sentry error!");
 
 // DD FUNCTION FOR DEBUG RESPONSES
@@ -42,9 +42,8 @@ $router->get('/', function() {
     echo json_encode($respose);
 });
 
-// CREATE DYNAMIC CONTROLLERS FROM FILES
-include "controllers/users.php";
-include "controllers/people.php";
+// INCLUDE ROUTES
+include "./routes/users.php";
 
 $router->dispatchGlobal();
 
