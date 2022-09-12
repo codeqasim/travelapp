@@ -1,4 +1,12 @@
-     
+
+</div>
+</div>
+
+<div id="footer"><div class="layui-footer">
+    All rights reserved by <a href="https://phptravels.com" target="_blank">PHPTRAVELS</a>
+</div>
+</div>
+
 </div>
 
 <script src="./assets/layui.js"></script>
