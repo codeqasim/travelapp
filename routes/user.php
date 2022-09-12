@@ -1,54 +1,22 @@
-<?php 
-
-// USING MEEDO NAMESPACE
-use Medoo\Medoo;
+<?php
 
 // ======================== LOGIN GET
 $router->get('login', function() {
+    
+    // REDIRECT IF USER IS LOGGED IN
+    if(isset($_SESSION['user_login']) == true ){ header("Location: dashboard"); exit; }
+    
     include "./views/login.php";
 });
 
-// ======================== LOGIN POST
+// ======================== LOGIN POST SESSION
 $router->post('login', function() {
-
-// INCLUDE CORE FILE
-require_once './_core.php';
-
-// REDIRECT IF USER IS LOGGED IN
-if(isset($_SESSION['user_login'])){ redirect("dashboard"); exit; }
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
-    // MEDDO DATABASE CONNECTION
-    // $db = new Medoo([
-    //     'type' => 'mysql',
-    //     'host' => 'localhost',
-    //     'database' => 'production_app',
-    //     'username' => 'rootuser',
-    //     'password' => 'rootuser'
-    // ]); 
-
-    // CHECK IF USER EXISTS
-    $data = $db->select('users', '*', [
-        'email' => $_POST['email'],
-        'password' =>  md5($_POST['password'])
-    ]);
-
-    // REDIRECT IF USER EXISTS AND CREATE SESSION
-    if (isset($data[0]['id'])) {
+    if (isset($_POST['user_id'])){
         $_SESSION['user_login'] = true;
-        $_SESSION['user_id'] = $data[0]['id'];
-        $_SESSION['user_type'] = $data[0]['type'];
-        $_SESSION['user_language'] = $_POST['user_language'];
-        redirect("dashboard");
-        exit;
-    } else {
-        echo '<script>alert("Invalid email or password");</script>';
-        redirect("login");
+        $_SESSION['user_id'] = $_POST['user_id'];
+        $_SESSION['user_type'] = $_POST['user_type'];
+        $_SESSION['user_status'] = $_POST['user_status'];
     }
-
-}
-
 });
 
 // ======================== LOGOUT
@@ -62,6 +30,9 @@ $router->get('logout', function() {
 
 // ======================== DASHBOARD
 $router->get('dashboard', function() {
+
+    $view = "./views/dashboard.php";
+    include "./views/main.php";
      
 });
 

@@ -36,51 +36,63 @@ setTimeout(function() { $('.bodyload').fadeOut(); }, 10);
         </div>
         <div class="layui-card-body">
         
-            <form class="layui-form" name="form" action="./login" method="post" onsubmit="submission()">
+            <form id="login" class="layui-form" name="form" method="post">
 
-            <div class="layui-form-item">
-            <label class="layui-form-label">Email</label>
-            <div class="layui-input-block">
-            <input id="email" type="email" name="email" lay-verify="email" autocomplete="off" placeholder="Email" class="layui-input">
-            </div>
-            </div>
+                <div class="layui-form-item">
+                <label class="layui-form-label">Email</label>
+                <div class="layui-input-block">
+                <input id="email" type="email" name="email" lay-verify="email" autocomplete="off" placeholder="Email" class="email layui-input">
+                </div>
+                </div>
 
-            <div class="layui-form-item">
-            <label class="layui-form-label">Password</label>
-            <div class="layui-input-block">
-            <input id="password" type="password" name="password" lay-verify="password" autocomplete="off" placeholder="Password" class="layui-input">
-            </div>
-            </div>
+                <div class="layui-form-item">
+                <label class="layui-form-label">Password</label>
+                <div class="layui-input-block">
+                <input id="password" type="password" name="password" lay-verify="password" autocomplete="off" placeholder="Password" class="password layui-input">
+                </div>
+                </div>
 
-            <div class="layui-form-item">
-            <label class="layui-form-label"></label>
-            <div class="layui-input-block">
+                <div class="layui-form-item">
+                <label class="layui-form-label"></label>
+                <div class="layui-input-block">
 
-           </div>
-            </div>
+                <div class="layui-input-block" style="margin-left: 0; display: flex; align-items: center; justify-content: space-between;">
+                <input type="checkbox" name="like1[write]" lay-skin="primary" title="Remember Password" checked="">
+                <div class="layui-unselect layui-form-checkbox layui-form-checked" lay-skin="primary">
+                    <span>Remember Password</span>
+                    <i class="layui-icon layui-icon-ok"></i>
+                </div>
+                <a href="./forget-password"><strong>Forget Password</strong></a>
+                </div>
 
-            <div class="layui-form-item">
-            <label class="layui-form-label">Language</label>
-            <div class="layui-input-inline">
-                <select name="language">
-                 <option value="en" selected>English</option>
-                 <option value="ar">Arabic</option>
-                </select>
+                    </div>
+                </div>
 
-            </div>
-            </div>
+                <div class="layui-form-item">
+                <label class="layui-form-label">Language</label>
+                <div class="layui-input-inline">
+                    <select name="language">
+                    <option value="en" selected>English</option>
+                    <option value="ar">Arabic</option>
+                    </select>
 
-            <div class="layui-form-item">
-            <div class="layui-input-block">
-            <button type="submit" class="layui-btn" lay-submit="" lay-filter="">Login</button>
-            <button type="reset" class="layui-btn layui-btn-primary">Signup</button>
-            </div>
-            </div>
+                </div>
+                </div>
+
+                <div class="layui-form-item">
+                <div class="layui-input-block">
+                <button type="submit" class="layui-btn" lay-submit="" lay-filter="">Login</button>
+                <button type="reset" class="layui-btn layui-btn-primary">Signup</button>
+                </div>
+                </div>
 
             </form>
 
-      </div>
+            <div style="height:.25em;margin-bottom:25px">
+              <progress class="pure-material-progress-linear"/></progress>
+            </div>
 
+      </div>
 
       </div>
     </div>
@@ -88,37 +100,74 @@ setTimeout(function() { $('.bodyload').fadeOut(); }, 10);
      </div>
   </div>
  
-
 <script src="./assets/layui.js"></script>
-<style>body{background-color: #6d6e76;overflow: hidden;}</style>
+<style>
+body{background-color: #6d6e76;overflow: hidden;}
+.layui-form-item .layui-form-checkbox[lay-skin="primary"]{margin-top:0!important}
+</style>
 <script>
+
+$("progress").hide();
 
 // 使用组件
 layui.use(['layer', 'form'], function(){
       var layer = layui.layer;
       var form = layui.form;
-          
 });
 
-function submission() {
-    
-    // document.querySelector('.d-none').classList.remove('d-none');
+$("#login").submit(function() {
+      event.preventDefault();
 
-    let email = $("#email").val();
-    if (email == "") { 
-        layui.use(['layer', 'form'], function(){
-            layer.msg('Email is required to login');
+      // SHOW ANIMATION
+      $("progress").show();
+
+      // GET FORM PARAMS AND VALUES
+      var emailData = $('.email').val();
+      var passwordData = $('.password').val();
+
+      // VALIDATION
+      if(emailData.length === 0 || emailData.length === 0 ){
+        alert('Email and password both required to login')
+        document.getElementById("submit").classList.remove('button--loading');
+      } else {
+
+        $.ajax({
+          url: "<?=api_url?>login",
+          type: 'POST',
+          dataType: "json",
+          data: {
+            email: emailData,
+            password : passwordData
+          },
+        }).done(function(res) {
+          console.log(res.data);
+          $("progress").hide();
+          if(res.status == 'true'){
+
+        // USER SESSION 
+        $.ajax({
+          url: "<?=root?>login",
+          type: 'POST',
+          dataType: "json",
+          data: {
+            user_id: res.data.id,
+            user_status : res.data.status,
+            user_type : res.data.type,
+          },
+        }).done(function(res) {
+          console.log(res.data);
         });
-     }
 
-    let pass = $("#password").val();
-    if (pass == "") { 
-        layui.use(['layer', 'form'], function(){
-            layer.msg('Password is required to login');
-        });
-        return;
-     }
-     
+            // alert(response.data.id)
+            // sessionStorage.setItem('user_id', user_id);
 
-}
+            // REDIRECT ON SUCCESSFUL SIGNUP
+            window.location.href = "./dashboard";
+
+            } else { // LOGIN ERROR
+              layer.msg('Email or password invalid please try again');
+            } })
+        }
+    });
+
 </script>

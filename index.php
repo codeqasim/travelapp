@@ -24,6 +24,7 @@ function dd($d) { echo "<pre>"; print_r($d); echo "</pre>"; die(); }
 
 // ROOT FUNCTION
 $root=(isset($_SERVER['HTTPS']) ? "https://" : "http://").$_SERVER['HTTP_HOST']; $root.= str_replace(basename($_SERVER['SCRIPT_NAME']), '', $_SERVER['SCRIPT_NAME']); define('root', $root);
+define('api_url','https://api.phptravels.com/');
 
 // ======================== 404 PAGE
 $router = new Router(function ($method, $path, $statusCode, $exception) { http_response_code($statusCode);
