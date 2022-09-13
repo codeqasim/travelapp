@@ -97,7 +97,12 @@ $("#verify").submit(function() {
         },
         }).done(function(res) {
         console.log(res);
-        // window.location.href = "<?=root?>login#verification";
+        if (res.status == true) {
+            window.location.href = "<?=root?>login#verification";
+        } else {
+            alert('Email does not exist please try again');
+            window.location.href = "<?=root?>verify";
+        }
         });
 
 })

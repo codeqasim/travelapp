@@ -46,11 +46,15 @@ $router->post('activate', function() {
     
     $parms = array( 'email' => $_POST['email'] );
     $req = new Curl();
-    $req->post(api_url.'activate', $parms);
+    $req->post(api_url.'resend-verify', $parms);
 
-    print_r($req->response);
-    die;
-
+    if ($req->response->status == true ){
+        $respose = array ( "status"=>true, "message"=>"account activation link sent.", "data"=> $req->response );
+    } else {
+        $respose = array ( "status"=>false, "message"=>"invalid user details.", "data"=> "" );
+    }
+    
+    echo json_encode($respose);
 
 });
 

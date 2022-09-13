@@ -122,4 +122,14 @@ setTimeout(function() { $('.bodyload').fadeOut(); }, 10);
         callback: function (){ //
         } })
     }
+
+    if (hash == "verification") {
+        vt.success("Please check your mailbox and activate your account",{
+        title:"Verification Sent",
+        position: "top-center",
+        callback: function (){ //
+        } })
+    }
+
+    verification
 </script>
