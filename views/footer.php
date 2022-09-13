@@ -9,8 +9,8 @@
 
 </div>
 
-<script src="./assets/layui.js"></script>
 <script>
+
     layui.use(['element', 'layer', 'util'], function(){
       var element = layui.element
       ,layer = layui.layer

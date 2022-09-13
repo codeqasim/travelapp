@@ -57,6 +57,7 @@ class ComposerStaticInit0a6530c080c2942cc888a937f3cae37a
         ),
         'C' => 
         array (
+            'Curl\\' => 5,
             'Clue\\StreamFilter\\' => 18,
         ),
     );
@@ -143,6 +144,10 @@ class ComposerStaticInit0a6530c080c2942cc888a937f3cae37a
         'GuzzleHttp\\Promise\\' => 
         array (
             0 => __DIR__ . '/..' . '/guzzlehttp/promises/src',
+        ),
+        'Curl\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/php-curl-class/php-curl-class/src/Curl',
         ),
         'Clue\\StreamFilter\\' => 
         array (

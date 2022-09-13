@@ -5,7 +5,7 @@
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '19aa3503c777b79d04c1242cf88e9af19764141e',
+        'reference' => 'c08ad12ee8ade42767e428c1f73dd7a610179916',
         'name' => '__root__',
         'dev' => true,
     ),
@@ -16,7 +16,7 @@
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '19aa3503c777b79d04c1242cf88e9af19764141e',
+            'reference' => 'c08ad12ee8ade42767e428c1f73dd7a610179916',
             'dev_requirement' => false,
         ),
         'catfan/medoo' => array(
@@ -71,6 +71,15 @@
             'install_path' => __DIR__ . '/../jean85/pretty-package-versions',
             'aliases' => array(),
             'reference' => 'ae547e455a3d8babd07b96966b17d7fd21d9c6af',
+            'dev_requirement' => false,
+        ),
+        'php-curl-class/php-curl-class' => array(
+            'pretty_version' => '9.6.1',
+            'version' => '9.6.1.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../php-curl-class/php-curl-class',
+            'aliases' => array(),
+            'reference' => 'd453257b12c9999dc6dfcdb8e7a7d36958f67d86',
             'dev_requirement' => false,
         ),
         'php-http/async-client-implementation' => array(
@@ -181,8 +190,8 @@
         'psr/http-factory-implementation' => array(
             'dev_requirement' => false,
             'provided' => array(
-                0 => '^1.0',
-                1 => '1.0',
+                0 => '1.0',
+                1 => '^1.0',
             ),
         ),
         'psr/http-message' => array(

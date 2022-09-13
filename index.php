@@ -39,12 +39,6 @@ $router->get('/', function() {
     if(isset($_SESSION['admin_user_login'])){ header("Location: dashboard"); exit; }
 });
 
-// ======================== INDEX
-$router->get('index.php', function() {
-    if(!isset($_SESSION['admin_user_login'])){ header("Location: login"); exit; }
-    if(isset($_SESSION['admin_user_login'])){ header("Location: dashboard"); exit; }
-});
-
 // ROUTES
 include "routes/users.php";
 include "routes/settings.php";

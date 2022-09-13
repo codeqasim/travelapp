@@ -12,6 +12,8 @@
 <link rel="stylesheet" href="./assets/css/layui.css" />
 <link rel="stylesheet" href="./assets/css/style.css" />
 <script type="text/javascript" src="./assets/jquery-3.6.1.min.js"></script>
+<script src="./assets/layui.js"></script>
+
 
 <script>setTimeout(function() { $('.bodyload').fadeOut(); }, 10);</script>
 </head>
