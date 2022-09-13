@@ -28,6 +28,8 @@ $router->post('login', function() {
             $_SESSION['user_type'] = $req->response->data->type;
             $_SESSION['user_status'] = $req->response->data->status;
 
+            header("Location: dashboard");
+
         // REDIRECT TO USER VERIFICATION PAGE
         } else { header("Location: verify"); }
 
@@ -69,8 +71,19 @@ $router->get('logout', function() {
 
 // ======================== DASHBOARD
 $router->get('dashboard', function() {
+
     // REDIRECT IF USER IS NOT LOGGED IN
     if(!isset($_SESSION['user_login']) == true ){ header("Location: login"); exit; }
+
+    $parms = array( 'user_id' => $_SESSION['user_id'] );
+
+    $req = new Curl();
+    $req->post(api_url.'app', $parms);
+
+    $data = $req->response;
+
+    print_r($data);
+    die;
 
     $title = "Dashboard";
     $view = "./views/dashboard.php";
