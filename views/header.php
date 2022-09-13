@@ -123,7 +123,7 @@ $app = $req->response->data[0];
                         </li>
                         <li><hr class="dropdown-divider"></li>
                         <li>
-                            <a class="dropdown-item loadeffect mdc-ripple-upgraded loading_effect" href="./logout.php">
+                            <a class="dropdown-item loadeffect mdc-ripple-upgraded loading_effect" href="<?=root?>logout">
                                 <svg class="me-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3H6a2 2 0 0 0-2 2v14c0 1.1.9 2 2 2h4M16 17l5-5-5-5M19.8 12H9"/></svg>
                                 <div class="me-3"><?=T::logout?></div>
                             </a>
