@@ -49,23 +49,10 @@ setTimeout(function() { $('.bodyload').fadeOut(); }, 10);
                                </div>
 
                                <!-- Login submission form-->
-                               <form name="form" action="./activate" method="post" onsubmit="submission()">
+                               <form id="verify" name="form" method="post">
                                  <mwc-textfield id="email"    required="" name="email"    class="mb-3 email w-100"    label="Email"    icon="email"          outlined="" type="text"></mwc-textfield>
                                  <mwc-linear-progress class="d-none" indeterminate></mwc-linear-progress>
-                                 <script>
-                                    function submission() {
-                                        document.querySelector('.d-none').classList.remove('d-none');
-                                        let email = $("#email").val();
-                                        if (email == "") { 
-                                          event.preventDefault(); 
-                                          alert("Email is required to activate"); 
-                                          window.location.href = "<?=root?>login";
-                                        }
-                                    }
-                                 </script>
-
                                    <button id="submit" class="mt-3 dark btn btn-primary btn-lg mdc-ripple-upgraded btn-block" type="submit"><span class="button__text">Activate</span></button>
-
                                </form>
                            </div>
                        </div>
@@ -88,12 +75,31 @@ setTimeout(function() { $('.bodyload').fadeOut(); }, 10);
 <sb-customizer project="material-admin-pro"></sb-customizer>
 
 <script>
-  var hash = window.location.hash.substr(1);
-  if (hash == "invalid") {
-        vt.error("Email or password incorrect",{
-        title:"Invalid Credenntials",
-        position: "top-center",
-        callback: function (){ //
-        } })
-    }
+
+$("#verify").submit(function() {
+      event.preventDefault();
+
+      document.querySelector('.d-none').classList.remove('d-none');
+
+        let email = $("#email").val();
+        if (email == "") { 
+            event.preventDefault(); 
+            alert("Email is required to activate"); 
+            window.location.href = "<?=root?>verify";
+        }
+
+        $.ajax({
+        url: "<?=root?>activate",
+        type: 'POST',
+        dataType: "json",
+        data: {
+        email: email,
+        },
+        }).done(function(res) {
+        console.log(res);
+        // window.location.href = "<?=root?>login#verification";
+        });
+
+})
+
 </script>

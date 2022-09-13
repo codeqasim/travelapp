@@ -45,13 +45,12 @@ $router->get('verify', function() {
 $router->post('activate', function() { 
     
     $parms = array( 'email' => $_POST['email'] );
-
     $req = new Curl();
     $req->post(api_url.'activate', $parms);
 
     print_r($req->response);
     die;
-    
+
 
 });
 
