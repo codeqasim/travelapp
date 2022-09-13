@@ -27,6 +27,7 @@ $router->post('login', function() {
             $_SESSION['user_id'] = $req->response->data->user_id;
             $_SESSION['user_type'] = $req->response->data->type;
             $_SESSION['user_status'] = $req->response->data->status;
+            $_SESSION['user_language'] = $_POST['user_language'];
 
             header("Location: dashboard");
 
@@ -80,10 +81,7 @@ $router->get('dashboard', function() {
     $req = new Curl();
     $req->post(api_url.'app', $parms);
 
-    $data = $req->response;
-
-    print_r($data);
-    die;
+    $app = $req->response->data[0];
 
     $title = "Dashboard";
     $view = "./views/dashboard.php";

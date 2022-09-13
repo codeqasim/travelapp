@@ -25,7 +25,7 @@
         <!-- Drawer toggle button-->
         <button class="btn btn-lg btn-icon order-1 order-lg-0 mdc-ripple-upgraded" id="drawerToggle" href="javascript:void(0);"><i class="material-icons">menu</i></button>
         <!-- Navbar brand-->
-        <a class="navbar-brand me-auto loadeffect" href="./"><div class="text-uppercase font-monospace"><?=$settings[0]['business_name']?></div></a>
+        <a class="navbar-brand me-auto loadeffect" href="./"><div class="text-uppercase font-monospace"><?=$app->business_name?></div></a>
         <!-- Navbar items-->
         <div class="d-flex align-items-center mx-3 me-lg-0">
             <!-- Navbar-->
@@ -87,7 +87,7 @@
 
                     <ul class="dropdown-menu dropdown-menu-end mt-1" aria-labelledby="dropdownMenuProfile">
 
-						<li>
+						            <li>
                             <a class="dropdown-item loadeffect mdc-ripple-upgraded loading_effect" href="./account-profile?id=<?=$_SESSION['user_id']?>">
                                 <svg class="me-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
                                 <div class="me-3"><?=T::profile?></div>
