@@ -1,3 +1,8 @@
+<?php 
+// DEVIDE URL INTO SEGMENTS
+$url_path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+$url = explode('/', $url_path);
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -156,7 +161,7 @@
                         <?=T::dashboard?>
                     </a>
 
-                    <?php if($_SESSION['user_type'] == 'admin'){ ?>
+                    <?php if($_SESSION['user_type'] == 'agency'){ ?>
                     <a class="nav-link collapsed mdc-ripple-upgraded <?php if (end($url) == "settings" || end($url) == "modules" || end($url) == "currencies" || end($url) == "payment-gateways" || end($url) == "email-settings" ) {echo "active mdc-ripple-upgraded--background-focused";} ?>" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#collapseDashboards" aria-expanded="false" aria-controls="collapseDashboards">
 
                         <div class="nav-link-icon">
