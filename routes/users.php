@@ -76,13 +76,6 @@ $router->get('dashboard', function() {
     // REDIRECT IF USER IS NOT LOGGED IN
     if(!isset($_SESSION['user_login']) == true ){ header("Location: login"); exit; }
 
-    $parms = array( 'user_id' => $_SESSION['user_id'] );
-
-    $req = new Curl();
-    $req->post(api_url.'app', $parms);
-
-    $app = $req->response->data[0];
-
     $title = "Dashboard";
     $view = "./views/dashboard.php";
     include "./views/main.php";
