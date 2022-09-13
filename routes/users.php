@@ -8,13 +8,11 @@ $router->get('login', function() {
     // REDIRECT IF USER IS LOGGED IN
     if(isset($_SESSION['user_login']) == true ){ header("Location: dashboard"); exit; }
     
-    include "./views/login.php";
+    include "./views/user/login.php";
 });
 
 // ======================== LOGIN POST SESSION
 $router->post('login', function() {
-
-    require_once '_core.php';
 
     $parms = array( 'email' => $_POST['email'], 'password' => $_POST['password'], );
 
@@ -36,6 +34,25 @@ $router->post('login', function() {
     } else {
          header("Location: login#invalid");
     }
+});
+
+// ======================== VERIFY
+$router->get('verify', function() { 
+    include "./views/user/verify.php";
+});
+
+// ======================== ACTIVATE
+$router->post('activate', function() { 
+    
+    $parms = array( 'email' => $_POST['email'] );
+
+    $req = new Curl();
+    $req->post(api_url.'activate', $parms);
+
+    print_r($req->response);
+    die;
+    
+
 });
 
 // ======================== LOGOUT

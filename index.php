@@ -35,8 +35,8 @@ $router = new Router(function ($method, $path, $statusCode, $exception) { http_r
 
 // ======================== INDEX
 $router->get('/', function() {
-    if(!isset($_SESSION['admin_user_login'])){ header("Location: login"); exit; }
-    if(isset($_SESSION['admin_user_login'])){ header("Location: dashboard"); exit; }
+    if(!isset($_SESSION['user_login'])){ header("Location: login"); exit; }
+    if(isset($_SESSION['user_login'])){ header("Location: dashboard"); exit; }
 });
 
 // ROUTES
