@@ -11,6 +11,9 @@ $req = new Curl();
 $req->post(api_url.'app', $parms);
 $app = $req->response->data[0];
 
+// REDIRECT IF USER IS NOT LOGGED IN
+if(!isset($_SESSION['user_login']) == true ){ header("Location: login"); exit; }
+
 ?>
 
 <!DOCTYPE html>
