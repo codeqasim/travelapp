@@ -199,14 +199,14 @@
           <div class="caption fst-italic text-muted mb-4">Only PNG file supported max size 1 MB</div>
           <img src="<?=$app->logo?>?v<?=rand(0,99999999999)?>" class="hlogo_preview_img img-fluid">
           <hr>
-          <input type="file" class="btn btn-light mdc-ripple-upgraded" id="hlogo" name="logo">
+          <input value="<?=$app->favicon?>" type="file" class="btn btn-light mdc-ripple-upgraded" id="hlogo" name="logo">
         </div>
         <div class="card p-3 mb-3">
           <label><strong>Favicon</strong></label>
           <div class="caption fst-italic text-muted mb-4">Only PNG file supported max size 1 MB</div>
           <img src="<?=$app->favicon?>?v<?=rand(0,99999999999)?>" class="favimage_preview_img img-fluid" style="max-width:60px">
           <hr>
-          <input type="file" class="btn btn-light mdc-ripple-upgraded" id="favimage" name="favicon">
+          <input value="<?=$app->favicon?>" type="file" class="btn btn-light mdc-ripple-upgraded" id="favimage" name="favicon">
         </div>
         <div class="text-end">
           <button class="btn-block btn btn-primary mdc-ripple-upgraded" type="submit"> <i class="leading-icon material-icons">save</i> Update Settings</button>
