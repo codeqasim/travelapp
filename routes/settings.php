@@ -19,7 +19,6 @@ $router->post('settings', function() {
 
     // LOGO UPLOADED
     if(isset($_FILES['logo']) || !empty($_FILES['logo'])) { 
-    $val = "logo"; 
     $parms = array( 'file'=> new CurlFile($_FILES['logo']['tmp_name'], $_FILES['logo']['type'], $_FILES['logo']['name']), 'user_id' => $_POST['user_id'] );
     $req = new Curl();
     $req->post(api_stroage.'upload.php', $parms);
@@ -30,7 +29,6 @@ $router->post('settings', function() {
 
     // FAVICON UPLOADED
     if(isset($_FILES['favicon']) || !empty($_FILES['favicon'])) { 
-    $val = "favicon"; 
     $parms = array( 'file'=> new CurlFile($_FILES['favicon']['tmp_name'], $_FILES['favicon']['type'], $_FILES['favicon']['name']), 'user_id' => $_POST['user_id'] );
     $req = new Curl();
     $req->post(api_stroage.'upload.php', $parms);
