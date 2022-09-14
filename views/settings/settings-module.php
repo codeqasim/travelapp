@@ -1,63 +1,3 @@
-<?php
-
-// USING MEEDO NAMESPACE
-use Medoo\Medoo;
-
-// INCLUDE CORE FILE
-require_once '_core.php';
-require_once 'auth.php';
-
-// INCLUDE HEADER FILE
-$title = 'Module Settings';
-include 'header.php';
-
-// FOR THE GET REQUEST DATA
-if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-
-// GET ALL DATA
-$data = $db->select('modules', '*',[
-    'id' => $_GET['m']
-] );
-
-$module = (object)($data[0]);
-
-// CONDITION TO CHECK FOR STATUS
-if ($module->status == 1) {
-  $check = "checked=''";
-} else {
-  $check = "";
-}
-
-}
-
-// print_r($_POST);
-// die;
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
-    $db->update('modules', [
-        'b2c_markup' => $_POST['b2c_markup'],
-        'b2b_markup' => $_POST['b2b_markup'],
-        'b2e_markup' => $_POST['b2e_markup'],
-        'c1' => $_POST['c1'],
-        'c2' => $_POST['c2'],
-        'c3' => $_POST['c3'],
-        'c4' => $_POST['c4'],
-        'c4' => $_POST['c4'],
-        'dev_mode' => $_POST['dev_mode'],
-        'payment_mode' => $_POST['payment_mode'],
-        'currency' => $_POST['currency'],
-        'module_color' => $_POST['module_color'],
-
-    ], [
-        'id' => $_POST['id']
-    ]);
-
-    redirect('modules.php#updatesetttings');
-}
-
-?>
-
 <header class="bg-dark row">
     <div class="container-xl px-5">
         <div class="d-flex justify-content-between align-items-center">
@@ -243,5 +183,3 @@ $('[id=checkedbox]').on('click', function() {
 </script>
 
 </div>
-
-<?php include 'footer.php'; ?>
