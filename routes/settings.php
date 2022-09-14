@@ -23,7 +23,9 @@ $router->post('settings', function() {
     $parms = array( 'file'=> new CurlFile($_FILES['logo']['tmp_name'], $_FILES['logo']['type'], $_FILES['logo']['name']), 'user_id' => $_POST['user_id'] );
     $req = new Curl();
     $req->post(api_stroage.'upload.php', $parms);
+    if(isset($req->response->data)){
     $logo = ($req->response->data);
+    }
     }
 
     // FAVICON UPLOADED
@@ -32,12 +34,12 @@ $router->post('settings', function() {
     $parms = array( 'file'=> new CurlFile($_FILES['favicon']['tmp_name'], $_FILES['favicon']['type'], $_FILES['favicon']['name']), 'user_id' => $_POST['user_id'] );
     $req = new Curl();
     $req->post(api_stroage.'upload.php', $parms);
+    if(isset($req->response->data)){
     $favicon = ($req->response->data);
+    }
     }
 
     $parms = array( 
-    'logo' => $logo, 
-    'favicon' => $favicon, 
     'user_id' => $_SESSION['user_id'], 
     'business_name' => $_POST['business_name'], 
     'site_offline' => $_POST['site_offline'], 
@@ -60,9 +62,11 @@ $router->post('settings', function() {
     'social_whatsapp' => $_POST['social_whatsapp'], 
     );
 
+    if($logo) { $parms['logo'] = $logo; }
+    if($favicon) { $parms['favicon'] = $favicon; }
+
     $req = new Curl();
     $req->post(api_url.'settings', $parms);
-    
     header("Location: settings#updated");
 
 });
