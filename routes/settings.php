@@ -26,6 +26,8 @@ $router->post('settings', function() {
     $req->post(api_stroage.'upload.php', $parms);
     $logo = ($req->response->data);
 
+    }
+
     $parms = array( 
     'logo' => $logo, 
     'favicon' => $_FILES['favicon'], 
