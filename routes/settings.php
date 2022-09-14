@@ -18,6 +18,8 @@ $router->post('settings', function() {
     if(!isset($_SESSION['user_login']) == true ){ header("Location: login"); exit; }
 
     $parms = array( 
+    'logo' => $_FILES['logo'], 
+    'favicon' => $_SESSION['favicon'], 
     'user_id' => $_SESSION['user_id'], 
     'business_name' => $_POST['business_name'], 
     'site_offline' => $_POST['site_offline'], 
