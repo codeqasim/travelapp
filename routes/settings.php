@@ -74,6 +74,21 @@ $router->get('modules', function() {
     // REDIRECT IF USER IS NOT LOGGED IN
     if(!isset($_SESSION['user_login']) == true ){ header("Location: login"); exit; }
 
+    $req = new Curl();
+    $req->post(api_url.'modules');
+
+    $modules = ($req->response->data);
+
+
+    // foreach($modules as $m) {
+    //     echo $m->id;
+    // }
+
+    // echo "<pre>";
+    // print_r($modules);
+    // echo "<pre>";
+    // die;
+
     $title = "Modules";
     $view = "./views/settings/modules.php";
     include "./views/main.php";
