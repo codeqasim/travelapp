@@ -17,20 +17,27 @@ $router->post('settings', function() {
     // REDIRECT IF USER IS NOT LOGGED IN
     if(!isset($_SESSION['user_login']) == true ){ header("Location: login"); exit; }
 
+    // LOGO UPLOADED
     $val = "logo"; 
     if(isset($_FILES['logo']) || !empty($_FILES['logo'])) { 
-        
-    // LOGO UPLOADED
     $parms = array( 'file'=> new CurlFile($_FILES['logo']['tmp_name'], $_FILES['logo']['type'], $_FILES['logo']['name']), 'user_id' => $_POST['user_id'] );
     $req = new Curl();
     $req->post(api_stroage.'upload.php', $parms);
     $logo = ($req->response->data);
+    }
 
+    // FAVICON UPLOADED
+    $val = "favicon"; 
+    if(isset($_FILES['favicon']) || !empty($_FILES['favicon'])) { 
+    $parms = array( 'file'=> new CurlFile($_FILES['favicon']['tmp_name'], $_FILES['favicon']['type'], $_FILES['favicon']['name']), 'user_id' => $_POST['user_id'] );
+    $req = new Curl();
+    $req->post(api_stroage.'upload.php', $parms);
+    $logo = ($req->response->data);
     }
 
     $parms = array( 
     'logo' => $logo, 
-    'favicon' => "", 
+    'favicon' => $favicon, 
     'user_id' => $_SESSION['user_id'], 
     'business_name' => $_POST['business_name'], 
     'site_offline' => $_POST['site_offline'], 
