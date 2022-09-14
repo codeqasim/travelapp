@@ -54,7 +54,7 @@ $router->post('settings', function() {
     );
 
     $req = new Curl();
-    $req->post(api_url.'settings', $logo);
+    $req->post(api_url.'settings', $parms);
     
     header("Location: settings#updated");
 
