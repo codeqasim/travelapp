@@ -17,9 +17,14 @@ $router->post('settings', function() {
     // REDIRECT IF USER IS NOT LOGGED IN
     if(!isset($_SESSION['user_login']) == true ){ header("Location: login"); exit; }
 
-    // $logo = array( $_FILES['logo']['tmp_name'], $_FILES['logo']['type'], $_FILES['logo']['name']);
-
-    $logo = array( 'file'=> new CurlFile($_FILES['logo']['tmp_name'], $_FILES['logo']['type'], $_FILES['logo']['name']) );
+    $val = "logo"; 
+    if(isset($_FILES['logo']) || !empty($_FILES['logo'])) { 
+        
+    // LOGO UPLOADED
+    $parms = array( 'file'=> new CurlFile($_FILES['logo']['tmp_name'], $_FILES['logo']['type'], $_FILES['logo']['name']), 'user_id' => $_POST['user_id'] );
+    $req = new Curl();
+    $req->post(api_stroage.'upload.php', $parms);
+    $logo = ($req->response->data);
 
     $parms = array( 
     'logo' => $logo, 
