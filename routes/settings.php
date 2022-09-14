@@ -30,7 +30,7 @@ $router->post('settings', function() {
 
     $parms = array( 
     'logo' => $logo, 
-    'favicon' => $_FILES['favicon'], 
+    'favicon' => "", 
     'user_id' => $_SESSION['user_id'], 
     'business_name' => $_POST['business_name'], 
     'site_offline' => $_POST['site_offline'], 
