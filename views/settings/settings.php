@@ -207,6 +207,7 @@
           <img src="<?=$app->favicon?>?v<?=rand(0,99999999999)?>" class="favimage_preview_img img-fluid" style="max-width:60px">
           <hr>
           <input value="<?=$app->favicon?>" type="file" class="btn btn-light mdc-ripple-upgraded" id="favimage" name="favicon">
+          <script>document.favicon.submit();</script>
         </div>
         <div class="text-end">
           <button class="btn-block btn btn-primary mdc-ripple-upgraded" type="submit"> <i class="leading-icon material-icons">save</i> Update Settings</button>
