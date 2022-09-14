@@ -92,6 +92,20 @@ $router->get('modules', function() {
     $title = "Modules";
     $view = "./views/settings/modules.php";
     include "./views/main.php";
-})
+});
+
+// ======================== MODULES
+$router->get('/modules/(\d+)', function($id) {    
+
+    echo ($id);
+
+    $title = "Modules";
+    $view = "./views/settings/settings-modules.php";
+    include "./views/main.php";
+
+    die;
+  
+
+});
 
 ?>
