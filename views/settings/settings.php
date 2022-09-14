@@ -221,11 +221,8 @@
       </div>
     </div>
 
-    <div class="card card-raised mb-3">
+    <!-- <div class="card card-raised mb-3">
       <div class="card-body p-4">
-        <!-- <div class="card-title">Cover and Social Media</div>
-        <div class="card-subtitle mb-4">Homepage cover and media channels link</div> -->
-
         <div class="card p-3 mb-3">
           <label><strong>Homepage Cover</strong></label>
           <div class="caption fst-italic text-muted mb-4">Only JPG file supported max size 1 MB</div>
@@ -236,9 +233,8 @@
         <div class="text-end">
           <button class="btn-block btn btn-primary mdc-ripple-upgraded" type="submit"> <i class="leading-icon material-icons">save</i> Update Settings</button>
         </div>
-
       </div>
-    </div>
+    </div> -->
 
     <div class="card card-raised mb-3">
       <div class="card-body p-5">
@@ -302,7 +298,7 @@
         <mwc-textfield class="mb-3" name="social_twitter" label="Twitter" outlined icon="link" value="<?=$app->social_twitter?>"></mwc-textfield>
         <mwc-textfield class="mb-3" name="social_linkedin" label="LinkedIn" outlined icon="link" value="<?=$app->social_linkedin?> "></mwc-textfield>
         <mwc-textfield class="mb-3" name="social_instagram" label="Instagram" outlined icon="link" value="<?=$app->social_instagram?>"></mwc-textfield>
-        <mwc-textfield class="mb-3" name="social_google" label="Google GMB" outlined icon="link" value="<?=$app->social_google?></mwc-textfield>
+        <mwc-textfield class="mb-3" name="social_google" label="Google GMB" outlined icon="link" value="<?=$app->social_google?>"></mwc-textfield>
         <mwc-textfield class="mb-3" name="social_whatsapp" label="Whatsapp" outlined icon="link" value="<?=$app->social_whatsapp?>"></mwc-textfield>
 
         <div class="text-end mt-2">
