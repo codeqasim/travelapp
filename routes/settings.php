@@ -32,7 +32,7 @@ $router->post('settings', function() {
     $parms = array( 'file'=> new CurlFile($_FILES['favicon']['tmp_name'], $_FILES['favicon']['type'], $_FILES['favicon']['name']), 'user_id' => $_POST['user_id'] );
     $req = new Curl();
     $req->post(api_stroage.'upload.php', $parms);
-    $logo = ($req->response->data);
+    $favicon = ($req->response->data);
     }
 
     $parms = array( 
