@@ -17,8 +17,12 @@ $router->post('settings', function() {
     // REDIRECT IF USER IS NOT LOGGED IN
     if(!isset($_SESSION['user_login']) == true ){ header("Location: login"); exit; }
 
+    // $logo = array( $_FILES['logo']['tmp_name'], $_FILES['logo']['type'], $_FILES['logo']['name']);
+
+    $logo = array( 'file'=> new CurlFile($_FILES['logo']['tmp_name'], $_FILES['logo']['type'], $_FILES['logo']['name']) );
+
     $parms = array( 
-    'logo' => $_FILES['logo'], 
+    'logo' => $logo, 
     'favicon' => $_FILES['favicon'], 
     'user_id' => $_SESSION['user_id'], 
     'business_name' => $_POST['business_name'], 
@@ -43,7 +47,7 @@ $router->post('settings', function() {
     );
 
     $req = new Curl();
-    $req->post(api_url.'settings', $parms);
+    $req->post(api_url.'settings', $logo);
     
     header("Location: settings#updated");
 

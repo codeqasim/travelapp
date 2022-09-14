@@ -11,7 +11,7 @@
 </header>
 
 <form action="<?=root?>settings" method="post" onsubmit="submission()" enctype="multipart/form-data">
-
+<input type="hidden" value="<?=$_SESSION['user_id']?>" name="user_id">
 <div class="py-4 px-2">
 
 <div class="row gx-3">
@@ -315,7 +315,7 @@
 
 <script>
   $(function(){
-     offstatus();
+    offstatus();
   // mailserver options
   var mailserver = $("#mailserver").val();
   if(mailserver == "php"){
