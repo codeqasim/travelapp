@@ -69,5 +69,14 @@ $router->post('settings', function() {
 
 });
 
+// ======================== SETTINS POST
+$router->get('modules', function() {
+    // REDIRECT IF USER IS NOT LOGGED IN
+    if(!isset($_SESSION['user_login']) == true ){ header("Location: login"); exit; }
+
+    $title = "Modules";
+    $view = "./views/settings/modules.php";
+    include "./views/main.php";
+})
 
 ?>

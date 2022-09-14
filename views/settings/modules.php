@@ -1,31 +1,8 @@
 <?php
 
-// USING MEEDO NAMESPACE
-use Medoo\Medoo;
-
-// INCLUDE CORE FILE
-require_once '_core.php';
-require_once 'auth.php';
-
-// INCLUDE HEADER FILE
-$title = 'Modules';
-include 'header.php';
-
 // GET ALL SETTINGS DATA
-$modules = $db->select('modules', '*', );
+$modules = array();
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
-    $db->update('modules', [
-        'status' => $_POST['status'],
-    ], [
-        'id' => $_POST['id']
-    ]);
-
-    echo json_encode('status updated successfully');
-    exit;
-
-}
 ?>
 
 <header class="bg-dark row">
@@ -190,5 +167,3 @@ $('[id=checkedbox]').on('click', function() {
   });
 
 </script>
-
-<?php include 'footer.php'; ?>
