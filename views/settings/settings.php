@@ -315,8 +315,7 @@
 
 <script>
   $(function(){
-    themeinfo();
-    offstatus();
+     offstatus();
   // mailserver options
   var mailserver = $("#mailserver").val();
   if(mailserver == "php"){
